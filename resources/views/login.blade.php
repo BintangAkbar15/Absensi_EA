@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-12">
                       <div class="d-grid">
-                        <button class="btn bsb-btn-xl btn-primary" type="submit">Log in now</button>
+                        <button class="btn bsb-btn-xl fw-bold text-light" style="background: #7d2fd0;" type="submit">Log in now</button>
                       </div>
                     </div>
                   </div>
