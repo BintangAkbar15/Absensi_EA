@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('log_kehadirans', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_siswa');
-            $table->integer('id_kelas');
+            $table->foreignId('siswa_id')->constrained(
+                table: 'siswas',
+                indexName: 'log_siswa_id',
+            );
+            $table->foreignId('kelas_id')->constrained(
+                table: 'kelas',
+                indexName: 'posts_kelas_id',
+            );
             $table->date('tanggal')->default(now());
             $table->boolean('hadir')->default(false);
             $table->boolean('sakit')->default(false);
