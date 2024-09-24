@@ -7,12 +7,12 @@
     <title>Document</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="d-flex align-items-center vh-100 justify-content-center flex-column">
+<body class="d-flex align-items-center min-vh-100 justify-content-center flex-column">
     <section class="p-3 p-md-4 p-xl-5 col-11 shadow border-2 border-dark">
         <div class="container">
           <div class="row">
             <div class="col-12 col-md-6 bsb-tpl-bg-platinum">
-              <div class="d-flex flex-column justify-content-start h-100 p-3  p-xl-5">
+              <div class="d-flex flex-column justify-content-start h-100 p-3 p-xl-5">
                 <h3 class="m-0">Welcome!</h3>
                 <img class="img-fluid rounded mx-auto mt-5" loading="lazy" src="https://img.freepik.com/premium-vector/abstract-logo-design-any-corporate-business-company_1253202-92187.jpg" width="300" alt="BootstrapBrain Logo">
               </div>
@@ -36,11 +36,17 @@
                       <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
                       <input type="password" class="form-control" name="password" id="password" value="" required>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 d-flex justify-content-between">
+                      <div class="form-check d-none d-md-block">
+                        <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
+                        <label class="form-check-label text-secondary " for="remember_me">
+                          Keep me logged in
+                        </label>
+                      </div>
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
                         <label class="form-check-label text-secondary" for="remember_me">
-                          Keep me logged in
+                          Show Password
                         </label>
                       </div>
                     </div>
