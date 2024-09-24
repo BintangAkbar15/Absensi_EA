@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('log_kehadirans', function (Blueprint $table) {
+        Schema::create('logkehadirans', function (Blueprint $table) {
             $table->id();
             
             $table->integer( 'siswa_id'); // Ubah menjadi integer agar sesuai dengan nip di tabel siswas
@@ -21,10 +21,7 @@ return new class extends Migration
                 indexName: 'log_kelas_id',
             );
             $table->date('tanggal')->default(now());
-            $table->boolean('hadir')->default(false);
-            $table->boolean('sakit')->default(false);
-            $table->boolean('izin')->default(false);
-            $table->boolean('alpa')->default(false);
+            $table->string('status')->default('');
             $table->timestamps();
         });
     }

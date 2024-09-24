@@ -2,9 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Guru;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
+use App\Models\Kelas;
+use App\Models\Siswa;
+use App\Models\Pengajar;
+use App\Models\Logkehadiran;
 use Illuminate\Database\Seeder;
+use Database\Seeders\GuruSeeder;
+use Database\Seeders\KelasSeeder;
+use Database\Seeders\SiswaSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,9 +23,22 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
+        $this->call([
+            GuruSeeder::class,
+            KelasSeeder::class,
+            KSiswaSeeder::class,
+            LogSeeder::class
         ]);
+
+        Logkehadiran::factory(20)->recycle([
+            Siswa::all(),
+            Kelas::all()
+        ])->create();
+
     }
 }
+
