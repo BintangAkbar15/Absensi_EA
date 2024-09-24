@@ -8,6 +8,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <label for="" class="h5">HALOOO</label>
+    <label for="" class="h5">oalo</label>
 </body>
 </html>
