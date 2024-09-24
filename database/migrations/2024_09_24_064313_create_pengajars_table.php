@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('pengajars', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_guru');
-            $table->integer('id_kelas');
+            $table->foreignId('guru_id')->constrained(
+                table: 'gurus',
+                indexName: 'pengajars_guru_id',
+            );
+            $table->foreignId('kelas_id')->constrained(
+                table: 'kelas',
+                indexName: 'pengajars_kelas_id',
+            );
             $table->timestamps();
         });
     }
