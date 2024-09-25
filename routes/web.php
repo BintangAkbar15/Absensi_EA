@@ -46,3 +46,11 @@ Route::middleware('auth')->group(function () {
     //kelas add
     Route::post('/kelas/add/new', [KelasController::class, 'store'])->name('kelas.add');
 });
+
+Route::get('/masterkelas', function(){
+    return view('masterclass');
+});
+
+Route::get('/siswakelas', function(){
+    return view('siswakelas');
+});
