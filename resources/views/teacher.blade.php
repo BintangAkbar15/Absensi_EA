@@ -13,13 +13,16 @@
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="https://www.hidros.com.tr/wp-content/uploads/2023/01/slider-dump-trailer.png" class="d-block w-100" alt="First slide">
+            <img src="{{ url('img/png/goes-to-japan.png') }}" class="d-md-none w-100" alt="First slide">
+            <img src="{{ url('img/png-dekstop/1.png') }}" class="d-md-block d-none w-100" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img src="https://www.hidros.com.tr/wp-content/uploads/2023/01/slider-dump-trailer.png" class="d-block w-100" alt="Second slide">
+            <img src="{{ url('img/png/teacher-training.png') }}" class="d-md-none w-100" alt="Second slide">
+            <img src="{{ url('img/png-dekstop/2.png') }}" class="d-md-block d-none w-100" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img src="https://www.hidros.com.tr/wp-content/uploads/2023/01/slider-dump-trailer.png" class="d-block w-100" alt="Third slide">
+            <img src="{{ url('img/png/talkshow.png') }}" class="d-md-none w-100" alt="Third slide">
+            <img src="{{ url('img/png-dekstop/3.png') }}" class="d-md-block d-none w-100" alt="First slide">
           </div>
         </div>
     </div>
