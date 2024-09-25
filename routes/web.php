@@ -6,7 +6,7 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/home', function () {
-    return view('master');
+Route::get('/teacher', function () {
+    return view('teacher');
 });
 
