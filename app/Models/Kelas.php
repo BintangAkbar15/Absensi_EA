@@ -12,6 +12,7 @@ class Kelas extends Model
     protected $fillable = [
         'name',
         'jumlah_siswa',
+        'bangku_tersisa',
     ];
 
     public function siswa(){

@@ -58,4 +58,44 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>  
     </div>
+    <div class="mt-2 mt-md-5 d-md-block d-none">
+        <div class="w-100 d-flex justify-content-center gap-sm-3 gap-1 flex-column flex-sm-row">
+            <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-center col-1 col-sm-1 col-md-2 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '/siswa'">
+                <label for="" class="fs-6 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Siswa</label> <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-center col-1 col-sm-1 col-md-2 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '/kelas'">
+                <label for="" class="fs-6 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Kelas</label> <i class="fa-solid fa-chalkboard"></i>
+            </div>
+            <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-center col-1 col-sm-1 col-md-2 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '#'">
+                <label for="" class="fs-6 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Absensi</label> <i class="fa-solid fa-book"></i>
+            </div>
+            <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-center col-1 col-sm-1 col-md-2 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '#'">
+                <label for="" class="fs-6 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Laporan</label> <i class="fa-solid fa-chart-simple"></i>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="col-12 d-flex justify-content-evenly mt-5 d-md-none">
+            <div class="col-4 text-light d-flex flex-column align-items-center justify-content-center rounded shadow" style="height: 120px; background: #532200" onclick="window.location.href = '/siswa'">
+                <i class="fa-solid fs-1 fa-user"></i>
+                <label class="fs-5" for="">Siswa</label>
+            </div>
+            <div class="col-4 text-light d-flex flex-column align-items-center justify-content-center rounded shadow" style="height: 120px; background: #efcfa0" onclick="window.location.href = '#'">
+                <i class="fa-solid fs-1 fa-chalkboard"></i>
+                <label class="fs-5" for="">Kelas</label>
+            </div>    
+        </div>
+        
+        <div class="col-12 d-flex justify-content-evenly mt-5 d-md-none">
+            <div class="col-4 text-light d-flex flex-column align-items-center justify-content-center rounded shadow" style="height: 120px; background: #efcfa0" onclick="window.location.href = '#'">
+                <i class="fa-solid fs-1 fa-book"></i>
+                <label class="fs-5" for="">Absensi</label>
+            </div>
+            <div class="col-4 text-light d-flex flex-column align-items-center justify-content-center rounded shadow" style="height: 120px; background: #532200" onclick="window.location.href = '#'">
+                <i class="fa-solid fs-1 fa-chart-simple"></i>
+                <label class="fs-5" for="">Laporan</label>
+            </div>    
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>  
 </x-layout>
