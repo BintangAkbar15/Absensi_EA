@@ -7,7 +7,7 @@
             </button>
             <button class="btn text-light ms-3 bg-success">
                 <i class="fa-solid fa-plus"></i>
-                <label for="">Add</label>
+                <label for=""  onclick="window.location.href = '/add'">Add</label>
             </button>
         </div>
     </div>
@@ -46,7 +46,7 @@
                                     <i class="fa-solid fa-pencil"></i>
                                     <label for="" class="d-none d-md-block">Edit</label>
                                 </button>
-                                <button class="btn text-light ms-3 bg-danger d-md-flex align-items-center justify-content-center gap-3">
+                                <button class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3">
                                     <i class="fa-solid fa-trash"></i>
                                     <label for="" class="d-none d-md-block">Delete</label>
                                 </button>
