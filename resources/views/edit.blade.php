@@ -10,7 +10,7 @@
                         <div class="row gy-3 gy-md-4 overflow-hidden">
                             <div class="col-12">
                                 <label for="nama" class="form-label">Nama <span class="text-danger">*</span></label>
-                                <input type="nama" class="form-control" name="nama" id="nama" value="" required>
+                                <input type="nama" class="form-control" name="nama" id="nama" value="{{ $nis }}" required>
                             </div>
                             <div class="col-12">
                                 <label for="nama" class="form-label">Kelas <span class="text-danger">*</span></label>

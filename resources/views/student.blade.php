@@ -42,7 +42,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->kelas_id }}</td>
                             <td class="d-flex justify-content-center">
-                                <a href="/edit" class="btn text-light bg-warning d-md-flex align-items-center justify-content-center gap-3">
+                                <a href="/siswa/edit/{{ $item->nis }}" class="btn text-light bg-warning d-md-flex align-items-center justify-content-center gap-3">
                                     <i class="fa-solid fa-pencil"></i>
                                     <label for="" class="d-none d-md-block">Edit</label>
                                 </a>
