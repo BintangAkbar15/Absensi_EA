@@ -5,7 +5,7 @@
                 <i class="fa-solid fa-arrow-down-wide-short"></i>
                 <label for="">Sort By</label>
             </button>
-            <a href="{{ route('student.create') }}" class="btn text-light ms-3 bg-success">
+            <a href="{{ route('kelas.create') }}" class="btn text-light ms-3 bg-success">
                 <i class="fa-solid fa-plus"></i>
                 <label for="">Add</label>
             </a>
@@ -28,9 +28,9 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Nis</th>
-                            <th scope="col">Nama</th>
                             <th scope="col">Kelas</th>
+                            <th scope="col">Jumlah Siswa</th>
+                            <th scope="col">Jumlah Bangku</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -38,9 +38,9 @@
                         @forelse ($data as $item)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $item->nis }}</td>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->kelas_id }}</td>
+                            <td>{{ $item->jumlah_siswa }}</td>
+                            <td>{{ $item->bangku_tersisa }}</td>
                             <td class="d-flex justify-content-center">
                                 <a href="/edit" class="btn text-light bg-warning d-md-flex align-items-center justify-content-center gap-3">
                                     <i class="fa-solid fa-pencil"></i>

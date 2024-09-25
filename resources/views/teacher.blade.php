@@ -21,7 +21,7 @@
             <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-center col-1 col-sm-1 col-md-2 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '/siswa'">
                 <label for="" class="fs-6 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Siswa</label> <i class="fa-solid fa-user"></i>
             </div>
-            <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-center col-1 col-sm-1 col-md-2 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '/kelasadd'">
+            <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-center col-1 col-sm-1 col-md-2 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '/kelas'">
                 <label for="" class="fs-6 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Kelas</label> <i class="fa-solid fa-chalkboard"></i>
             </div>
             <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-center col-1 col-sm-1 col-md-2 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '#'">

@@ -1,5 +1,20 @@
 <x-layout>
-    <div class="w-100 d-flex align-items-center justify-content-center mt-5">
+  @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+      <script>
+        const alert = document.querySelector('.alert');
+        setTimeout(() => {
+          alert.style.display = 'none';
+        }, 3000);
+      </script>
+  @endif
+    <div class="w-100 d-flex align-items-center justify-content-center mt-3">
         <section class="p-3 p-md-4 p-xl-5 col-9 shadow border border-1 rounded border-dark">
             <div class="container">
           <div class="row">
@@ -18,7 +33,7 @@
                     </div>
                   </div>
                 </div>
-                <form action="{{ route('siswa.add') }}" method="POST">
+                <form action="{{ route('kelas.add') }}" method="POST">
                   @csrf
                   <div class="row gy-3 gy-md-4 overflow-hidden">
                     <div class="col-12">
@@ -26,8 +41,8 @@
                       <input type="text" class="form-control" name="kelas" id="kelas" maxlength="10" required>
                     </div>
                     <div class="col-12">
-                      <label for="jumlah_siswa" class="form-label">Jumlah siswa <span class="text-danger">*</span></label>
-                      <input type="number" class="form-control " name="jumlah_siswa" id="jumlah_siswa" value="" required>
+                      <label for="bangku_tersisa" class="form-label">Bangku Tersedia<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control " name="bangku_tersisa" id="bangku_tersisa" maxlength="2" required>
                     </div>
                     <div class="col-12">
                       <div class="d-grid">
