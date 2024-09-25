@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-</head>
-<body style="background: #e1a140;">
-    <x-header></x-header>
-
+<x-layout>
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -28,13 +16,6 @@
         </div>
     </div>
 
-    {{-- {{ dd(Auth::check()) }} --}}
-    @if (Auth::check())
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button class="btn btn-primary">Logout</button>
-        </form>
-    @endif
     <div class="mt-2 mt-md-5 d-md-block d-none">
         <div class="w-100 d-flex justify-content-center gap-sm-3 gap-1 flex-column flex-sm-row">
             <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-center col-1 col-sm-1 col-md-2 px-5" style="cursor: pointer; background: #532200;">
@@ -74,6 +55,5 @@
             </div>    
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>      
-</body>
-</html>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>  
+</x-layout>

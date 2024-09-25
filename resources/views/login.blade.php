@@ -38,12 +38,6 @@
                       <input type="password" class="form-control" name="password" id="password" value="" required>
                     </div>
                     <div class="col-12 d-flex justify-content-between">
-                      <div class="form-check d-none d-xxl-block">
-                        <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
-                        <label class="form-check-label text-secondary " for="remember_me">
-                          Keep me logged in
-                        </label>
-                      </div>
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" name="show_password" id="show_password">
                         <label class="form-check-label text-secondary" for="show_password">
@@ -53,7 +47,7 @@
                     </div>
                     <div class="col-12">
                       <div class="d-grid">
-                        <button class="btn bsb-btn-xl fw-bold text-light" style="background: #532200;" type="submit">Log in now</button>
+                        <button class="btn bsb-btn-xl fw-bold text-light" style="background: #532200;" type="submit">Log in</button>
                       </div>
                       
                     @if (session('error'))
