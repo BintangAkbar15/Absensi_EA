@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('siswas', function (Blueprint $table) {
             $table->integer('nis')->primary(true);
-            $table->foreignId('kelas_id')->constrained(
+            $table->foreignId('kelas_id')
+            ->constrained(
                 table: 'kelas',
                 indexName: 'siswas_kelas_id',
-            );
+            )->nullable()  ;
             $table->string('name');
             $table->timestamps();
         });
