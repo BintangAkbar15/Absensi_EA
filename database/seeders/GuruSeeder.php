@@ -17,19 +17,19 @@ class GuruSeeder extends Seeder
             'nip'=>121233214,                                                                  
             'name'=>'Isti Rahmawati',
             'username'=>'IstiRahmawati',
-            'password'=>'IstiRahmawati',
+            'password'=>bcrypt('IstiRahmawati'),
         ]);
         Guru::create([    
             'nip'=>234123321,                                                                    
             'name'=>'Remi Sinaga',
             'username'=>'RemiSinaga',
-            'password'=>'RemiSinaga',
+            'password'=>bcrypt('RemiSinaga'),
         ]);
         Guru::create([    
             'nip'=>345123321,                                                                    
             'name'=>'Budiman Budianto',
             'username'=>'BudimanBudianto',
-            'password'=>'BudimanBudianto',
+            'password'=>bcrypt('BudimanBudianto'),//'BudimanBudianto',
         ]);
 
     }
