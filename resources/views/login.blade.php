@@ -8,13 +8,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="d-flex align-items-center min-vh-100 justify-content-center flex-column">
-    <section class="p-3 p-md-4 p-xl-5 col-11 shadow border-2 border-dark">
+    <section class="p-3 p-md-4 p-xl-5 col-9 shadow border border-1 rounded border-dark">
         <div class="container">
           <div class="row">
             <div class="col-12 col-md-6 bsb-tpl-bg-platinum">
               <div class="d-flex flex-column justify-content-start h-100 p-3 p-xl-5">
-                <h3 class="m-0">Welcome!</h3>
-                <img class="img-fluid rounded mx-auto mt-5" loading="lazy" src="https://img.freepik.com/premium-vector/abstract-logo-design-any-corporate-business-company_1253202-92187.jpg" width="300" alt="BootstrapBrain Logo">
+                <img class="img-fluid d-md-block d-none rounded mx-auto my-auto" loading="lazy" src="{{ url('img/logo-title-dekstop.png') }}" width="400" alt="BootstrapBrain Logo">
+                <img class="img-fluid d-md-none rounded mx-auto my-auto" loading="lazy" src="{{ url('img/logo-title-phone.png') }}" width="400" alt="BootstrapBrain Logo">
               </div>
             </div>
             <div class="col-12 col-md-6 bsb-tpl-bg-lotion">
