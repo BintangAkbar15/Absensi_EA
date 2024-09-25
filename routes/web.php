@@ -20,3 +20,11 @@ Route::middleware('auth')->group(function () {
         return view('formadd');
     });
 });
+
+Route::get('/edit', function(){
+    return view('edit');
+});
+
+Route::get('/kelasadd', function(){
+    return view('addkelas');
+});
