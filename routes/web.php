@@ -12,4 +12,11 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'tampilDashboard'])->name('dashboard.tampil');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/siswa', function(){
+        return view('student');
+    });
+    Route::get('/add', function(){
+        return view('formadd');
+    });
 });

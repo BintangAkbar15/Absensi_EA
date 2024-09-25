@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-12">
                       <div class="d-grid">
-                        <button class="btn bsb-btn-xl fw-bold text-light" style="background: #532200;" type="submit">Log in now</button>
+                        <button class="btn bsb-btn-xl fw-bold text-light" style="background: #532200;" type="submit">Log in</button>
                       </div>
                       
                     @if (session('error'))
