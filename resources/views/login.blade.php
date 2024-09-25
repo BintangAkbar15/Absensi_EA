@@ -37,22 +37,22 @@
                       <input type="password" class="form-control" name="password" id="password" value="" required>
                     </div>
                     <div class="col-12 d-flex justify-content-between">
-                      <div class="form-check d-none d-md-block">
+                      <div class="form-check d-none d-xxl-block">
                         <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
                         <label class="form-check-label text-secondary " for="remember_me">
                           Keep me logged in
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
-                        <label class="form-check-label text-secondary" for="remember_me">
+                        <input class="form-check-input" type="checkbox" value="" name="show_password" id="show_password">
+                        <label class="form-check-label text-secondary" for="show_password">
                           Show Password
                         </label>
                       </div>
                     </div>
                     <div class="col-12">
                       <div class="d-grid">
-                        <button class="btn bsb-btn-xl fw-bold text-light" style="background: #7d2fd0;" type="submit">Log in now</button>
+                        <button class="btn bsb-btn-xl fw-bold text-light" style="background: #532200;" type="submit">Log in now</button>
                       </div>
                     </div>
                   </div>
@@ -62,5 +62,6 @@
           </div>
         </div>
       </section>
+      <script src="{{ url('js\main.js'); }}"></script>
 </body>
 </html>
