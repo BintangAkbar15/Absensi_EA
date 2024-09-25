@@ -28,3 +28,11 @@ Route::get('/edit', function(){
 Route::get('/kelasadd', function(){
     return view('addkelas');
 });
+
+Route::get('/masterkelas', function(){
+    return view('masterclass');
+});
+
+Route::get('/siswakelas', function(){
+    return view('siswakelas');
+});
