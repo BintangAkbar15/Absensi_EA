@@ -55,6 +55,10 @@
                       <div class="d-grid">
                         <button class="btn bsb-btn-xl fw-bold text-light" style="background: #532200;" type="submit">Log in now</button>
                       </div>
+                      
+                    @if (session('error'))
+                      <p class="text-danger">{{ session('error') }}</p>
+                    @endif
                     </div>
                   </div>
                 </form>

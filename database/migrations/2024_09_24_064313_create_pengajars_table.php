@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pengajars', function (Blueprint $table) {
             $table->id();
             $table->integer('guru_id'); // Ubah menjadi integer agar sesuai dengan nip di tabel gurus
-            $table->foreign('guru_id', 'pengajars_guru_id')->references('nip')->on('gurus')->onDelete('cascade');
+            $table->foreign('guru_id', 'pengajars_guru_id')->references('nip')->on('users')->onDelete('cascade');
             
             $table->foreignId('kelas_id')->constrained('kelas')->onDelete('cascade'); // Tidak ada masalah di sini
             $table->timestamps();

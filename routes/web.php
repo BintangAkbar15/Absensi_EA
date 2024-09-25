@@ -9,10 +9,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login/submit', [AuthController::class, 'submitLogin'])->name('login.submit');
 });
 
-
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('teacher');
-    });
+    Route::get('/', [AuthController::class, 'tampilDashboard'])->name('dashboard.tampil');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

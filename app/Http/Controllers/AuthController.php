@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    function tampilDashboard(){
+        return view('teacher');
+    }
+
     function tampilLogin(){
         return view('login');
     }
@@ -14,16 +18,16 @@ class AuthController extends Controller
     function submitLogin(Request $request){
         $data = $request->only('username','password');
 
-        if(Auth::guard('guru')->attempt($data)){
+        if(Auth::attempt($data)){
             $request->session()->regenerate();
-            return redirect('/');
+            return redirect()->route('dashboard.tampil');
         }else{
-            return back()->with('error','Login Gagal');
+            return back()->with('error','Username atau Password salah');
         }
     }
 
     function logout(){
-        Auth::guard('guru')->logout();
+        Auth::logout();
         return redirect()->route('login.tampil');
     }
 }

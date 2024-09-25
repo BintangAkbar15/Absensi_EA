@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Guru;
+use App\Models\User;
 use App\Models\Kelas;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +20,7 @@ class PengajarFactory extends Factory
     public function definition(): array
     {
         return [
-            'guru_id'=>Guru::factory(),
+            'guru_id'=>User::factory(),
             'kelas_id'=>Kelas::factory()
         ];
     }

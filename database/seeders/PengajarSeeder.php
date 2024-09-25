@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\Pengajar;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\GuruSeeder;
 use Database\Seeders\KelasSeeder;
@@ -17,9 +18,9 @@ class PengajarSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([KelasSeeder::class,GuruSeeder::class]);
+        $this->call([KelasSeeder::class,UserSeeder::class]);
         Pengajar::factory(10)->recycle([
-            Guru::all(),
+            User::all(),
             Kelas::all()
         ])->create();
     }
