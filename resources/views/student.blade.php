@@ -41,12 +41,12 @@
                             <td>{{ $item->nis }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->kelas_id }}</td>
-                            <td>
-                                <button class="btn text-light bg-warning">
+                            <td class="d-flex justify-content-center">
+                                <button class="btn text-light bg-warning d-md-flex align-items-center justify-content-center gap-3">
                                     <i class="fa-solid fa-pencil"></i>
                                     <label for="" class="d-none d-md-block">Edit</label>
                                 </button>
-                                <button class="btn text-light d-flex col-md-2 align-items-center justify-content-evenly bg-danger">
+                                <button class="btn text-light ms-3 bg-danger d-md-flex align-items-center justify-content-center gap-3">
                                     <i class="fa-solid fa-trash"></i>
                                     <label for="" class="d-none d-md-block">Delete</label>
                                 </button>

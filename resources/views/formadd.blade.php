@@ -17,8 +17,7 @@
                       <h3>Add Form</h3>
                     </div>
                   </div>
-                </div>
-                <form action="{{ route('siswa.add') }}" method="POST">
+                    <form action="{{ route('siswa.add') }}" method="POST">
                   @csrf
                   <div class="row gy-3 gy-md-4 overflow-hidden">
                     <div class="col-12">
@@ -31,7 +30,7 @@
                     </div>
                     <div class="col-12">
                       <div class="d-grid">
-                        <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" data-mdb-modal-init data-mdb-target="#exampleModal">
+                        <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" data-mdb-modal-init data-mdb-target="#exampleModal">
                             Add
                         </button>
                           
@@ -47,7 +46,7 @@
         </div>
       </section>
     </div>
-    @if (session('error'))
+    @if ($errors->any())
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
