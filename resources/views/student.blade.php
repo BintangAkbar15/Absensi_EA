@@ -42,10 +42,10 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->kelas_id }}</td>
                             <td class="d-flex justify-content-center">
-                                <button class="btn text-light bg-warning d-md-flex align-items-center justify-content-center gap-3">
+                                <a href="/edit" class="btn text-light bg-warning d-md-flex align-items-center justify-content-center gap-3">
                                     <i class="fa-solid fa-pencil"></i>
                                     <label for="" class="d-none d-md-block">Edit</label>
-                                </button>
+                                </a>
                                 <button class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3">
                                     <i class="fa-solid fa-trash"></i>
                                     <label for="" class="d-none d-md-block">Delete</label>
