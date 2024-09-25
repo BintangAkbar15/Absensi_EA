@@ -1,7 +1,7 @@
 <x-layout>
-    <div class="w-100 px-5 mt-4 d-flex align-items-center justify-content-between">
+    <div class="w-100 ms-3 mt-4 d-flex align-items-center">
         <div>
-            <button class="btn text-light ms-3" style="background: #B68D40">
+            <button class="btn text-light" style="background: #B68D40">
                 <i class="fa-solid fa-arrow-down-wide-short"></i>
                 <label for="">Sort By</label>
             </button>
@@ -11,13 +11,15 @@
             </button>
         </div>
     </div>
-    <form action="" class="input-group w-25 d-flex ms-auto me-5 justify-content-end">
-        <input type="text" placeholder="Search Student" class="rounded-start-3 ps-3">
-        <button class="btn me-4 rounded-none text-light" style="background: #B68D40">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <label for="">Search</label>
-        </button>
-    </form>
+    <div class="col-6 col-md-3 mt-3 ms-auto me-4 me-md-5">
+        <form action="" class="input-group ">
+            <input type="text" placeholder="Search Student" class="rounded-start-3 ps-3 col-8">
+            <button class="btn rounded-none d-flex align-items-center gap-2 justify-content-center text-light col-4" style="background: #B68D40">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <label for="" class="d-none d-md-block">Search</label>
+            </button>
+        </form>
+    </div>
     <div class="container-fluid mt-3">
         <div class="row d-flex justify-content-center">
             <div class="col-11">
@@ -38,14 +40,14 @@
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>@mdo</td>
-                            <td>
-                                <button class="btn text-light bg-warning">
+                            <td class="d-flex justify-content-center gap-4">
+                                <button class="btn text-light d-flex col-md-2 align-items-center justify-content-evenly bg-warning">
                                     <i class="fa-solid fa-pencil"></i>
-                                    <label for="">Edit</label>
+                                    <label for="" class="d-none d-md-block">Edit</label>
                                 </button>
-                                <button class="btn text-light ms-3 bg-danger">
+                                <button class="btn text-light d-flex col-md-2 align-items-center justify-content-evenly bg-danger">
                                     <i class="fa-solid fa-trash"></i>
-                                    <label for="">Delete</label>
+                                    <label for="" class="d-none d-md-block">Delete</label>
                                 </button>
                             </td>
                         </tr>
