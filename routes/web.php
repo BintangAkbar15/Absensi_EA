@@ -3,13 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
-Route::get('/teacher', function () {
+Route::get('/', function () {
     return view('teacher');
 });
 
 //RUTE LOGIN
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
 });
-Route::post('/login/submit', [AuthController::class, 'loginAuth'])->name('login.post');
+
+Route::post('/login/submit', [AuthController::class, 'submitLogin'])->name('login.submit');

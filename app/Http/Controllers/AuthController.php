@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    function loginAuth(Request $request){
-        $data = $request->onlu('username','password');
+    function submitLogin(Request $request){
+        $data = $request->only('username','password');
 
-        if(Auth::attempt($data)){
+        if(Auth::guard('guru')->attempt($data)){
             $request->session()->regenerate();
             return redirect('/home');
         }else{

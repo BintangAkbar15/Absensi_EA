@@ -26,7 +26,8 @@
                     </div>
                   </div>
                 </div>
-                <form action="{{ route('login.post') }}" method="POST">
+                <form action="{{ route('login.submit') }}" method="POST">
+                  @csrf
                   <div class="row gy-3 gy-md-4 overflow-hidden">
                     <div class="col-12">
                       <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
