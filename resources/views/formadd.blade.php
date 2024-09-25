@@ -48,5 +48,6 @@
   </div>
     @if ($errors->any())
 
+
     @endif
 </x-layout>
