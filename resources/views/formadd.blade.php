@@ -18,12 +18,12 @@
                     </div>
                   </div>
                 </div>
-                <form action="{{ route('login.submit') }}" method="POST">
+                <form action="{{ route('siswa.add') }}" method="POST">
                   @csrf
                   <div class="row gy-3 gy-md-4 overflow-hidden">
                     <div class="col-12">
-                      <label for="Nis" class="form-label">NIS <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" name="Nis" id="Nis" required>
+                      <label for="nis" class="form-label">NIS <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="nis" id="nis" maxlength="10" placeholder="" required>
                     </div>
                     <div class="col-12">
                       <label for="nama" class="form-label">Nama <span class="text-danger">*</span></label>
