@@ -33,11 +33,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($data as $item)
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $item->nis }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->kelas_id }}</td>
                             <td>
                                 <button class="btn text-light bg-warning">
                                     <i class="fa-solid fa-pencil"></i>
@@ -49,6 +50,9 @@
                                 </button>
                             </td>
                         </tr>
+                        @empty
+                            
+                        @endforelse
                     </tbody>
                 </table>
             </div>

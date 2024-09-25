@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SiswaController;
 
 //RUTE LOGIN
 Route::middleware('guest')->group(function () {
@@ -12,10 +13,9 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'tampilDashboard'])->name('dashboard.tampil');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-    Route::get('/siswa', function(){
-        return view('student');
-    });
+    
+    Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.tampil');
+    Route::post('/add/new', [SiswaController::class, 'store'])->name('siswa.add');
     Route::get('/add', function(){
         return view('formadd');
     });

@@ -20,7 +20,7 @@ class User extends Authenticatable
     protected $primaryKey = 'nip';
     protected $fillable = [
         'nip',
-        'nama',
+        'name',
         'username',
         'password',
     ];

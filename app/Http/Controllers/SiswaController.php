@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -15,12 +16,12 @@ class SiswaController extends Controller
         $max_tampil = 4;
         
         if(request("search")){
-            $data = Todo::where('task','like','%'.request("search").'%')->paginate($max_tampil)->withQueryString();
+            $data = Siswa::where('name','like','%'.request("search").'%')->paginate($max_tampil)->withQueryString();
         }
         else{
-            $data = Todo::orderBy('task','asc')->paginate($max_tampil)->withQueryString();
+            $data = Siswa::orderBy('name','asc')->paginate($max_tampil)->withQueryString();
         }
-        return view('todo.app',compact('data'));
+        return view('student',compact('data'));
     }
 
     /**
@@ -38,20 +39,25 @@ class SiswaController extends Controller
     {
         //POST data
         $request->validate([
-            'task' => 'required|min:3|max:50'
+            'nama' => 'required|min:3|max:50',
+            'nis' => 'required|min:10'
         ],[
-            'task.required' => 'Task harus diisi',
-            'task.min' => 'Task minimal 3 karakter',
-            'task.max' => 'Task maximal 3 karakter'
+            'nama.required' => 'nama harus diisi',
+            'nama.min' => 'nama minimal 3 karakter',
+            'nama.max' => 'nama maximal 3 karakter',
+            'nis.required'=>'nis harus diisi',
+            'nis.min'=>'nis harus berisi 10 karakter',
+
         ]);
 
 
         $data = [
-            'task' => $request->input('task')
+            'nis' => $request->input('nis'),
+            'name' => $request->input('nama')
         ];
 
-        Todo::create($data);
-        return redirect()->route('todo')->with('success',"Berhasil memasukkan data");
+        Siswa::create($data);
+        return redirect()->route('siswa.tampil')->with('success',"Berhasil memasukkan data");
     }
 
     /**
@@ -90,8 +96,8 @@ class SiswaController extends Controller
             'is_done' => $request->input('is_done'),
         ];
 
-        Todo::where('task', $id)->update($data);
-        return redirect()->route('todo')->with('success',"Berhasil mengedit data");
+        Siswa::where('task', $id)->update($data);
+        return redirect()->route('Siswa')->with('success',"Berhasil mengedit data");
     }
 
     /**
@@ -100,7 +106,7 @@ class SiswaController extends Controller
     public function destroy(string $id)
     {
         //delete data
-        Todo::where('id',$id)->delete();
-        return redirect()->route('todo')->with('success',"Berhasil menghapus data");
+        Siswa::where('id',$id)->delete();
+        return redirect()->route('Siswa')->with('success',"Berhasil menghapus data");
     }
 }

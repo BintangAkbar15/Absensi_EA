@@ -27,17 +27,17 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $this->call([
-            UserSeeder::class,
-            KelasSeeder::class,
-            KSiswaSeeder::class,
-            LogSeeder::class
-        ]);
+        // $this->call([
+        //     UserSeeder::class,
+        //     KelasSeeder::class,
+        //     KSiswaSeeder::class,
+        //     LogSeeder::class
+        // ]);
 
-        Logkehadiran::factory(20)->recycle([
-            Siswa::all(),
-            Kelas::all()
-        ])->create();
+        // Logkehadiran::factory(20)->recycle([
+        //     Siswa::all(),
+        //     Kelas::all()
+        // ])->create();
 
     }
 }
