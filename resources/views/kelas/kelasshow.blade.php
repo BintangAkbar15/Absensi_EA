@@ -47,7 +47,7 @@
                             <td>{{ $item->jumlah_siswa }}</td>
                             <td>{{ $item->bangku_tersisa }}</td>
                             <td class="d-flex justify-content-center">
-                                <a href="/edit" class="btn text-light bg-warning d-md-flex align-items-center justify-content-center gap-3">
+                                <a href="{{ route('kelas.editkelas') }}" class="btn text-light bg-warning d-md-flex align-items-center justify-content-center gap-3">
                                     <i class="fa-solid fa-pencil"></i>
                                     <label for="" class="d-none d-md-block">Edit</label>
                                 </a>
