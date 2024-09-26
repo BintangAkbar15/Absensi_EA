@@ -40,13 +40,14 @@ class SiswaController extends Controller
         //POST data
         $request->validate([
             'nama' => 'required|min:3|max:50',
-            'nis' => 'required|min:10'
+            'nis' => 'required|min:10|numeric'
         ],[
             'nama.required' => 'nama harus diisi',
             'nama.min' => 'nama minimal 3 karakter',
             'nama.max' => 'nama maximal 3 karakter',
             'nis.required'=>'nis harus diisi',
             'nis.min'=>'nis harus berisi 10 karakter',
+            'nis.numeric'=>'nis harus berupa angka',
 
         ]);
 

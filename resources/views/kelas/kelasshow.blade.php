@@ -15,8 +15,9 @@
                 </div>
             </div>
             <div class="col-6 col-md-3 mt-3 ms-auto">
-                <form action="" class="input-group ">
-                    <input type="text" placeholder="Search Student" class="rounded-start-3 ps-3 col-8">
+                <form action="{{ route('kelas.tampil') }}" method="GET" class="input-group ">
+                    @csrf
+                    <input type="text" placeholder="Search Student" name="search" class="rounded-start-3 ps-3 col-8">
                     <button class="btn rounded-none d-flex align-items-center gap-2 justify-content-center text-light col-4" style="background: #B68D40">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <label for="" class="d-none d-md-block">Search</label>

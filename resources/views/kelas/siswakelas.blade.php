@@ -20,62 +20,53 @@
                 </form>
             </div>
         </div>
-    </div><div class="mt-4 d-flex justify-content-center">
+    </div>
+    <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
-                <table class="table text-center table-striped table-hover border border-1 shadow">
-                    <thead>
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nis</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>345678987654356</td>
-                            <td>siapa aja</td>
-                            <td>
-                                <input type="checkbox" class="form-check-input" id="lock_student">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>345678987654356</td>
-                            <td>siapa aja</td>
-                            <td>
-                                <input type="checkbox" class="form-check-input" id="lock_student">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>345678987654356</td>
-                            <td>siapa aja</td>
-                            <td>
-                                <input type="checkbox" class="form-check-input" id="lock_student">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">4</a></li>
-                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                      <li class="page-item"><a class="page-link bg-danger text-light" href="#">Back</a></li>
-                    </ul>
-                </nav>
+            <table class="table text-center table-striped table-hover border border-1 shadow">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Nis</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>345678987654356</td>
+                        <td>siapa aja</td>
+                        <td>
+                            <input type="checkbox" class="form-check-input" id="lock_student">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>345678987654356</td>
+                        <td>siapa aja</td>
+                        <td>
+                            <input type="checkbox" class="form-check-input" id="lock_student">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>345678987654356</td>
+                        <td>siapa aja</td>
+                        <td>
+                            <input type="checkbox" class="form-check-input" id="lock_student">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="w-100 mt-5 d-md-none d-flex justify-content-center ">
+                <button class="add_all btn btn-primary" style="display: none">Tambah siswa ke kelas</button>
             </div>
+            <div class="w-100 mt-5 d-sm-flex d-none justify-content-center ">
+                <button class="add_all btn btn-primary" style="display: none">Tambah siswa ke kelas</button>
+            </div> 
+        </div>
     </div>
-    <div style="transform: translateY(30vh)" class="w-100 d-md-none position-fixed d-flex justify-content-center ">
-        <button class="add_all btn btn-primary" style="display: none">Tambah siswa ke kelas</button>
-    </div>
-    <div style="transform: translateY(25vh)" class="w-100 d-md-flex d-none position-fixed justify-content-center ">
-        <button class="add_all btn btn-primary" style="display: none">Tambah siswa ke kelas</button>
-    </div>    
+       
     <script src="{{ url('js\button.js') }}"></script>
 </x-layout>
