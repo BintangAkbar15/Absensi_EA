@@ -1,6 +1,6 @@
 <x-layout>
   @if ($errors->any())
-      <div class="alert alert-danger">
+      <div class="alert alert-danger position-fixed">
           <ul>
               @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
