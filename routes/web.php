@@ -32,7 +32,10 @@ Route::middleware('auth')->group(function () {
     });
     
     //siswa edit
-    Route::get('/siswa/edit/{id}', [SiswaController::class, 'edit'])->name('siswa.edit');
+    Route::get('/siswa/edit/{id}', [SiswaController::class, 'update'])->name('siswa.edit');
+    
+    //siswa destroy
+    Route::get('/siswa/delete/{id}', [SiswaController::class, 'destroy'])->name('siswa.delete');
     
     //master class
     Route::get('/mclass', function(){
