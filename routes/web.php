@@ -44,7 +44,6 @@ Route::middleware('auth')->group(function () {
         return view('kelas.masterclass');
     })->name('master.class');
 
-
     //kelas show
     Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.tampil');
     
