@@ -8,7 +8,7 @@
                         <i class="fa-solid fa-arrow-down-wide-short"></i>
                         <label for="">Sort By</label>
                     </button>
-                    <a href="{{ route('student.create') }}" class="btn text-light ps-3 bg-success">
+                    <a href="{{ route('kelas.create') }}" class="btn text-light ps-3 bg-success">
                         <i class="fa-solid fa-plus"></i>
                         <label for="">Add</label>
                     </a>
