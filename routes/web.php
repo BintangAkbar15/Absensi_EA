@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -72,6 +73,6 @@ Route::get('/siswa/addkelas', function(){
 })->name('siswa.kelas');
 
 
-Route::get('/pilihkelas', function(){
-    return view('kelas.pilihkelas');
-});
+Route::get('/kelas/pilih', function(){
+    return view('kelas.pilihkelas',['data'=> Kelas::all()]);
+})->name('siswa.kelas.pilih');
