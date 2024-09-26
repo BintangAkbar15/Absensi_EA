@@ -1,6 +1,8 @@
 <x-layout>
     <div class="col-12 d-flex align-items-center justify-content-center" style="min-height: 91.8vh">
-        <form action="" class="border border-1 p-5 rounded shadow">
+        <form action="{{ route('kelas.update', $id) }}" method="post" class="border border-1 p-5 rounded shadow">
+            @csrf
+            @method('put')
             <label for="" class="h2">Form Edit Kelas</label>
             <div class="row gy-3 gy-md-4 overflow-hidden">
                 <div class="col-12">
