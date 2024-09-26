@@ -15,6 +15,8 @@ class Logkehadiran extends Model
         'status'
     ];
 
+    protected $with = ['siswa', 'kelas'];
+
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'siswa_id');

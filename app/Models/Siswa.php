@@ -17,6 +17,9 @@ class Siswa extends Model
         'name'
     ];
 
+    
+    protected $with = ['kelas'];
+
     public function kelas(){
         return $this->hasOne(Kelas::class, 'kelas_id');
     }

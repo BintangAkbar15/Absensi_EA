@@ -47,4 +47,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function gpengajar()
+    {
+        return $this->belongsToMany(Logkehadiran::class, 'pengajars', 'guru_id', 'id');
+    }
 }
