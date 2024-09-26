@@ -1,27 +1,31 @@
 <x-layout>
-    <div class="w-100 ps-3 mt-4 d-flex align-items-center">
-        <div>
-            <button class="btn text-light" style="background: #B68D40">
-                <i class="fa-solid fa-arrow-down-wide-short"></i>
-                <label for="">Sort By</label>
-            </button>
-            <a href="{{ route('student.create') }}" class="btn text-light ps-3 bg-success">
-                <i class="fa-solid fa-plus"></i>
-                <label for="">Add</label>
-            </a>
+    <div class="col-12 d-flex fw-bold mt-4 justify-content-center h3">Data Siswa</div>
+    <div class="col-12 d-flex justify-content-center">
+        <div class="col-11">
+            <div class="d-flex align-items-center">
+                <div>
+                    <button class="btn text-light" style="background: #B68D40">
+                        <i class="fa-solid fa-arrow-down-wide-short"></i>
+                        <label for="">Sort By</label>
+                    </button>
+                    <a href="{{ route('student.create') }}" class="btn text-light ps-3 bg-success">
+                        <i class="fa-solid fa-plus"></i>
+                        <label for="">Add</label>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 mt-3 ms-auto">
+                <form action="" class="input-group ">
+                    <input type="text" placeholder="Search Student" class="rounded-start-3 ps-3 col-8">
+                    <button class="btn rounded-none d-flex align-items-center gap-2 justify-content-center text-light col-4" style="background: #B68D40">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <label for="" class="d-none d-md-block">Search</label>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="col-6 col-md-3 mt-3 ms-auto me-4 me-md-5">
-        <form action="" class="input-group ">
-            <input type="text" placeholder="Search Student" class="rounded-start-3 ps-3 col-8">
-            <button class="btn rounded-none d-flex align-items-center gap-2 justify-content-center text-light col-4" style="background: #B68D40">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <label for="" class="d-none d-md-block">Search</label>
-            </button>
-        </form>
-    </div>
-    <div class="container-fluid mt-3">
-        <div class="row d-flex justify-content-center">
+        <div class="mt-4 d-flex justify-content-center">
             <div class="col-11">
 
                 <table class="table text-center table-striped table-hover border border-1 shadow">
@@ -64,6 +68,5 @@
                     </tbody>
                 </table>
             </div>
-        </div>
     </div>
 </x-layout>
