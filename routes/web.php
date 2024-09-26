@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
     
     //kelas redirect to edit
     Route::get('/kelas/edit/{kelas:id}', function(Kelas $kelas){
-        return view('kelas.editkelas',['id'=>$kelas->id]);
+        return view('kelas.editkelas',['id'=>$kelas->id,'name'=>$kelas]);
     })->name('kelas.edit');
     
     //kelas edit

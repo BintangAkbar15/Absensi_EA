@@ -46,7 +46,6 @@ class KelasController extends Controller
             'name.unique' => 'Nama Kelas sudah ada',
             'bangku_tersisa.required'=>'Jumlah siswa harus diisi',
             'bangku_tersisa.numeric'=>'Jumlah siswa harus berupa angka',
-
         ]);
 
 
@@ -82,21 +81,22 @@ class KelasController extends Controller
     {
         //Edit data
         $request->validate([
-            'task' => 'required|min:3|max:50'
+            'name' => 'required|unique:kelas',
+            'bangku_tersisa' => 'required|digits_between:1,2|numeric'
         ],[
-            'task.required' => 'Task harus diisi',
-            'task.min' => 'Task minimal 3 karakter',
-            'task.max' => 'Task maximal 3 karakter'
+            'name.required' => 'nama harus diisi',
+            'name.unique' => 'Nama Kelas sudah ada',
+            'bangku_tersisa.required'=>'Jumlah siswa harus diisi',
+            'bangku_tersisa.numeric'=>'Jumlah siswa harus berupa angka',
         ]);
 
-
         $data = [
-            'task' => $request->input('task'),
-            'is_done' => $request->input('is_done'),
+            'name' => $request->input('name'),
+            'bangku_tersisa' => $request->input('bangku_tersisa')
         ];
 
-        Kelas::where('task', $id)->update($data);
-        return redirect()->route('Kelas')->with('success',"Berhasil mengedit data");
+        Kelas::where('id', $id)->update($data);
+        return redirect()->route('kelas.tampil')->with('success',"Berhasil mengedit data");
     }
 
     /**
