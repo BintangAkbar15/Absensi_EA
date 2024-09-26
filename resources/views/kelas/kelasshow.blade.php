@@ -1,4 +1,4 @@
-<x-layout>
+    <x-layout>
     <div class="col-12 d-flex fw-bold mt-4 justify-content-center h3">Data kelas</div>
     <div class="col-12 d-flex justify-content-center">
         <div class="col-11">
@@ -67,6 +67,17 @@
                         @endforelse
                     </tbody>
                 </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">4</a></li>
+                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                      <li class="page-item"><a class="page-link bg-danger text-light" href="#">Back</a></li>
+                    </ul>
+                </nav>
             </div>
     </div>
 </x-layout>
