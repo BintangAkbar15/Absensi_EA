@@ -1,11 +1,11 @@
 <x-layout>
-    <div class="w-100 ms-3 mt-4 d-flex align-items-center">
+    <div class="w-100 ps-3 mt-4 d-flex align-items-center">
         <div>
             <button class="btn text-light" style="background: #B68D40">
                 <i class="fa-solid fa-arrow-down-wide-short"></i>
                 <label for="">Sort By</label>
             </button>
-            <a href="{{ route('student.create') }}" class="btn text-light ms-3 bg-success">
+            <a href="{{ route('student.create') }}" class="btn text-light ps-3 bg-success">
                 <i class="fa-solid fa-plus"></i>
                 <label for="">Add</label>
             </a>

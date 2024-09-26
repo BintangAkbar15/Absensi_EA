@@ -63,3 +63,8 @@ Route::get('/masterkelas', function(){
 Route::get('/siswakelas', function(){
     return view('siswakelas');
 });
+
+
+Route::get('/pilihkelas', function(){
+    return view('pilihkelas');
+});
