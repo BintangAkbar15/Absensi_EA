@@ -71,7 +71,10 @@ Route::get('/siswa/addkelas/{id}', function(Kelas $kelas){
     return view('kelas.siswakelas',['id'=>$kelas->id]);
 })->name('siswa.kelas');
 
-
 Route::get('/kelas/pilih', function(){
     return view('kelas.pilihkelas',['data'=> Kelas::all()]);
 })->name('siswa.kelas.pilih');
+
+Route::get('/guru', function(){
+    return view('guru.ngajar');
+})->name('guru.main');
