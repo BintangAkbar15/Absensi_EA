@@ -105,6 +105,6 @@ class KelasController extends Controller
     {
         //delete data
         Kelas::where('id',$id)->delete();
-        return redirect()->route('Kelas')->with('success',"Berhasil menghapus data");
+        return redirect()->route('kelasshow')->with('success',"Berhasil menghapus data");
     }
 }

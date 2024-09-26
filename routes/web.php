@@ -54,15 +54,21 @@ Route::middleware('auth')->group(function () {
     
     //kelas add
     Route::post('/kelas/add/new', [KelasController::class, 'store'])->name('kelas.add');
+    
+    //kelas edit
+    Route::post('/kelas/edit/{id}', [KelasController::class, 'update'])->name('kelas.edit');
+    
+    //kelas delete
+    Route::post('/kelas/delete/{id}', [KelasController::class, 'destroy'])->name('kelas.delete');
 });
 
 Route::get('/masterkelas', function(){
     return view('masterclass');
 });
 
-Route::get('/siswakelas', function(){
+Route::get('/siswa/addkelas', function(){
     return view('siswakelas');
-});
+})->name('siswa.kelas');
 
 
 Route::get('/pilihkelas', function(){

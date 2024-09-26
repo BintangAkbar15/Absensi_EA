@@ -46,10 +46,14 @@
                                     <i class="fa-solid fa-pencil"></i>
                                     <label for="" class="d-none d-md-block">Edit</label>
                                 </a>
-                                <button class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3">
-                                    <i class="fa-solid fa-trash"></i>
-                                    <label for="" class="d-none d-md-block">Delete</label>
-                                </button>
+                                <form action="{{ route('kelas.delete', $item->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3">
+                                        <i class="fa-solid fa-trash"></i>
+                                        <label for="" class="d-none d-md-block">Delete</label>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @empty
