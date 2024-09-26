@@ -21,7 +21,7 @@ class KelasController extends Controller
         else{
             $data = Kelas::orderBy('name','asc')->paginate($max_tampil)->withQueryString();
         }
-        return view('kelasshow',compact('data'));
+        return view('kelas.kelasshow',compact('data'));
     }
 
     /**
@@ -105,6 +105,6 @@ class KelasController extends Controller
     {
         //delete data
         Kelas::where('id',$id)->delete();
-        return redirect()->route('Kelas')->with('success',"Berhasil menghapus data");
+        return redirect()->route('kelas.tampil')->with('success',"Berhasil menghapus data");
     }
 }
