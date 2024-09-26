@@ -48,11 +48,11 @@
                                 </a>
                                 <form action="{{ route('kelas.delete', $item->id) }}" method="post">
                                     @csrf
-                                    @method('delete')
-                                    <button class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3">
+                                    <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <i class="fa-solid fa-trash"></i>
                                         <label for="" class="d-none d-md-block">Delete</label>
                                     </button>
+                                    <x-modal></x-modal>
                                 </form>
                             </td>
                         </tr>

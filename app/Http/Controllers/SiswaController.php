@@ -21,7 +21,7 @@ class SiswaController extends Controller
         else{
             $data = Siswa::orderBy('name','asc')->paginate($max_tampil)->withQueryString();
         }
-        return view('student',compact('data'));
+        return view('siswa.student',compact('data'));
     }
 
     /**

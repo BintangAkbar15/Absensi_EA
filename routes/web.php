@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
     
     //siswa redirect to add 
     Route::get('/siswa/add', function(){
-        return view('formadd');
+        return view('siswa.formadd');
     })->name('student.create');
     
     //siswa add
@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     
     //siswa redirect to edit
     Route::get('/siswa/edit/{siswa:nis}', function(Siswa $siswa){
-        return view('edit',['nis' => $siswa->nis]);
+        return view('siswa.edit',['nis' => $siswa->nis]);
     });
     
     //siswa edit
@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     
     //master class
     Route::get('/mclass', function(){
-        return view('masterclass');
+        return view('kelas.masterclass');
     })->name('master.class');
 
 
@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
     
     //kelas redirect to add
     Route::get('/kelas/add', function(){
-        return view('addkelas');
+        return view('kelas.addkelas');
     })->name('kelas.create');
     
     //kelas add
@@ -62,15 +62,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/kelas/delete/{id}', [KelasController::class, 'destroy'])->name('kelas.delete');
 });
 
-Route::get('/masterkelas', function(){
-    return view('masterclass');
-});
-
 Route::get('/siswa/addkelas', function(){
-    return view('siswakelas');
+    return view('kelas.siswakelas');
 })->name('siswa.kelas');
 
 
 Route::get('/pilihkelas', function(){
-    return view('pilihkelas');
+    return view('kelas.pilihkelas');
 });

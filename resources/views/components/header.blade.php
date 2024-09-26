@@ -12,26 +12,36 @@
         <div class="offcanvas-body">
             <div class="mt-2 mt-md-5">
                 <div class="col-12 d-flex justify-content-center gap-sm-3 gap-1 flex-column">
-                    <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '/'">
-                        <i class="fa-solid fa-home"></i>
-                        <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Home</label>
-                    </div>
-                    <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '/siswa'">
-                        <i class="fa-solid fa-user"></i>
-                        <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Siswa</label>
-                    </div>
-                    <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '{{ route('master.class') }}'">
-                        <i class="fa-solid fa-chalkboard"></i>
-                        <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Kelas</label>
-                    </div>
-                    <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '#'">
-                        <i class="fa-solid fa-book"></i>
-                        <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Absensi</label>
-                    </div>
-                    <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '#'">
-                        <i class="fa-solid fa-user"></i>
-                        <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Guru</label>
-                    </div>
+                    <a class="text-decoration-none" href="/">
+                        <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '/'">
+                            <i class="fa-solid fa-home"></i>
+                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Home</label>
+                        </div>
+                    </a>
+                    <a class="text-decoration-none" href="{{ route('siswa.tampil') }}">
+                        <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;">
+                            <i class="fa-solid fa-user"></i>
+                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Siswa</label>
+                        </div>
+                    </a>
+                    <a class="text-decoration-none" href="{{ route('master.class') }}">
+                        <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '{{ route('master.class') }}'">
+                            <i class="fa-solid fa-chalkboard"></i>
+                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Kelas</label>
+                        </div>
+                    </a>
+                    <a class="text-decoration-none" href="#">
+                        <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '#'">
+                            <i class="fa-solid fa-book"></i>
+                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Absensi</label>
+                        </div>
+                    </a>
+                    <a class="text-decoration-none" href="">
+                        <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '#'">
+                            <i class="fa-solid fa-user"></i>
+                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Guru</label>
+                        </div>
+                    </a>
                 </div>
             </div>
       </div>
