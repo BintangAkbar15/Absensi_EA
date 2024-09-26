@@ -68,8 +68,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/kelas/delete/{id}', [KelasController::class, 'destroy'])->name('kelas.delete');
 });
 
-Route::get('/siswa/addkelas', function(){
-    return view('kelas.siswakelas');
+Route::get('/siswa/addkelas/{id}', function(Kelas $kelas){
+    return view('kelas.siswakelas',['id'=>$kelas->id]);
 })->name('siswa.kelas');
 
 
