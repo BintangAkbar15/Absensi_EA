@@ -51,7 +51,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/kelas/add', function(){
         return view('kelas.addkelas');
     })->name('kelas.create');
-    
+
+    // kelas edit
+    Route::get('/kelas/edit', function(){
+        return view('kelas.editkelas');
+    })->name('kelas.create');
+
     //kelas add
     Route::post('/kelas/add/new', [KelasController::class, 'store'])->name('kelas.add');
     
