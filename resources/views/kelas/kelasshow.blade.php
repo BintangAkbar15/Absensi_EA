@@ -1,6 +1,17 @@
     <x-layout>
     <div class="col-12 d-flex fw-bold mt-4 justify-content-center h3">Data kelas</div>
     <div class="col-12 d-flex justify-content-center">
+        @if (Session::has('success'))
+            <div class="alert alert-success position-fixed">
+                <h6>{{ Session::get('success') }}</h6>
+            </div>
+            <script>
+            const alert = document.querySelector('.alert');
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+            </script>
+        @endif
         <div class="col-11">
             <div class="d-flex align-items-center">
                 <div>

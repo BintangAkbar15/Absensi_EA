@@ -20,12 +20,10 @@
                             </div>
                             <div class="col-12">
                                 <div class="d-grid">
-                                    <button class="btn bsb-btn-xl fw-bold text-light" style="background: #532200;" type="submit">Change</button>
+                                    <button class="btn bsb-btn-xl fw-bold text-light" style="background: #532200;" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button">Change</button>
                                 </div>
-                                
-                                @if (session('error'))
-                                <p class="text-danger">{{ session('error') }}</p>
-                                @endif
+                            </div>
+                            <x-modal-edit></x-modal-edit>
                             </div>
                         </div>
                     </form>
