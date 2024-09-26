@@ -1,8 +1,8 @@
 <x-layout>
-    <div class="d-flex mt-5 w-100 justify-content-center">
+    <div class="d-flex mt-3 mt-md-5 w-100 justify-content-center">
         <label for="" class="h3">Tambah Siswa Ke Kelas</label>
     </div>
-    <div class="w-100 ms-3 d-flex align-items-center">
+    <div class="w-100 ps-3 ps-md-5 d-flex align-items-center">
         <div>
             <button class="btn text-light" style="background: #B68D40">
                 <i class="fa-solid fa-arrow-down-wide-short"></i>
@@ -37,7 +37,23 @@
                             <td>345678987654356</td>
                             <td>siapa aja</td>
                             <td>
-                                <input type="checkbox" class="form-check-input">
+                                <input type="checkbox" class="form-check-input" id="lock_student">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>345678987654356</td>
+                            <td>siapa aja</td>
+                            <td>
+                                <input type="checkbox" class="form-check-input" id="lock_student">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>345678987654356</td>
+                            <td>siapa aja</td>
+                            <td>
+                                <input type="checkbox" class="form-check-input" id="lock_student">
                             </td>
                         </tr>
                     </tbody>
@@ -45,4 +61,11 @@
             </div>
         </div>
     </div>
+    <div style="transform: translateY(30vh)" class="w-100 d-md-none position-fixed d-flex justify-content-center ">
+        <button class="add_all btn btn-primary" style="display: none">Tambah siswa ke kelas</button>
+    </div>
+    <div style="transform: translateY(25vh)" class="w-100 d-md-flex d-none position-fixed justify-content-center ">
+        <button class="add_all btn btn-primary" style="display: none">Tambah siswa ke kelas</button>
+    </div>    
+    <script src="{{ url('js\button.js') }}"></script>
 </x-layout>
