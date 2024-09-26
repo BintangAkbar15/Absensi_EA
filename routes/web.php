@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Siswa;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KelasController;
@@ -27,15 +28,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/siswa/add/new', [SiswaController::class, 'store'])->name('siswa.add');
     
     //siswa redirect to edit
-    Route::get('/siswa/edit', function(){
-        return view('edit');
+    Route::get('/siswa/edit/{siswa:nis}', function(Siswa $siswa){
+        return view('edit',['nis' => $siswa->nis]);
     });
     
     //siswa edit
-    Route::get('/siswa/edit/{id}', [SiswaController::class, 'update'])->name('siswa.edit');
+    Route::get('/siswa/edit/new', [SiswaController::class, 'update'])->name('siswa.update');
     
     //siswa destroy
-    Route::get('/siswa/delete/{id}', [SiswaController::class, 'destroy'])->name('siswa.delete');
+    Route::get('/siswa/delete/{nis}', [SiswaController::class, 'destroy'])->name('siswa.delete');
     
     //master class
     Route::get('/mclass', function(){
