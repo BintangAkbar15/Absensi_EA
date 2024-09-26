@@ -52,17 +52,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/kelas/add', function(){
         return view('kelas.addkelas');
     })->name('kelas.create');
-
-    // kelas edit
-    Route::get('/kelas/edit', function(){
-        return view('kelas.editkelas');
-    })->name('kelas.create');
-
+    
     //kelas add
     Route::post('/kelas/add/new', [KelasController::class, 'store'])->name('kelas.add');
     
+    //kelas redirect to edit
+    Route::get('/kelas/edit/{kelas:id}', function(Kelas $kelas){
+        return view('kelas.editkelas',['id'=>$kelas->id]);
+    })->name('kelas.edit');
+    
     //kelas edit
-    Route::post('/kelas/edit/{id}', [KelasController::class, 'update'])->name('kelas.edit');
+    Route::post('/kelas/edit/new/{id}', [KelasController::class, 'update'])->name('kelas.update');
     
     //kelas delete
     Route::post('/kelas/delete/{id}', [KelasController::class, 'destroy'])->name('kelas.delete');
