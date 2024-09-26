@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="w-100 ms-3 mt-4 d-flex align-items-center">
+    <div class="w-100 ps-3 mt-4 d-flex align-items-center">
         <div>
             <button class="btn text-light" style="background: #B68D40">
                 <i class="fa-solid fa-arrow-down-wide-short"></i>
