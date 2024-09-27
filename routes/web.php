@@ -54,6 +54,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/kelas/add', function(){
         return view('kelas.addkelas');
     })->name('kelas.create');
+
+    //data siswa kelas
+    Route::get('/kelas/siswa', function(){
+        return view('kelas.listsiswa');
+    })->name('kelas.siswa');
+
+    //master data siswa kelas
+    Route::get('/kelas/mskelas', function(){
+        return view('kelas.pilihkelassiswa');
+    })->name('kelas.pilihkelas');
+
     
     //kelas add
     Route::post('/kelas/add/new', [KelasController::class, 'store'])->name('kelas.add');
