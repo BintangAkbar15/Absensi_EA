@@ -20,7 +20,7 @@ class Siswa extends Model
     
 
     public function kelas(){
-        return $this->hasOne(Kelas::class, 'kelas_id');
+        return $this->hasOne(Kelas::class,'id','kelas_id');
     }
     public function logkehadiran(){
         return $this->hasMany(Logkehadiran::class, 'siswa_id');
