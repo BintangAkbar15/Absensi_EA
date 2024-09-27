@@ -63,7 +63,11 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="8" class="h5">No Data Found</td>
+                            <td colspan="8" class="h5">
+                                
+                                <h5>No Data Found</h5>
+                                <a href="{{ route('siswa.kelas.pilih') }}" class="btn btn-secondary">Tambahkan Siswa ke kelas ini</a>
+                            </td>
                         </tr>
                         @endforelse
                     </tbody>

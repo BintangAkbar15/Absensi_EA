@@ -1,5 +1,4 @@
 <x-layout>
-    
     <div class="w-100 d-flex justify-content-center">
         <label for="" class="h2 fw-bold my-3 mt-md-4">Pilih Kelas</label>
     </div>
@@ -68,119 +67,34 @@
             </lu>
         </div>  
     </div>
-    <div class="col-12 mt-5 " style="min-height: 10px; box-shadow: 0px 10px 10px black;">
-        <div class="w-100 mt-5 d-md-none d-flex justify-content-start pb-3 ps-3">
-            <button class="add_all btn btn-primary" id="submitStudents" style="display: none;">Tambah siswa ke kelas</button>
-        </div>
-        <div class="w-100 mt-5 d-sm-flex d-none justify-content-start pb-3 ps-3">
-            <button class="add_all btn btn-primary" id="submitStudents  " style="display: none;">Tambah siswa ke kelas</button>
-        </div>
-    </div>
-    <div class="col-12 d-flex flex-wrap z-1 justify-content-center gap-md-5 p-md-5 overflow-y-scroll" id="boxcheck" style="min-height: 70vh; max-height: 70vh; ">
-        <!-- Div 1 -->
-        <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-            <input type="checkbox" class="check" style="position: absolute; top: 10px; left: 10px;">
-            <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-            <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">kelas A</label>
+    <form action="" method="get">
+        @csrf
+        <input type="hidden" name="nip" value="{{ Auth::user()->nip }}">
+        <div class="col-12 mt-5 " style="min-height: 10px; box-shadow: 0px 10px 10px black;">
+            <div class="w-100 mt-5 d-md-none d-flex justify-content-start pb-3 ps-3">
+                <button class="add_all btn btn-primary" id="submitClass" style="display: none;">Tambah siswa ke kelas</button>
+            </div>
+            <div class="w-100 mt-5 d-sm-flex d-none justify-content-start pb-3 ps-3">
+                <button class="add_all btn btn-primary" id="submitClass  " style="display: none;">Tambah siswa ke kelas</button>
             </div>
         </div>
-
-        <!-- Div 2 -->
-        <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-            <input type="checkbox" class="check" style="position: absolute; top: 10px; left: 10px;">
-            <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-            <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">kelas B</label>
+        <div class="col-12 d-flex flex-wrap z-1 justify-content-center gap-md-5 p-md-5 overflow-y-scroll" id="boxcheck" style="min-height: 70vh; max-height: 70vh; ">
+            @forelse ($kelas as $item)
+            <!-- Div 1 -->
+            <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
+                <input type="checkbox" class="check" name="kelas[]" value="{{ $item->id }}" style="position: absolute; top: 10px; left: 10px;">
+                <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
+                <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
+                    <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">{{ $item->name }}</label>
+                </div>
             </div>
-        </div>
-
-        <!-- Div 3 -->
-        <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-            <input type="checkbox" class="check" style="position: absolute; top: 10px; left: 10px;">
-            <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-            <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">kelas C</label>
+            @empty
+            <div class="col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative">
+                <h5>No Data Found</h5>
             </div>
+            @endforelse
         </div>
-
-        <!-- Div 4 -->
-        <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-            <input type="checkbox" class="check" style="position: absolute; top: 10px; left: 10px;">
-            <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-            <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">kelas D</label>
-            </div>
-        </div>
-        <!-- Div 3 -->
-        <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-            <input type="checkbox" class="check" style="position: absolute; top: 10px; left: 10px;">
-            <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-            <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">kelas C</label>
-            </div>
-        </div>
-
-        <!-- Div 4 -->
-        <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-            <input type="checkbox" class="check" style="position: absolute; top: 10px; left: 10px;">
-            <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-            <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">kelas D</label>
-            </div>
-        </div>
-        <!-- Div 3 -->
-        <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-            <input type="checkbox" class="check" style="position: absolute; top: 10px; left: 10px;">
-            <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-            <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">kelas C</label>
-            </div>
-        </div>
-
-        <!-- Div 4 -->
-        <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-            <input type="checkbox" class="check" style="position: absolute; top: 10px; left: 10px;">
-            <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-            <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">kelas D</label>
-            </div>
-        </div>
-        <!-- Div 3 -->
-        <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-            <input type="checkbox" class="check" style="position: absolute; top: 10px; left: 10px;">
-            <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-            <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">kelas C</label>
-            </div>
-        </div>
-
-        <!-- Div 4 -->
-        <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-            <input type="checkbox" class="check" style="position: absolute; top: 10px; left: 10px;">
-            <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-            <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">kelas D</label>
-            </div>
-        </div>
-        <!-- Div 3 -->
-        <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-            <input type="checkbox" class="check" style="position: absolute; top: 10px; left: 10px;">
-            <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-            <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">kelas C</label>
-            </div>
-        </div>
-
-        <!-- Div 4 -->
-        <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-            <input type="checkbox" class="check" style="position: absolute; top: 10px; left: 10px;">
-            <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-            <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">kelas D</label>
-            </div>
-        </div>
-    </div>
+    </form>
     
     <script src="{{ url('js/selectclass.js') }}"></script>
 </x-layout>

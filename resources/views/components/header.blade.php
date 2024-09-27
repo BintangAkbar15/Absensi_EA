@@ -1,5 +1,5 @@
 <header class="col-12 w-100 d-flex align-items-center text-light sticky-top" style="height: 60px; background: #914110;">
-    <img src="{{ url('img\title.png') }}" alt="" class="col-5 col-md-3" style="cursor: pointer;">
+    <img src="{{ url('img\title.png') }}" alt="" class="col-5 col-md-3" style="cursor: pointer;" onclick="window.location.href='/'">
       <button class="btn me-3 me-md-5 ms-auto text-light" type="button" style="background: #122620" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
         <i class="fa-solid fa-bars"></i>
       </button>
@@ -30,7 +30,7 @@
                             <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Kelas</label>
                         </div>
                     </a>
-                    <a class="text-decoration-none" href="#">
+                    <a class="text-decoration-none" href="{{ route('absensi.kelas') }}">
                         <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '#'">
                             <i class="fa-solid fa-book"></i>
                             <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Absensi</label>
@@ -45,8 +45,8 @@
                 </div>
             </div>
         </div>
-        <div class="light text-danger fw-bold h2 py-1 mb-5 py-md-3 justify-content-center d-flex align-items-center col-5 ms-4" style="cursor: pointer;" onclick="window.location.href = '#'">
+        <a href="{{ route('logout') }}" class="light text-danger fw-bold h2 py-1 mb-5 py-md-3 justify-content-center d-flex align-items-center col-5 ms-4" style="cursor: pointer;">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Log Out</label>
-        </div>
+        </a>
 </header>
