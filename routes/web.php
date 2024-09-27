@@ -55,16 +55,30 @@ Route::middleware('auth')->group(function () {
         return view('kelas.addkelas');
     })->name('kelas.create');
 
-    //data siswa kelas
-    Route::get('/kelas/siswa', function(){
-        return view('kelas.listsiswa');
+    //show list siswa di kelas
+    Route::get('/kelas/siswa/{kelas:id}', function(Kelas $kelas){
+        $siswa = Siswa::where('kelas_id','=' ,$kelas->id)->get();
+        return view('kelas.listsiswa',['id'=>$kelas->id, 'siswa'=>$siswa]);
     })->name('kelas.siswa');
 
-    //master data siswa kelas
+    //show list kelas untuk show list siswa
     Route::get('/kelas/mskelas', function(){
-        return view('kelas.pilihkelassiswa');
+        return view('kelas.pilihkelassiswa',['data'=>Kelas::all()]);
     })->name('kelas.pilihkelas');
+    //show list kelas untuk memasukkan kelas ke siswa
+    Route::get('/kelas/pilih', function(){
+        $kelas = Kelas::all()->where('bangku_tersisa','>',1);
+        return view('kelas.pilihkelas',['data'=> $kelas]);
+    })->name('siswa.kelas.pilih');
 
+    //show list siswa yang masih kosong kelasnya untuk di masukkan kelas
+    Route::get('/siswa/addkelas/{kelas:id}', function(Kelas $kelas){
+        $siswa = Siswa::where('kelas_id', NULL)->get();
+        return view('kelas.siswakelas',['id'=>$kelas->id, 'siswa'=>$siswa]);
+    })->name('siswa.kelas');
+
+    //update kelas siswa dan memasukkan jumlah siswa dalam kelas
+    Route::post('/siswa/add/kelas', [SclassController::class, 'updateStudents'])->name('siswa.kelas.add');
     
     //kelas add
     Route::post('/kelas/add/new', [KelasController::class, 'store'])->name('kelas.add');
@@ -85,22 +99,16 @@ Route::middleware('auth')->group(function () {
         return view('Absensi.absensikelas');
     })->name('absensi.kelas');
 
+    
+    Route::get('/guru', function(){
+        return view('guru.ngajar');
+    })->name('guru.main');
+
+    Route::get('/', [ChartController::class, 'index']);
+
 });
 
-Route::get('/siswa/addkelas/{kelas:id}', function(Kelas $kelas){
-    $siswa = Siswa::where('kelas_id', NULL)->get();
-    return view('kelas.siswakelas',['id'=>$kelas->id, 'siswa'=>$siswa]);
-})->name('siswa.kelas');
 
-Route::post('/siswa/add/kelas', [SclassController::class, 'updateStudents'])->name('siswa.kelas.add');
 
-Route::get('/kelas/pilih', function(){
-    $kelas = Kelas::all()->where('bangku_tersisa','>',1);
-    return view('kelas.pilihkelas',['data'=> $kelas]);
-})->name('siswa.kelas.pilih');
 
-Route::get('/guru', function(){
-    return view('guru.ngajar');
-})->name('guru.main');
 
-Route::get('/', [ChartController::class, 'index']);

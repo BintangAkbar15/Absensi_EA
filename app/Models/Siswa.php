@@ -17,6 +17,10 @@ class Siswa extends Model
         'name'
     ];
 
+    protected $with = [
+        'kelas'
+    ];
+    
     protected $primaryKey = 'nis';
 
     public function kelas(){

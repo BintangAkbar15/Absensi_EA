@@ -30,17 +30,32 @@
                             <th scope="col">No</th>
                             <th scope="col">Nis</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">id_kelas</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        @forelse ($siswa as $item)
                         <tr>
-                            <th scope="row">no</th>
-                            <td>nis</td>
-                            <td>nama</td>
-                            <td>id_kelas</td>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $item->nis }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td class=" d-flex justify-content-center">
+                                <form action="" method="post">
+                                    @csrf
+                                    <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <i class="fa-solid fa-trash"></i>
+                                        <label for="" class="d-none d-md-block">Delete</label>
+                                    </button>
+                                    <x-modal></x-modal>
+                                </form>
+                                {{-- <input type="hidden" name="id_kelas" value="{{ $id }}"> --}}
+                            </td>
                         </tr>
+                        @empty
+                        <tr>
+                            <td colspan="8" class="h5">No Data Found</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
                 <nav aria-label="Page navigation example">
