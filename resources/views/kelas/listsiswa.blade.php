@@ -1,5 +1,16 @@
 <x-layout>
-    <div class="col-12 d-flex fw-bold mt-4 justify-content-center h3">Kelas A</div>
+    @if (session('success'))
+    <div class="alert alert-success position-fixed">
+        <h6>{{ session('success') }}</h6>
+    </div>
+    <script>
+      const alert = document.querySelector('.alert');
+      setTimeout(() => {
+        alert.style.display = 'none';
+      }, 3000);
+    </script>
+@endif
+    <div class="col-12 d-flex fw-bold mt-4 justify-content-center h3">{{ $nama }}</div>
     <div class="col-12 d-flex justify-content-center">
         <div class="col-11">
             <div class="d-flex align-items-center">
@@ -23,7 +34,6 @@
     </div>
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
-
                 <table class="table text-center table-striped table-hover border border-1 shadow">
                     <thead>
                         <tr>
@@ -42,13 +52,13 @@
                             <td class=" d-flex justify-content-center">
                                 <form action="{{ route('kelas.editsiswa',$item->nis) }}" method="post">
                                     @csrf
+                                    <input type="hidden" name="id_kelas" value="{{ $id }}">
                                     <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <i class="fa-solid fa-trash"></i>
                                         <label for="" class="d-none d-md-block">Delete</label>
                                     </button>
                                     <x-modal></x-modal>
                                 </form>
-                                {{-- <input type="hidden" name="id_kelas" value="{{ $id }}"> --}}
                             </td>
                         </tr>
                         @empty

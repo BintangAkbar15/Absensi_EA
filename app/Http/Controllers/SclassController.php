@@ -35,13 +35,13 @@ class SclassController extends Controller
     }
 
 
-    public function deletekelas(string $id,Request $request){
+    public function deletekelas(string $id, Request $request){
         Siswa::where('nis', $id)->update(['kelas_id' => null]);
-        $kelasId = $request->input('id_kelas');  // Kelas ID yang ingin diupdate
+        $data = Siswa::where('kelas_id','like','%'.request('id_kelas').'%')->count();
         
-        $data = Siswa::where('kelas_id','like','%'.$kelasId.'%')->count();
-        Kelas::where('id', $kelasId)->update(['jumlah_siswa' => $data]);
-        return redirect()->back()->with('success', "siswa telah dihapus dari kelas");
+        Kelas::where('id', request('id_kelas'))->update(['jumlah_siswa' => $data]);
+        return redirect()->back()->with('success', 'Berhasil Menghapus siswa dari data');
+        // return redirect()->back()->with('success', request('id_kelas'));
     }
 
 }
