@@ -65,11 +65,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/kelas/mskelas', function(){
         return view('kelas.pilihkelassiswa',['data'=>Kelas::all()]);
     })->name('kelas.pilihkelas');
+
     //show list kelas untuk memasukkan kelas ke siswa
     Route::get('/kelas/pilih', function(){
         $kelas = Kelas::all()->where('bangku_tersisa','>',1);
         return view('kelas.pilihkelas',['data'=> $kelas]);
     })->name('siswa.kelas.pilih');
+
+    //delete kelas dari siswa
+    Route::post('/kelas/siswa/update/{siswa:nis}',[SclassController::class,'deletekelas'])->name('kelas.editsiswa');
 
     //show list siswa yang masih kosong kelasnya untuk di masukkan kelas
     Route::get('/siswa/addkelas/{kelas:id}', function(Kelas $kelas){
@@ -99,11 +103,12 @@ Route::middleware('auth')->group(function () {
         return view('Absensi.absensikelas');
     })->name('absensi.kelas');
 
-    
+    //show guru
     Route::get('/guru', function(){
         return view('guru.ngajar');
     })->name('guru.main');
 
+    //chart in dashboard
     Route::get('/', [ChartController::class, 'index']);
 
 });

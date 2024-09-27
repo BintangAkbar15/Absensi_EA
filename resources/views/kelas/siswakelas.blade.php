@@ -1,11 +1,15 @@
 <x-layout>
-    
-    @if (Session::has('success')||Session::has('error'))
-        <div class="alert alert-danger">
-            {{ session('success') }}
-            {{ session('error') }}
-        </div>
-    @endif
+        @if (session('success'))
+            <div class="alert alert-success position-fixed">
+                <h6>{{ session('success') }}</h6>
+            </div>
+            <script>
+              const alert = document.querySelector('.alert');
+              setTimeout(() => {
+                alert.style.display = 'none';
+              }, 3000);
+            </script>
+        @endif
     <div class="col-12 d-flex fw-bold mt-4 justify-content-center h3">Tambah Siswa Ke Kelas</div>
     <div class="col-12 d-flex justify-content-center">
         <div class="col-11">
