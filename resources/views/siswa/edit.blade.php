@@ -32,7 +32,4 @@
           </div>
         </div>
       </section>
-      @if ($errors->any())
-  
-      @endif
   </x-layout>

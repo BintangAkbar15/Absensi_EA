@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +14,7 @@ class SclassController extends Controller
 {
     $selectedStudents = $request->input('students');  // Array of selected NIS
     $kelasId = $request->input('id_kelas');  // Kelas ID yang ingin diupdate
-    // $j_kelas = count($request->input(key: 'jumlah_siswa'));  // Kelas ID yang ingin diupdate
+    $j_kelas = $request->input(key: 'jumlah_siswa');  // Kelas ID yang ingin diupdate
 
     // Validasi jika kelas_id dikirim atau siswa dipilih
     if (empty($selectedStudents) || empty($kelasId)) {
@@ -27,7 +29,10 @@ class SclassController extends Controller
     //     ->whereIn('id', $kelasId)
     //     ->update(['jumlah_siswa' => $j_kelas]);
 
-    return redirect()->back()->with('success', 'Siswa berhasil ditambahkan ke kelas');
+    $data = Siswa::where('kelas_id','like','%'.$kelasId.'%')->count();
+    Kelas::where('id', $kelasId)->update(['jumlah_siswa' => $data]);
+    
+    return redirect()->back()->with('success', $data);
 }
 
 

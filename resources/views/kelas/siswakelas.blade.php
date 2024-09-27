@@ -1,4 +1,11 @@
 <x-layout>
+    
+    @if (Session::has('success')||Session::has('error'))
+        <div class="alert alert-danger">
+            {{ session('success') }}
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="col-12 d-flex fw-bold mt-4 justify-content-center h3">Tambah Siswa Ke Kelas</div>
     <div class="col-12 d-flex justify-content-center">
         <div class="col-11">
@@ -47,6 +54,9 @@
                             </td>
                         </tr>
                         @empty
+                        <tr>
+                            <td colspan="8" class="h5">No Data Found</td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>

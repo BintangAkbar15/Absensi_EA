@@ -4,9 +4,10 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\ChartController;
+use App\Http\Controllers\SclassController;
 
 
 //RUTE LOGIN
@@ -77,7 +78,8 @@ Route::get('/siswa/addkelas/{kelas:id}', function(Kelas $kelas){
 Route::post('/siswa/add/kelas', [SclassController::class, 'updateStudents'])->name('siswa.kelas.add');
 
 Route::get('/kelas/pilih', function(){
-    return view('kelas.pilihkelas',['data'=> Kelas::all()]);
+    $kelas = Kelas::all()->where('bangku_tersisa','>',1);
+    return view('kelas.pilihkelas',['data'=> $kelas]);
 })->name('siswa.kelas.pilih');
 
 Route::get('/guru', function(){
