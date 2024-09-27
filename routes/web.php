@@ -69,9 +69,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/kelas/delete/{id}', [KelasController::class, 'destroy'])->name('kelas.delete');
 });
 
-Route::get('/siswa/addkelas/{id}', function(Kelas $kelas){
-    return view('kelas.siswakelas',['id'=>$kelas->id]);
+Route::get('/siswa/addkelas/{kelas:id}', function(Kelas $kelas){
+    $siswa = Siswa::where('kelas_id', NULL)->get();
+    return view('kelas.siswakelas',['id'=>$kelas->id, 'siswa'=>$siswa]);
 })->name('siswa.kelas');
+
+Route::post('/siswa/add/kelas', [SclassController::class, 'updateStudents'])->name('siswa.kelas.add');
 
 Route::get('/kelas/pilih', function(){
     return view('kelas.pilihkelas',['data'=> Kelas::all()]);

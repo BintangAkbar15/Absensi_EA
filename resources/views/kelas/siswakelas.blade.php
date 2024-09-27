@@ -23,50 +23,42 @@
     </div>
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
-            <table class="table text-center table-striped table-hover border border-1 shadow">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nis</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>345678987654356</td>
-                        <td>siapa aja</td>
-                        <td>
-                            <input type="checkbox" class="form-check-input" id="lock_student">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>345678987654356</td>
-                        <td>siapa aja</td>
-                        <td>
-                            <input type="checkbox" class="form-check-input" id="lock_student">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>345678987654356</td>
-                        <td>siapa aja</td>
-                        <td>
-                            <input type="checkbox" class="form-check-input" id="lock_student">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="w-100 mt-5 d-md-none d-flex justify-content-center ">
-                <button class="add_all btn btn-primary" style="display: none">Tambah siswa ke kelas</button>
-            </div>
-            <div class="w-100 mt-5 d-sm-flex d-none justify-content-center ">
-                <button class="add_all btn btn-primary" style="display: none">Tambah siswa ke kelas</button>
-            </div> 
+            <form id="studentForm" action="{{ route('siswa.kelas.add') }}" method="POST">
+                @csrf
+                <table class="table text-center table-striped table-hover border border-1 shadow">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nis</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($siswa as $item)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $item->nis }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>
+                                <input type="hidden" name="jumlah_siswa" value="1">
+                                <input type="hidden" name="id_kelas" value="{{ $id }}">
+                                <input type="checkbox" name="students[]" value="{{ $item->nis }}" class="form-check-input">
+                            </td>
+                        </tr>
+                        @empty
+                        @endforelse
+                    </tbody>
+                </table>
+                <div class="w-100 mt-5 d-md-none d-flex justify-content-center ">
+                    <button class="add_all btn btn-primary" id="submitStudents" style="display: none">Tambah siswa ke kelas</button>
+                </div>
+                <div class="w-100 mt-5 d-sm-flex d-none justify-content-center ">
+                    <button class="add_all btn btn-primary" id="submitStudents" style="display: none">Tambah siswa ke kelas</button>
+                </div>
+            </form>
         </div>
     </div>
-       
-    <script src="{{ url('js\button.js') }}"></script>
+    
+    <script src="{{ url('js/button.js') }}"></script>
 </x-layout>
