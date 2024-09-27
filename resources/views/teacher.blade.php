@@ -34,11 +34,11 @@
                 </div>
                 <div class="col-12 d-flex flex-column flex-md-row mt-5">
                     <div class="col-12 col-md-8">
-                        <h3 class="text-center">Line Chart</h3>
+                        <h3 class="text-center">Laporan kehadiran Mingguan</h3>
                         <canvas id="lineChart"></canvas>
                     </div>
                     <div class="col-12 col-md-4">
-                        <h3 class="text-center">Pie Chart</h3>
+                        <h3 class="text-center">Laporan Harian</h3>
                         <canvas id="pieChart"></canvas>
                     </div>
                 </div>
