@@ -100,12 +100,12 @@ Route::middleware('auth')->group(function () {
 
     //master absensi
     Route::get('/absensi', function(){
-        return view('Absensi.absensikelas');
+        return view('Absensi.masterabsensi');
     })->name('absensi.kelas');
 
     //show guru
     Route::get('/guru', function(){
-        return view('guru.ngajar');
+        return view('guru.ngajar',['kelas'=>Kelas::all()]);
     })->name('guru.main');
 
     //chart in dashboard
