@@ -1,5 +1,5 @@
 <header class="col-12 w-100 d-flex align-items-center text-light sticky-top" style="height: 60px; background: #914110;">
-    <img src="{{ url('img\title.png') }}" width="300" alt="" class="ms-3" style="cursor: pointer;">
+    <img src="{{ url('img\title.png') }}" alt="" class="col-5 col-md-3" style="cursor: pointer;">
       <button class="btn me-3 me-md-5 ms-auto text-light" type="button" style="background: #122620" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
         <i class="fa-solid fa-bars"></i>
       </button>
