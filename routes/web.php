@@ -8,6 +8,7 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SclassController;
+use App\Http\Controllers\PengajarController;
 
 
 //RUTE LOGIN
@@ -107,6 +108,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/guru', function(){
         return view('guru.ngajar',['kelas'=>Kelas::all()]);
     })->name('guru.main');
+
+    Route::get('/guru/add',[PengajarController::class,'addGuru'])->name('guru.main');
 
     //chart in dashboard
     Route::get('/', [ChartController::class, 'index'])->name('dashboard.tampil');

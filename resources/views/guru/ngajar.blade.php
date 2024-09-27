@@ -1,4 +1,5 @@
 <x-layout>
+    {{-- {{ dd(request()->input()) }} --}}
     <div class="w-100 d-flex justify-content-center">
         <label for="" class="h2 fw-bold my-3 mt-md-4">Pilih Kelas</label>
     </div>
