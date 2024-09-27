@@ -54,6 +54,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/kelas/add', function(){
         return view('kelas.addkelas');
     })->name('kelas.create');
+
+    //data siswa kelas
+    Route::get('/kelas/siswa', function(){
+        return view('kelas.listsiswa');
+    })->name('kelas.siswa');
+
+    //master data siswa kelas
+    Route::get('/kelas/mskelas', function(){
+        return view('kelas.pilihkelassiswa');
+    })->name('kelas.pilihkelas');
+
     
     //kelas add
     Route::post('/kelas/add/new', [KelasController::class, 'store'])->name('kelas.add');
@@ -68,6 +79,12 @@ Route::middleware('auth')->group(function () {
     
     //kelas delete
     Route::post('/kelas/delete/{id}', [KelasController::class, 'destroy'])->name('kelas.delete');
+
+    //master absensi
+    Route::get('/absensi', function(){
+        return view('Absensi.absensikelas');
+    })->name('absensi.kelas');
+
 });
 
 Route::get('/siswa/addkelas/{kelas:id}', function(Kelas $kelas){
