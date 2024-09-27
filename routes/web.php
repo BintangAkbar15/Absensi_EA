@@ -109,7 +109,7 @@ Route::middleware('auth')->group(function () {
         return view('guru.ngajar',['kelas'=>Kelas::all()]);
     })->name('guru.main');
 
-    Route::get('/guru/add',[PengajarController::class,'addGuru'])->name('guru.main');
+    Route::get('/guru/add',[PengajarController::class,'addGuru'])->name('pengajar.add');
 
     //chart in dashboard
     Route::get('/', [ChartController::class, 'index'])->name('dashboard.tampil');
