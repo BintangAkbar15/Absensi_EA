@@ -4,9 +4,10 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\ChartController;
+use App\Http\Controllers\SclassController;
 
 
 //RUTE LOGIN
@@ -67,6 +68,12 @@ Route::middleware('auth')->group(function () {
     
     //kelas delete
     Route::post('/kelas/delete/{id}', [KelasController::class, 'destroy'])->name('kelas.delete');
+
+    //master absensi
+    Route::get('/absensi', function(){
+        return view('Absensi.absensikelas');
+    })->name('absensi.kelas');
+
 });
 
 Route::get('/siswa/addkelas/{kelas:id}', function(Kelas $kelas){
