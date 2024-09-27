@@ -40,7 +40,7 @@
                             <td>{{ $item->nis }}</td>
                             <td>{{ $item->name }}</td>
                             <td class=" d-flex justify-content-center">
-                                <form action="" method="post">
+                                <form action="{{ route('kelas.editsiswa',$item->nis) }}" method="post">
                                     @csrf
                                     <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <i class="fa-solid fa-trash"></i>
