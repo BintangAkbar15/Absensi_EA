@@ -48,7 +48,6 @@
                             <th scope="col">No</th>
                             <th scope="col">Nis</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -58,6 +57,7 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $item->nis }}</td>
                                 <td>{{ $item->name }}</td>
+
                                 <td class="d-flex justify-content-center gap-2 gap-md-4">
                                     <form action="{{ route('absensi.add') }}" method="post">
                                         @csrf
@@ -81,7 +81,7 @@
                                         <button class="btn btn-primary">Izin</button>
                                     </form>
                                 </td>
-                            </tr>    
+                            </tr>
                         @empty
                             <tr>
                                 <td colspan='10' class='h5'>Data Not Found</td>

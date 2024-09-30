@@ -2,6 +2,8 @@
 
 use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Models\Logkehadiran;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\AuthController;
@@ -104,7 +106,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/absensi', [LogController::class,'showKelas'])->name('absensi.kelas');
     //absensi
     Route::get('/absensi/kelas/{kelas:id}', function(Kelas $kelas){
-        $siswa = Siswa::where('kelas_id','=',$kelas->id)->get();
+        $kecuali = Logkehadiran::where('tanggal',Carbon::today())->pluck('siswa_id')->toArray();
+
+        $siswa = Siswa::where('kelas_id','=',$kelas->id)->whereNotIn('nis',$kecuali)->get();
         return view('Absensi.absensikelas',['kelas'=>$kelas,'siswa'=>$siswa]);
     })->name('absensi.kelas.siswa');
     //add log
