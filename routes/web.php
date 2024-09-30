@@ -111,6 +111,11 @@ Route::middleware('auth')->group(function () {
         $siswa = Siswa::where('kelas_id','=',$kelas->id)->whereNotIn('nis',$kecuali)->get();
         return view('Absensi.absensikelas',['kelas'=>$kelas,'siswa'=>$siswa]);
     })->name('absensi.kelas.siswa');
+
+    Route::get('/absensi/menu/hadir', function(){
+        return view('Absensi.menudatahadir');
+    })->name('absensi.menuhadir'); 
+
     //add log
     Route::post('/absensi', [LogController::class,'addLog'])->name('absensi.add');
 
