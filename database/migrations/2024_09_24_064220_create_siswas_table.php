@@ -17,7 +17,7 @@ return new class extends Migration
             ->constrained(
                 table: 'kelas',
                 indexName: 'siswas_kelas_id',
-            )->nullable();
+            )->onDelete('cascade');
             $table->string('name');
             $table->timestamps();
         });

@@ -49,4 +49,10 @@ class PengajarController extends Controller
         ]);
     }
 
+    public function destroy(string $id){
+        
+        Pengajar::where('id',$id)->delete();
+        return redirect()->route('guru.main')->with('success',"Berhasil menghapus data");
+    }
+
 }
