@@ -30,14 +30,14 @@
                             <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Class</label>
                         </div>
                     </a>
-                    <a class="text-decoration-none" href="{{ route('absensi.kelas') }}">
-                        <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '#'">
+                    <a class="text-decoration-none" href="{{ route('absensi.choose') }}">
+                        <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;">
                             <i class="fa-solid fa-book"></i>
                             <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Attendance</label>
                         </div>
                     </a>
                     <a class="text-decoration-none" href="{{ route('guru.main') }}">
-                        <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '#'">
+                        <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;">
                             <i class="fa-solid fa-user"></i>
                             <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Teacher</label>
                         </div>

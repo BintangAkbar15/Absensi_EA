@@ -103,6 +103,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/kelas/delete/{id}', [KelasController::class, 'destroy'])->name('kelas.delete');
 
     //master absensi
+    Route::get('/mabs', function(){
+        return view('Absensi.menuabsensi');
+    })->name('absensi.choose');
+    //cek kehadiran
+    Route::get('/absensi/kehadiran', function(){
+        return view('Absensi.menudatahadir');
+    })->name('kehadiran.show');
+    //edit kehadiran
+    Route::get('/absensi/kehadiran/edit', function(){
+        return view('Absensi.editabsensi');
+    })->name('kehadiran.show');
+    //pilih kelas untuk melakukan absensi
     Route::get('/absensi', [LogController::class,'showKelas'])->name('absensi.kelas');
     //absensi
     Route::get('/absensi/kelas/{kelas:id}', function(Kelas $kelas){
