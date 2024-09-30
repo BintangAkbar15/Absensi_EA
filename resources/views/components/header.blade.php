@@ -47,7 +47,7 @@
         </div>
         <form action="{{ route('log.out') }}" method="Post">
             @csrf
-            <button class="light text-danger fw-bold h2 py-1 mb-5 py-md-3 justify-content-center d-flex align-items-center col-5 ms-4" style="cursor: pointer;">
+            <button class=" btn btn-light text-danger fw-bold h2 py-1 mb-5 py-md-3 justify-content-center d-flex align-items-center col-5 ms-4" style="cursor: pointer;">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Log Out</label>
             </button>

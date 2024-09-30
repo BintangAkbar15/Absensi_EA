@@ -29,26 +29,26 @@
                 </div>
             </div>
         </div>
-            <div class="position-fixed text-light col-3 bg-dark px-5 py-3 z-3 d-none d-xl-block overflow-x-scroll" style="min-height: 20vh; max-height: 30vh; top: 0; right: 0; margin-top:60px;">
-                <label for="" class="h3 mb-2 mb-md-3 position-sticky top-0 bg-dark">List Kelas Yang Di Ajar</label>
-                <lu>
-                    @foreach ($data as $item)
-                        @foreach ($item->pengajars as $newdata)
+        <div class="position-fixed text-light col-3 bg-dark px-5 pb-3 z-3 d-none d-xl-block overflow-x-scroll" style="min-height: 20vh; max-height: 30vh; top: 0; right: 0; margin-top:60px;">
+            <label class="h3 mb-2 mb-md-3 col-12 py-3 position-sticky top-0 bg-dark">List Kelas Yang Di Ajar</label>
+            <ul>
+                @foreach ($data as $item)
+                    @foreach ($item->pengajars as $newdata)
                         <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
-                            <label for="">{{ $newdata->name }}</label>
+                            <label>{{ $newdata->name }}</label>
                             <form action="{{ route('pengajar.delete', $id[$loop->iteration-1]->id) }}" method="post">
                                 @csrf
                                 <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal"  data-bs-target="#exampleModal">
                                     <i class="fa-solid fa-trash"></i>
-                                    <label for="" class="d-none d-md-block">Delete</label>
+                                    <label class="d-none d-md-block">Delete</label>
                                 </button>
                                 <x-modal></x-modal>
                             </form>
                         </li>
-                        @endforeach
                     @endforeach
-                </lu>
-            </div>
+                @endforeach
+            </ul>
+        </div>
             <button class="position-fixed text-light bg-dark p-3 z-3 d-xl-none d-flex me-3 rounded-circle" style="bottom: 0; right: 0; margin-bottom:30px;" data-bs-toggle="offcanvas" data-bs-target="#cek_list" aria-controls="offcanvasExample">
                 <i class="fa-regular fa-clipboard"></i>
             </button>
