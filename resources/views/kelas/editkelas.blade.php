@@ -17,7 +17,7 @@
     <div class="col-12 d-flex align-items-center justify-content-center" style="min-height: 91.8vh">
         <form action="{{ route('kelas.update', $id) }}" method="POST" class="border border-1 p-5 rounded shadow">
             @csrf
-            <label for="" class="h2">Form Edit Kelas</label>
+            <label for="" class="h2">Form Class Edit</label>
             <div class="row gy-3 gy-md-4 overflow-hidden">
                 <div class="col-12">
                     <label for="name" class="form-label">Nama Kelas<span class="text-danger">*</span></label>

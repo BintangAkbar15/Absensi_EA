@@ -1,5 +1,11 @@
 <x-layout>
-    <div class="col-12 d-flex fw-bold mt-4 justify-content-center h3">Absensi Kelas A</div>
+    <div class="col-11 d-flex fw-bold py-5 justify-content-between px-md-5 px-3 align-items-center h3">
+        <a href="{{ route('absensi.kelas') }}" class="text-dark">
+            <i class="fa-solid fa-arrow-left" style=""></i>
+        </a>
+        <label for="" class="justify-self-center ps-md-5 ms-md-5">Absensi Kelas A</label>
+        <span></span>
+    </div>
     <div class="col-12 d-flex justify-content-center">
         <div class="col-11">
             <div class="d-flex align-items-center">

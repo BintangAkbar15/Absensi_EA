@@ -1,7 +1,11 @@
 <x-layout>
     <div style="background: #F4EBD0; min-height: 91.8vh;">
-        <div class="w-100 d-flex justify-content-center">
-            <label for="" class="h2 fw-bold mt-5">Pilih Kelas</label>
+        <div class="col-11 d-flex fw-bold py-5 justify-content-between px-md-5 px-3 align-items-center h3">
+            <a href="{{ route('dashboard.tampil') }}" class="text-dark">
+                <i class="fa-solid fa-arrow-left" style=""></i>
+            </a>
+            <label for="" class="justify-self-center ps-md-5 ms-md-5">Select Class</label>
+            <span></span>
         </div>
         <div class="overflow-x-scroll" style="max-height: 60vh">
             <div class="d-flex flex-wrap flex-column flex-xl-row gap-3 gap-xl-5 col-12 mt-5 align-items-center justify-content-center overflow-x-scroll" style="max-height: 73vh">

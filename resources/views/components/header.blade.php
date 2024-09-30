@@ -21,25 +21,25 @@
                     <a class="text-decoration-none" href="{{ route('siswa.tampil') }}">
                         <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;">
                             <i class="fa-solid fa-user"></i>
-                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Siswa</label>
+                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Student</label>
                         </div>
                     </a>
                     <a class="text-decoration-none" href="{{ route('master.class') }}">
                         <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '{{ route('master.class') }}'">
                             <i class="fa-solid fa-chalkboard"></i>
-                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Kelas</label>
+                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Class</label>
                         </div>
                     </a>
                     <a class="text-decoration-none" href="{{ route('absensi.kelas') }}">
                         <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '#'">
                             <i class="fa-solid fa-book"></i>
-                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Absensi</label>
+                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Attendance</label>
                         </div>
                     </a>
                     <a class="text-decoration-none" href="{{ route('guru.main') }}">
                         <div class="shadow light text-light border rounded py-1 py-md-3 d-flex align-items-center justify-content-start col-12 px-5" style="cursor: pointer; background: #532200;" onclick="window.location.href = '#'">
                             <i class="fa-solid fa-user"></i>
-                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Guru</label>
+                            <label for="" class="fs-6 ms-3 fs-sm-5 fs-md-4 fs-lg-3 me-2" style="cursor: pointer;">Teacher</label>
                         </div>
                     </a>
                 </div>

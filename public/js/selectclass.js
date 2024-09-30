@@ -14,7 +14,7 @@ boxChecks.forEach(box => {
 
         addallButtons.forEach(function(button) {
             if (isAnyChecked) {
-                button.style.display = 'block'; 
+                button.style.display = 'block';
             } else {
                 button.style.display = 'none'; 
             }

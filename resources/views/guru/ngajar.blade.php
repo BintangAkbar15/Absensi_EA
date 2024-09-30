@@ -1,7 +1,11 @@
 <x-layout>  
     <div>
-        <div class="w-100 d-flex justify-content-center">
-            <label for="" class="h2 fw-bold my-3 mt-md-4">Pilih Kelas</label>
+        <div class="col-11 d-flex fw-bold py-5 justify-content-between px-md-5 px-3 align-items-center h3">
+            <a href="{{ route('dashboard.tampil') }}" class="text-dark">
+                <i class="fa-solid fa-arrow-left" style=""></i>
+            </a>
+            <label for="" class="justify-self-center ps-md-5 ms-md-5">Teacher Form</label>
+            <span></span>
         </div>
         <div class="col-12 d-flex justify-content-center">
             <div class="col-11">
@@ -26,7 +30,7 @@
             </div>
         </div>
             <div class="position-fixed text-light col-3 bg-dark px-5 py-3 z-3 d-none d-xl-block overflow-x-scroll" style="min-height: 20vh; max-height: 30vh; top: 0; right: 0; margin-top:60px;">
-                <label for="" class="h3 mb-2 mb-md-3 position-sticky top-0">List Kelas Yang Di Ajar</label>
+                <label for="" class="h3 mb-2 mb-md-3 position-sticky top-0 bg-dark">List Kelas Yang Di Ajar</label>
                 <lu>
                     @foreach ($data as $item)
                         @foreach ($item->pengajars as $newdata)
