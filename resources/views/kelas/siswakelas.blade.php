@@ -10,7 +10,13 @@
               }, 3000);
             </script>
         @endif
-    <div class="col-12 d-flex fw-bold mt-4 justify-content-center h3">Tambah Siswa Ke Kelas</div>
+        <div class="col-11 d-flex fw-bold mb-5 justify-content-between px-md-5 px-3 align-items-center mt-4 h3">
+            <a href="{{ route('siswa.kelas.pilih') }}" class="text-dark">
+                <i class="fa-solid fa-arrow-left" style=""></i>
+            </a>
+            <label for="" class="justify-self-center ps-md-5 ms-md-5">Tambah Siswa kelas</label>
+            <span></span>
+        </div>
     <div class="col-12 d-flex justify-content-center">
         <div class="col-11">
             <div class="d-flex align-items-center">

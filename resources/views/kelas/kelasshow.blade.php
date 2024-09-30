@@ -1,5 +1,11 @@
     <x-layout>
-    <div class="col-12 d-flex fw-bold mt-4 justify-content-center h3">Data kelas</div>
+    <div class="col-11 d-flex fw-bold justify-content-between px-md-5 px-3 align-items-center mt-4 h3">
+        <a href="{{ route('master.class') }}" class="text-dark">
+            <i class="fa-solid fa-arrow-left" style=""></i>
+        </a>
+        <label for="" class="justify-self-center ps-md-5 ms-md-5">Data kelas</label>
+        <span></span>
+    </div>
     <div class="col-12 d-flex justify-content-center">
         @if (Session::has('success'))
             <div class="alert alert-success position-fixed">
@@ -12,7 +18,7 @@
             }, 3000);
             </script>
         @endif
-        <div class="col-11">
+        <div class="col-11 mt-5">
             <div class="d-flex align-items-center">
                 <div>
                     <button class="btn text-light" style="background: #B68D40">

@@ -1,7 +1,11 @@
 <x-layout>
     <div>
-        <div class="w-100 d-flex justify-content-center">
-            <label for="" class="h2 fw-bold my-3 mt-md-4">Pilih Kelas</label>
+        <div class="col-11 d-flex fw-bold py-5 justify-content-between px-md-5 px-3 align-items-center h3">
+            <a href="{{ route('dashboard.tampil') }}" class="text-dark">
+                <i class="fa-solid fa-arrow-left" style=""></i>
+            </a>
+            <label for="" class="justify-self-center ps-md-5 ms-md-5">Form Guru</label>
+            <span></span>
         </div>
         <div class="col-12 d-flex justify-content-center">
             <div class="col-11">
