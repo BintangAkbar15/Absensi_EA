@@ -83,4 +83,19 @@
     </div>
     
     <script src="{{ url('js/button.js') }}"></script>
+    <script>
+        // Ambil semua row yang ada di dalam tabel
+        document.querySelectorAll('tr').forEach(function(row) {
+            // Tambahkan event listener untuk setiap row
+            row.addEventListener('click', function() {
+                // Cari checkbox yang ada di dalam row tersebut
+                const checkbox = row.querySelector('input[type="checkbox"]');
+                
+                // Jika checkbox ditemukan, ubah status checked
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked; // Toggle status checkbox (checked/unchecked)
+                }
+            });
+        });
+    </script>
 </x-layout>
