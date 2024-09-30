@@ -5,8 +5,7 @@
             Welcome to Academy Exelent, where we focus on delivering high-quality education with a mission to inspire and cultivate talent. Our goal is to provide a learning environment that nurtures innovation and excellence. Join us in our journey towards a brighter future!
         </p>
     </div>
-    <div class="col-10 d-flex justify-content-between border-top border-white text-light pt-2">
-        <label for="">&copy; 2024 AcademyExelent.sch.id</label>
-        <label for="">ACADEMY EXELENT </label>
+    <div class="col-10 d-flex justify-content-center border-top border-white text-light pt-2">
+        <label for="">Copyright 2024 &copy; Absensi-EA.github.io</label>
     </div>
 </footer>

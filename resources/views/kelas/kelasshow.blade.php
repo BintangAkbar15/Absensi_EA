@@ -3,7 +3,7 @@
         <a href="{{ route('master.class') }}" class="text-dark">
             <i class="fa-solid fa-arrow-left" style=""></i>
         </a>
-        <label for="" class="justify-self-center ps-md-5 ms-md-5">Data kelas</label>
+        <label for="" class="justify-self-center ps-md-5 ms-md-5">Class Data</label>
         <span></span>
     </div>
     <div class="col-12 d-flex justify-content-center">

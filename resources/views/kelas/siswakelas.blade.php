@@ -14,7 +14,7 @@
             <a href="{{ route('siswa.kelas.pilih') }}" class="text-dark">
                 <i class="fa-solid fa-arrow-left" style=""></i>
             </a>
-            <label for="" class="justify-self-center ps-md-5 ms-md-5">Tambah Siswa kelas</label>
+            <label for="" class="justify-self-center ps-md-5 ms-md-5">Add Student To The Class</label>
             <span></span>
         </div>
     <div class="col-12 d-flex justify-content-center">

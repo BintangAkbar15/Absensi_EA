@@ -4,7 +4,7 @@
             <a href="{{ route('master.class') }}" class="text-dark">
                 <i class="fa-solid fa-arrow-left" style=""></i>
             </a>
-            <label for="" class="justify-self-center ps-md-5 ms-md-5">data murid dalam kelas</label>
+            <label for="" class="justify-self-center ps-md-5 ms-md-5">Student Data In Class</label>
             <span></span>
         </div>
         {{-- {{ dd($data) }} --}}
