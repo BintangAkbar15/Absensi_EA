@@ -30,7 +30,7 @@
             </div>
         </div>
             <div class="position-fixed text-light col-3 bg-dark px-5 py-3 z-3 d-none d-xl-block overflow-x-scroll" style="min-height: 20vh; max-height: 30vh; top: 0; right: 0; margin-top:60px;">
-                <label for="" class="h3 mb-2 mb-md-3 position-sticky top-0">List Kelas Yang Di Ajar</label>
+                <label for="" class="h3 mb-2 mb-md-3 position-sticky top-0 bg-dark">List Kelas Yang Di Ajar</label>
                 <lu>
                     <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
                         <label for="">Kelas A</label>
