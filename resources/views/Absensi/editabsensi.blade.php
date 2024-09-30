@@ -58,7 +58,7 @@
                                 <td>{{ $item->nis }}</td>
                                 <td>{{ $item->name }}</td>
 
-                                <td class=" justify-content-center gap-2 gap-md-4" style="display: none;" id="btn_change">
+                                <td class="justify-content-center gap-2 gap-md-4" style="display: none;" id="btn_change_{{ $loop->index }}">
                                     <form action="{{ route('absensi.add') }}" method="post">
                                         @csrf
                                         <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
@@ -80,9 +80,10 @@
                                         <input type="hidden" name='status' value='Izin'>
                                         <button class="btn btn-primary">Izin</button>
                                     </form>
+                                    <button class="btn btn-danger">Exit</button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-warning" id="btn_edit">Edit</button>
+                                    <button class="btn btn-warning btn_edit" id="btn_edit_{{ $loop->index }}">Edit</button>
                                 </td>
                             </tr>
                         @empty

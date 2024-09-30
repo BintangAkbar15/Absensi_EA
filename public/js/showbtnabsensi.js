@@ -1,16 +1,16 @@
-let btnchange = document.getElementById('btn_change');
-let btnedit = document.getElementById('btn_edit');
+document.querySelectorAll('.btn_edit').forEach((btnEdit, index) => {
+    const btnChange = document.getElementById('btn_change_' + index);
 
-btnedit.addEventListener('click', function(){
-    if(btnchange.style.display = "none"){
-        btnedit.style.display = "none";
-        btnchange.style.display = "flex";
-    }
-})
+    btnEdit.addEventListener('click', function(){
+        btnEdit.style.display = 'none';
+        btnChange.style.display = 'flex';  // Tampilkan tombol 'Change' (bisa juga 'block')
+    });
 
-btnchange.addEventListener('click', function(){
-    if(btnedit.style.display = "none"){
-        btnedit.style.display = "block";
-        btnchange.style.display = "none";
-    }
-})
+    // Jika ingin menambahkan fungsionalitas untuk mengubah kembali ke tombol edit:
+    btnChange.querySelectorAll('form').forEach((form) => {
+        form.addEventListener('submit', function() {
+            btnChange.style.display = 'none';
+            btnEdit.style.display = 'block'; // Kembali ke tombol 'Edit' setelah submit
+        });
+    });
+});
