@@ -36,6 +36,7 @@
                             <th scope="col">No</th>
                             <th scope="col">Nis</th>
                             <th scope="col">Nama</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -45,10 +46,15 @@
                             <th scope="row">no</th>
                             <td>nis</td>
                             <td>nama</td>
+                            <td>hadir</td>
                             <td class="d-flex justify-content-center gap-2 gap-md-4">
                                 <button class="btn btn-success">Hadir</button>
                                 <button class="btn btn-warning">Sakit</button>
                                 <button class="btn btn-primary">Izin</button>
+                            </td>
+
+                            <td>
+                                <button class="">Edit</button>
                             </td>
                         </tr>
                     </tbody>

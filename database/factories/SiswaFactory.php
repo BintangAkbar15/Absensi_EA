@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
 use App\Models\Siswa;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
