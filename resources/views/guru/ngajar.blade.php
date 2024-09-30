@@ -1,11 +1,7 @@
 <x-layout>  
     <div>
-        <div class="col-11 d-flex fw-bold py-5 justify-content-between px-md-5 px-3 align-items-center h3">
-            <a href="{{ route('dashboard.tampil') }}" class="text-dark">
-                <i class="fa-solid fa-arrow-left" style=""></i>
-            </a>
-            <label for="" class="justify-self-center ps-md-5 ms-md-5">Teacher Form</label>
-            <span></span>
+        <div class="w-100 d-flex justify-content-center">
+            <label for="" class="h2 fw-bold my-3 mt-md-4">Pilih Kelas</label>
         </div>
         <div class="col-12 d-flex justify-content-center">
             <div class="col-11">
@@ -29,20 +25,16 @@
                 </div>
             </div>
         </div>
-        <div class="position-fixed text-light col-3 bg-dark px-5 pb-3 z-3 d-none d-xl-block overflow-x-scroll" style="min-height: 20vh; max-height: 30vh; top: 0; right: 0; margin-top:60px;">
-            <label class="h3 mb-2 mb-md-3 col-12 py-3 position-sticky top-0 bg-dark">List Kelas Yang Di Ajar</label>
-            <ul>
-                @foreach ($data as $item)
-                    @foreach ($item->pengajars as $newdata)
+            <div class="position-fixed text-light col-3 bg-dark px-5 py-3 z-3 d-none d-xl-block overflow-x-scroll" style="min-height: 20vh; max-height: 30vh; top: 0; right: 0; margin-top:60px;">
+                <label for="" class="h3 mb-2 mb-md-3 position-sticky top-0">List Kelas Yang Di Ajar</label>
+                <lu>
+                    @foreach ($data as $item)
+                        @foreach ($item->pengajars as $newdata)
                         <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
-                            <label>{{ $newdata->name }}</label>
-                            <form action="{{ route('pengajar.delete', $id[$loop->iteration-1]->id) }}" method="post">
+                            <label for="">{{ $newdata->name }}</label>
+                            <form action="{{ route('pengajar.delete',$id[$loop->iteration-1]->id) }}" method="post">
                                 @csrf
-                                <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal"  data-bs-target="#exampleModal">
-                                    <i class="fa-solid fa-trash"></i>
-                                    <label class="d-none d-md-block">Delete</label>
-                                </button>
-                                <x-modal></x-modal>
+                                <button class="btn-danger btn" type="submit">Hapus</button>
                             </form>
                         </li>
                     @endforeach
@@ -64,7 +56,10 @@
                         @foreach ($item->pengajars as $newdata)
                         <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
                             <label for="">{{ $newdata->name }}</label>
-                            <button class="btn-danger btn">Hapus</button>
+                            <form action="{{ route('pengajar.delete',$id[$loop->iteration-1]->id) }}" method="post">
+                                @csrf
+                                <button class="btn-danger btn" type="submit">Hapus</button>
+                            </form>
                         </li>
                             
                         @endforeach

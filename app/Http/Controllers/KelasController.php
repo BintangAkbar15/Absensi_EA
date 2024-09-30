@@ -81,11 +81,10 @@ class KelasController extends Controller
     {
         //Edit data
         $request->validate([
-            'name' => 'required|unique:kelas',
+            'name' => 'required',
             'bangku_tersisa' => 'required|digits_between:1,2|numeric'
         ],[
             'name.required' => 'nama harus diisi',
-            'name.unique' => 'Nama Kelas sudah ada',
             'bangku_tersisa.required'=>'Jumlah siswa harus diisi',
             'bangku_tersisa.numeric'=>'Jumlah siswa harus berupa angka',
         ]);
