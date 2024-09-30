@@ -55,8 +55,8 @@
                         @forelse ($siswa as $item)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $item->nis }}</td>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->siswa->nis }}</td>
+                                <td>{{ $item->siswa->name }}</td>
 
                                 <td class="justify-content-center gap-2 gap-md-4" style="display: none;" id="btn_change_{{ $loop->index }}">
                                     <form action="{{ route('absensi.add') }}" method="post">
@@ -80,7 +80,7 @@
                                         <input type="hidden" name='status' value='Izin'>
                                         <button class="btn btn-primary">Izin</button>
                                     </form>
-                                    <button class="btn btn-danger">Exit</button>
+                                    <a href="{{ route('kehadiran.edit',$item->kelas->id ) }}" class="btn btn-danger text-decoration-none" >Batal</a>
                                 </td>
                                 <td>
                                     <button class="btn btn-warning btn_edit" id="btn_edit_{{ $loop->index }}">Edit</button>

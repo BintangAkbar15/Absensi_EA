@@ -115,9 +115,8 @@ Route::middleware('auth')->group(function () {
 
     //edit kehadiran
     Route::get('/kehadiran/{kelas:id}', function(Kelas $kelas){
-        $kecuali = Logkehadiran::where('tanggal',Carbon::today())->pluck('siswa_id')->toArray();
 
-        $siswa = Siswa::where('kelas_id','=',$kelas->id)->whereIn('nis',$kecuali)->get();
+        $siswa = Logkehadiran::with(['siswa','kelas'])->where('kelas_id','=',$kelas->id)->get();
         return view('Absensi.editabsensi',['kelas'=>$kelas,'siswa'=>$siswa]);
     })->name('kehadiran.edit');
     
