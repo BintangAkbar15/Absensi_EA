@@ -14,7 +14,7 @@
         <a href="{{ route('absensi.kelas') }}" class="text-dark">
             <i class="fa-solid fa-arrow-left" style=""></i>
         </a>
-        <label for="" class="justify-self-center ps-md-5 ms-md-5">Absensi {{ $kelas->name }}</label>
+        <label for="" class="justify-self-center ps-md-5 ms-md-5">Kehadiran</label>
         <span></span>
     </div>
     <div class="col-12 d-flex justify-content-center">
@@ -53,43 +53,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($siswa as $item)
                             <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $item->nis }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td class="d-flex justify-content-center gap-2 gap-md-4 d-none">
+                                <th scope="row">no</th>
+                                <td>nis</td>
+                                <td>nama</td>
+                                <td>hadir</td>
+                                <td class="justify-content-center gap-2 gap-md-4" style="display: none;" id="btn_change">
                                     <form action="{{ route('absensi.add') }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
-                                        <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
-                                        <input type="hidden" name='status' value='Hadir'>
                                         <button class="btn btn-success">Hadir</button>
                                     </form>
                                     <form action="{{ route('absensi.add') }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
-                                        <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
-                                        <input type="hidden" name='status' value='Sakit'>
                                         <button class="btn btn-warning">Sakit</button>
                                     </form>
                                     <form action="{{ route('absensi.add') }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name='siswa_id' value='{{ $item->nis }}'> 
-                                        <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
-                                        <input type="hidden" name='status' value='Izin'>
                                         <button class="btn btn-primary">Izin</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <button class="btn btn-warning">Edit</button>
+                                    <button class="btn btn-warning" id="btn_edit">Edit</button>
                                 </td>
                             </tr>    
-                        @empty
+                        
                             <tr>
                                 <td colspan='10' class='h5'>Data Not Found</td>
                             </tr>
-                        @endforelse
                     </tbody>
                 </table>
                 <nav aria-label="Page navigation example">
@@ -105,4 +92,5 @@
                 </nav>
             </div>
     </div>
+    <script src="{{ url('js/showbtnabsensi.js') }}"></script>
 </x-layout>
