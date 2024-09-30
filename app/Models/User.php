@@ -49,8 +49,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function gpengajar()
+    public function pengajars()
     {
-        return $this->belongsToMany(Logkehadiran::class, 'pengajars', 'guru_id', 'id');
+        return $this->belongsToMany(Kelas::class, 'pengajars', 'guru_id', 'kelas_id');
     }
 }

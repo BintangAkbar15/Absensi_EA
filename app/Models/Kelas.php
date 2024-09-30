@@ -22,8 +22,9 @@ class Kelas extends Model
         return $this->hasMany(Logkehadiran::class);
     }
 
-    public function kpengajar()
+    public function pengajars()
     {
-        return $this->belongsToMany(Logkehadiran::class, 'pengajars', 'kelas_id', 'id');
+        return $this->belongsToMany(User::class, 'pengajars', 'kelas_id', 'guru_id');
     }
+
 }

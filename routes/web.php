@@ -19,7 +19,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'tampilDashboard'])->name('dashboard.tampil');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('log.out');
 
     // siswa show
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.tampil');
@@ -105,11 +105,11 @@ Route::middleware('auth')->group(function () {
     })->name('absensi.kelas');
 
     //show guru
-    Route::get('/guru', function(){
-        return view('guru.ngajar',['kelas'=>Kelas::all()]);
-    })->name('guru.main');
+    Route::get('/guru', [PengajarController::class,'showPengajar'])->name('guru.main');
 
-    Route::get('/guru/add',[PengajarController::class,'addGuru'])->name('pengajar.add');
+    Route::post('/guru/add',[PengajarController::class,'addGuru'])->name('pengajar.add');
+   
+    Route::post('/guru/{id}',[PengajarController::class,'destroy'])->name('pengajar.delete');
 
     //chart in dashboard
     Route::get('/', [ChartController::class, 'index'])->name('dashboard.tampil');

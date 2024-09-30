@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout>  
     <div>
         <div class="w-100 d-flex justify-content-center">
             <label for="" class="h2 fw-bold my-3 mt-md-4">Pilih Kelas</label>
@@ -28,18 +28,21 @@
             <div class="position-fixed text-light col-3 bg-dark px-5 py-3 z-3 d-none d-xl-block overflow-x-scroll" style="min-height: 20vh; max-height: 30vh; top: 0; right: 0; margin-top:60px;">
                 <label for="" class="h3 mb-2 mb-md-3 position-sticky top-0">List Kelas Yang Di Ajar</label>
                 <lu>
-                    <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
-                        <label for="">Kelas A</label>
-                        <button class="btn-danger btn">Hapus</button>
-                    </li>
-                    <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
-                        <label for="">Kelas B</label>
-                        <button class="btn-danger btn">Hapus</button>
-                    </li>
-                    <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
-                        <label for="">Kelas C</label>
-                        <button class="btn-danger btn">Hapus</button>
-                    </li>
+                    @foreach ($data as $item)
+                        @foreach ($item->pengajars as $newdata)
+                        <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
+                            <label for="">{{ $newdata->name }}</label>
+                            <form action="{{ route('pengajar.delete', $id[$loop->iteration-1]->id) }}" method="post">
+                                @csrf
+                                <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal"  data-bs-target="#exampleModal">
+                                    <i class="fa-solid fa-trash"></i>
+                                    <label for="" class="d-none d-md-block">Delete</label>
+                                </button>
+                                <x-modal></x-modal>
+                            </form>
+                        </li>
+                        @endforeach
+                    @endforeach
                 </lu>
             </div>
             <button class="position-fixed text-light bg-dark p-3 z-3 d-xl-none d-flex me-3 rounded-circle" style="bottom: 0; right: 0; margin-bottom:30px;" data-bs-toggle="offcanvas" data-bs-target="#cek_list" aria-controls="offcanvasExample">
@@ -53,23 +56,20 @@
             <div class="offcanvas-body">
                 <label for="" class="h3 mb-2 mb-md-3 position-sticky top-0">List Kelas Yang Di Ajar</label>
                 <lu>
-                    <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
-                        <label for="">Kelas A</label>
-                        <button class="btn-danger btn">Hapus</button>
-                    </li>
-                    <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
-                        <label for="">Kelas B</label>
-                        <button class="btn-danger btn">Hapus</button>
-                    </li>
-                    <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
-                        <label for="">Kelas C</label>
-                        <button class="btn-danger btn">Hapus</button>
-                    </li>
+                    @foreach ($data as $item)
+                        @foreach ($item->pengajars as $newdata)
+                        <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
+                            <label for="">{{ $newdata->name }}</label>
+                            <button class="btn-danger btn">Hapus</button>
+                        </li>
+                            
+                        @endforeach
+                    @endforeach
                 </lu>
             </div>  
         </div>
     </div>
-        <form action="" method="get">
+        <form action="{{ route('pengajar.add') }}" method="post">
             @csrf
             <input type="hidden" name="nip" value="{{ Auth::user()->nip }}">
             <div class="w-100 mt-5 d-md-none d-flex justify-content-start pb-3 ps-3">
