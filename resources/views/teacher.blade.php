@@ -21,8 +21,8 @@
             <label for="" class="h2 text-center">Report Class</label>
         </div>
 
-        <div class="d-flex col-11 container overflow-scroll overflow-y-hidden gap-3 gap-md-5">
-            <div class="container mt-2 mt-md-5 py-4 p-md-5  rounded" style="background: white; max-width: 100vw; ">
+        <div class="d-flex col-12 container overflow-scroll overflow-y-hidden gap-3 gap-md-5">
+            <div class="container mt-2 mt-md-5 py-4 p-md-5 px-5 rounded" style="background: white; max-width: 100vw; ">
                 <div class="d-flex flex-column">
                     <label class="text-end fs-3">Laporan Absensi Kelas A</label>
                     <div class="mt-2 d-flex flex-column flex-md-row col-12 gap-1 justify-content-start">
