@@ -4,7 +4,7 @@
             <a href="{{ route('absensi.kelas') }}" class="text-dark">
                 <i class="fa-solid fa-arrow-left" style=""></i>
             </a>
-            <label for="" class="justify-self-center ps-md-5 ms-md-5">pilih menu</label>
+            <label for="" class="justify-self-center ps-md-5 ms-md-5">pilih menu`</label>
             <span></span>
         </div>
         <div class="overflow-x-scroll" style="max-height: 60vh">
