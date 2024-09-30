@@ -41,55 +41,57 @@
     </div>
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
-
+            <a href="{{ route('kehadiran.show') }}" class="text-decoration-none btn btn-primary mb-5">Lihat Data Kehadiran</a>
                 <table class="table text-center table-striped table-hover border border-1 shadow">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Nis</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($siswa as $item)
                             <tr>
-                                <th scope="row">no</th>
-                                <td>nis</td>
-                                <td>nama</td>
-                                <td>hadir</td>
-                                <td class="justify-content-center gap-2 gap-md-4" style="display: none;" id="btn_change">
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $item->nis }}</td>
+                                <td>{{ $item->name }}</td>
+
+                                <td class=" justify-content-center gap-2 gap-md-4" style="display: none;" id="btn_change">
                                     <form action="{{ route('absensi.add') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
+                                        <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
+                                        <input type="hidden" name='status' value='Hadir'>
                                         <button class="btn btn-success">Hadir</button>
                                     </form>
                                     <form action="{{ route('absensi.add') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
+                                        <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
+                                        <input type="hidden" name='status' value='Sakit'>
                                         <button class="btn btn-warning">Sakit</button>
                                     </form>
                                     <form action="{{ route('absensi.add') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name='siswa_id' value='{{ $item->nis }}'> 
+                                        <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
+                                        <input type="hidden" name='status' value='Izin'>
                                         <button class="btn btn-primary">Izin</button>
                                     </form>
                                 </td>
                                 <td>
                                     <button class="btn btn-warning" id="btn_edit">Edit</button>
                                 </td>
-                            </tr>    
-                        
-                            <tr>
-                                <td colspan='10' class='h5'>Data Not Found</td>
                             </tr>
+                        @empty
+                            <tr>
+                                <td colspan='10' class='h5'>Semua siswa sudah absen</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">4</a></li>
-                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                      <li class="page-item"><a class="page-link bg-danger text-light" href="#">Back</a></li>
-                    </ul>
-                </nav>
             </div>
     </div>
     <script src="{{ url('js/showbtnabsensi.js') }}"></script>
