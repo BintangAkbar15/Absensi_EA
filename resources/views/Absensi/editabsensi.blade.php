@@ -41,13 +41,13 @@
     </div>
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
-            <a href="{{ route('kehadiran.show') }}" class="text-decoration-none btn btn-primary mb-5">Lihat Data Kehadiran</a>
                 <table class="table text-center table-striped table-hover border border-1 shadow">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Nis</th>
                             <th scope="col">Nama</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -57,23 +57,24 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $item->siswa->nis }}</td>
                                 <td>{{ $item->siswa->name }}</td>
+                                <td>{{ $item->status }}</td>
 
                                 <td class="justify-content-center gap-2 gap-md-4" style="display: none;" id="btn_change_{{ $loop->index }}">
-                                    <form action="{{ route('absensi.add') }}" method="post">
+                                    <form action="{{ route('absensi.edit',$item->id) }}" method="post">
                                         @csrf
                                         <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
                                         <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
                                         <input type="hidden" name='status' value='Hadir'>
                                         <button class="btn btn-success">Hadir</button>
                                     </form>
-                                    <form action="{{ route('absensi.add') }}" method="post">
+                                    <form action="{{ route('absensi.edit',$item->id) }}" method="post">
                                         @csrf
                                         <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
                                         <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
                                         <input type="hidden" name='status' value='Sakit'>
                                         <button class="btn btn-warning">Sakit</button>
                                     </form>
-                                    <form action="{{ route('absensi.add') }}" method="post">
+                                    <form action="{{ route('absensi.edit',$item->id) }}" method="post">
                                         @csrf
                                         <input type="hidden" name='siswa_id' value='{{ $item->nis }}'> 
                                         <input type="hidden" name='kelas' value='{{ $kelas->id }}'>

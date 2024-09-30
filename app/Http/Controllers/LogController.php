@@ -33,4 +33,12 @@ class LogController extends Controller
         $siswa = Siswa::where('nis','like','%'.$request->input('siswa_id').'%')->get();
         return redirect()->back()->with('success', 'Siswa '.$siswa[0]->name.' telah melakukan presensi');
     }
+    public function editLog(Request $request, string $id){
+        $data = [
+            'status' => $request->input('status'),
+        ];
+        Logkehadiran::where('id',$id)->update($data);
+        $siswa = Siswa::where('nis','like','%'.$request->input('siswa_id').'%')->get();
+        return redirect()->back()->with('success', 'Berhasil mengupdate absensi dari '.$siswa[0]->name);
+    }
 }

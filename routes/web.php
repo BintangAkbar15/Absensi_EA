@@ -110,6 +110,9 @@ Route::middleware('auth')->group(function () {
     //pilih kelas untuk melakukan absensi
     Route::get('/absensi', [LogController::class,'showKelas'])->name('absensi.kelas');
 
+    //pilih kelas untuk melakukan absensi
+    Route::post('/kehadiran/edit/{id}', [LogController::class,'editLog'])->name('absensi.edit');
+
     //pilih kelas untuk mengedit data
     Route::get('/kehadiran', [LogController::class,'showKelasMenu'])->name('kehadiran.show');
 
