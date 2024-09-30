@@ -13,7 +13,7 @@ class KelasController extends Controller
     public function index()
     {
         //showing data to table
-        $max_tampil = 4;
+        $max_tampil = 5;
         
         if(request("search")){
             $data = Kelas::where('name','like','%'.request("search").'%')->paginate($max_tampil)->withQueryString();

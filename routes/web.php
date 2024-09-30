@@ -3,6 +3,7 @@
 use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\KelasController;
@@ -100,9 +101,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/kelas/delete/{id}', [KelasController::class, 'destroy'])->name('kelas.delete');
 
     //master absensi
-    Route::get('/absensi', function(){
-        return view('Absensi.masterabsensi');
-    })->name('absensi.kelas');
+    Route::get('/absensi', [LogController::class,'showKelas'])->name('absensi.kelas');
+    //absensi
+    Route::get('/absensi/kelas/{kelas:id}', function(Kelas $kelas){
+        $siswa = Siswa::where('kelas_id','=',$kelas->id)->get();
+        return view('Absensi.absensikelas',['kelas'=>$kelas,'siswa'=>$siswa]);
+    })->name('absensi.kelas.siswa');
+    //add log
+    Route::post('/absensi', [LogController::class,'addLog'])->name('absensi.add');
 
     //show guru
     Route::get('/guru', [PengajarController::class,'showPengajar'])->name('guru.main');
