@@ -106,16 +106,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/mabs', function(){
         return view('Absensi.menuabsensi');
     })->name('absensi.choose');
-    //cek kehadiran
-    Route::get('/absensi/kehadiran', function(){
-        return view('Absensi.menudatahadir');
-    })->name('kehadiran.show');
-    //edit kehadiran
-    Route::get('/absensi/kehadiran/edit', function(){
-        return view('Absensi.editabsensi');
-    })->name('kehadiran.show');
+
     //pilih kelas untuk melakukan absensi
     Route::get('/absensi', [LogController::class,'showKelas'])->name('absensi.kelas');
+
+    //pilih kelas untuk mengedit data
+    Route::get('/kehadiran', [LogController::class,'showKelasMenu'])->name('kehadiran.show');
+
+    //edit kehadiran
+    Route::get('/kehadiran/{kelas:id}', function(Kelas $kelas){
+        $kecuali = Logkehadiran::where('tanggal',Carbon::today())->pluck('siswa_id')->toArray();
+
+        $siswa = Siswa::where('kelas_id','=',$kelas->id)->whereIn('nis',$kecuali)->get();
+        return view('Absensi.editabsensi',['kelas'=>$kelas,'siswa'=>$siswa]);
+    })->name('kehadiran.edit');
+    
     //absensi
     Route::get('/absensi/kelas/{kelas:id}', function(Kelas $kelas){
         $kecuali = Logkehadiran::where('tanggal',Carbon::today())->pluck('siswa_id')->toArray();
@@ -123,10 +128,6 @@ Route::middleware('auth')->group(function () {
         $siswa = Siswa::where('kelas_id','=',$kelas->id)->whereNotIn('nis',$kecuali)->get();
         return view('Absensi.absensikelas',['kelas'=>$kelas,'siswa'=>$siswa]);
     })->name('absensi.kelas.siswa');
-
-    Route::get('/absensi/menu/hadir', function(){
-        return view('Absensi.menudatahadir');
-    })->name('absensi.menuhadir'); 
 
     //add log
     Route::post('/absensi', [LogController::class,'addLog'])->name('absensi.add');

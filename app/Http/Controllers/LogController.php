@@ -17,6 +17,11 @@ class LogController extends Controller
         $kelas = User::with('pengajars')->where('nip','=',Auth::user()->nip)->get();
         return view('Absensi.masterabsensi',['data'=>$kelas]);
     }
+
+    public function showKelasMenu(){
+        $kelas = User::with('pengajars')->where('nip','=',Auth::user()->nip)->get();
+        return view('Absensi.menudatahadir',['data'=>$kelas]);
+    }
     public function addLog(Request $request){
         $data = [
             'siswa_id' => $request->input('siswa_id'),
