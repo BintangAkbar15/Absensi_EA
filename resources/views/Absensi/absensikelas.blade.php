@@ -44,7 +44,7 @@
             @if (!$kelas->bangku_tersisa == 0)
                 <a href="{{ route('kelas.siswa',$kelas->id) }}" class="text-decoration-none btn btn-secondary mb-5">Masukkan Siswa</a>
             @endif
-            <a href="{{ route('absensi.edit',$kelas->id) }}" class="text-decoration-none btn btn-primary mb-5">Lihat Data Kehadiran</a>
+            <a href="{{ route('kehadiran.edit',$kelas->id) }}" class="text-decoration-none btn btn-primary mb-5">Lihat Data Kehadiran</a>
                 <table class="table text-center table-striped table-hover border border-1 shadow">
                     <thead>
                         <tr>
