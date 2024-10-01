@@ -44,7 +44,7 @@
                 <!-- Loop melalui setiap kelas dan tampilkan chart untuk masing-masing -->
 
                 @forelse ($dataPerKelas as $kelasId => $data)
-                    <div class="card mb-5">
+                    <a href="{{ route('kehadiran.edit',$kelasId) }}" class="text-decoration-none card mb-5">
                         <div class="card-header">
                             <h4 class="text-center">Kelas ID: {{ $kelasId }}</h4>
                         </div>
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
     
                     <!-- Script for Line and Pie Chart -->
                     <script>

@@ -60,10 +60,7 @@ Route::middleware('auth')->group(function () {
     })->name('kelas.create');
 
     //show list siswa di kelas
-    Route::get('/kelas/siswa/{kelas:id}', function(Kelas $kelas){
-        $siswa = Siswa::where('kelas_id','=' ,$kelas->id)->get();
-        return view('kelas.listsiswa',['id'=>$kelas->id,'nama'=>$kelas->name, 'siswa'=>$siswa]);
-    })->name('kelas.siswa');
+    Route::get('/kelas/siswa/{kelas:id}', [KelasController::class,'menuKelas'])->name('kelas.siswa');
 
     //show list kelas untuk show list siswa
     Route::get('/kelas/mskelas', function(){

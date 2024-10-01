@@ -39,7 +39,7 @@ class SclassController extends Controller
         $bangku = $request->input('bangku_tersisa');  // Kelas ID yang ingin diupdate
 
         // Validasi jika kelas_id dikirim atau siswa dipilih
-        if (empty($selectedStudents) || empty($kelasId) || $bangku <= 0) {
+        if (empty($selectedStudents) || empty($kelasId) || $bangku <= 0 || $bangku - count($selectedStudents) < 0) {
             return redirect()->back()->with('error', 'Siswa atau kelas tidak valid');
         }
 

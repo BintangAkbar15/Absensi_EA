@@ -52,7 +52,8 @@
                             <th scope="col">No</th>
                             <th scope="col">Kelas</th>
                             <th scope="col">Jumlah Siswa</th>
-                            <th scope="col">Jumlah Bangku</th>
+                            <th scope="col">Rombongan Belajar</th>
+                            <th scope="col">Keterangan</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -61,21 +62,47 @@
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->jumlah_siswa }}</td>
-                            <td>{{ $item->bangku_tersisa }}</td>
+                            <td>{{ $item->jumlah_siswa }} Siswa</td>
+                            <td>{{ $item->rombel }} Siswa</td>
+                            @if ($item->rombel == $item->jumlah_siswa)
+                                <td>Lengkap</td>
+                            @else
+                            <td>Siswa Kurang {{ $item->rombel - $item->jumlah_siswa }}</td>
+                            @endif
                             <td class="d-flex justify-content-center">
                                 <a href="{{ route('kelas.edit', $item->id) }}" class="btn text-light bg-warning d-md-flex align-items-center justify-content-center gap-3">
                                     <i class="fa-solid fa-pencil"></i>
                                     <label for="" class="d-none d-md-block">Edit</label>
                                 </a>
-                                <form action="{{ route('kelas.delete', $item->id) }}" method="post">
-                                    @csrf
-                                    <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $item->id }}">
                                         <i class="fa-solid fa-trash"></i>
                                         <label for="" class="d-none d-md-block">Delete</label>
                                     </button>
-                                    <x-modal></x-modal>
-                                </form>
+                                    <!-- Modal -->
+                                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Peringatan</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-center h6">Data yang anda pilih akan dihapus secara permanen</p>
+                                            <p class="text-danger text-center h6">Anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                        <!-- Form delete dengan nis dinamis -->
+                                        <form id="deleteForm" action="" method="post">
+                                            @csrf
+                                            <input type="hidden" name="id" id="idToDelete" value="">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div> 
                             </td>
                         </tr>
                         @empty
@@ -88,4 +115,19 @@
                 {{ $data->links() }}
             </div>
     </div>
+    <script>
+        const deleteModal = document.getElementById('deleteModal');
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            // Button yang memicu modal
+            const button = event.relatedTarget;
+            // Ambil data dari button (data-nis)
+            const id = button.getAttribute('data-id');
+            // Update form action dan value nis di dalam modal
+            const form = document.getElementById('deleteForm');
+            const idInput = document.getElementById('idToDelete').value = id;
+                console.log(idInput)
+            // Set action URL sesuai id
+            form.action = `/kelas/delete/${id}`;
+        });
+    </script>
 </x-layout>
