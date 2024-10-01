@@ -5,14 +5,6 @@
         </div>
         <div class="col-12 d-flex justify-content-center">
             <div class="col-11">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <button class="btn text-light" style="background: #B68D40">
-                            <i class="fa-solid fa-arrow-down-wide-short"></i>
-                            <label for="">Sort By</label>
-                        </button>
-                    </div>
-                </div>
                 <div class="col-6 col-md-3 mt-3 ms-auto ms-md-0">
                     <form action="{{ route('guru.main') }}" method="GET" class="input-group ">
                         @csrf
@@ -72,10 +64,10 @@
             @csrf
             <input type="hidden" name="nip" value="{{ Auth::user()->nip }}">
             <div class="w-100 mt-5 d-md-none d-flex justify-content-start pb-3 ps-3">
-                <button class="add_all btn btn-primary" id="submitClass" style="display: none;">Tambah siswa ke kelas</button>
+                <button class="add_all btn btn-primary" id="submitClass" style="display: none;">Tambah kelas</button>
             </div>
             <div class="w-100 mt-5 d-sm-flex d-none justify-content-start pb-3 ps-3">
-                <button class="add_all btn btn-primary" id="submitClass  " style="display: none;">Tambah siswa ke kelas</button>
+                <button class="add_all btn btn-primary" id="submitClass  " style="display: none;">Tambah kelas</button>
             </div>
             <div class="col-12 d-flex flex-wrap z-1 justify-content-center gap-md-5 p-md-5 overflow-y-scroll" id="boxcheck" style="min-height: 60vh; max-height: 60vh; ">
                 @forelse ($kelas as $item)

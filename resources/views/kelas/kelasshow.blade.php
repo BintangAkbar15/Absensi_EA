@@ -21,10 +21,6 @@
         <div class="col-11 mt-5">
             <div class="d-flex align-items-center">
                 <div>
-                    <button class="btn text-light" style="background: #B68D40">
-                        <i class="fa-solid fa-arrow-down-wide-short"></i>
-                        <label for="">Sort By</label>
-                    </button>
                     <a href="{{ route('kelas.create') }}" class="btn text-light ps-3 bg-success">
                         <i class="fa-solid fa-plus"></i>
                         <label for="">Add</label>

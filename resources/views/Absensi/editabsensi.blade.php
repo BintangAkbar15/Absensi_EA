@@ -19,14 +19,6 @@
     </div>
     <div class="col-12 d-flex justify-content-center">
         <div class="col-11">
-            <div class="d-flex align-items-center">
-                <div>
-                    <button class="btn text-light" style="background: #B68D40">
-                        <i class="fa-solid fa-arrow-down-wide-short"></i>
-                        <label for="">Sort By</label>
-                    </button>
-                </div>
-            </div>
             <div class="col-6 col-md-3 mt-3 ms-auto">
                 <form action="{{ route('kehadiran.edit',$kelas->id) }}" method="GET" class="input-group ">
                     @csrf
@@ -39,9 +31,9 @@
             </div>
         </div>
     </div>
-    <div class="mt-4 d-flex justify-content-center">
-        <div class="col-11">
-                <table class="table text-center table-striped table-hover border border-1 shadow">
+    <div class="mt-4 d-flex justify-content-md-center ms-1">
+        <div class="col-11 ">
+                <table class="table text-center me-2 table-striped table-hover border border-1 shadow">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
@@ -61,7 +53,7 @@
                                 <td>{{ $item->tanggal }}</td>
                                 <td>{{ $item->status }}</td>
 
-                                <td class="justify-content-center gap-2 gap-md-4" style="display: none;" id="btn_change_{{ $loop->index }}">
+                                <td class="justify-content-center flex-column flex-md-row gap-2 gap-md-4 px-0 py-2 " style="display: none;" id="btn_change_{{ $loop->index }}">
                                     <form action="{{ route('absensi.edit',$item->id) }}" method="post">
                                         @csrf
                                         <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
@@ -85,8 +77,8 @@
                                     </form>
                                     <a href="{{ route('kehadiran.edit',$item->kelas->id ) }}" class="btn btn-danger text-decoration-none" >Batal</a>
                                 </td>
-                                <td>
-                                    <button class="btn btn-warning btn_edit" id="btn_edit_{{ $loop->index }}">Edit</button>
+                                <td id="btn_edit_{{ $loop->index }}" class="px-0 py-2">
+                                    <button class="btn btn-warning btn_edit" >Edit</button>
                                 </td>
                             </tr>
                         @empty

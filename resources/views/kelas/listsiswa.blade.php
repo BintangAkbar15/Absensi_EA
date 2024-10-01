@@ -19,14 +19,6 @@
     </div>
     <div class="col-12 d-flex justify-content-center">
         <div class="col-11">
-            <div class="d-flex align-items-center">
-                <div>
-                    <button class="btn text-light" style="background: #B68D40">
-                        <i class="fa-solid fa-arrow-down-wide-short"></i>
-                        <label for="">Sort By</label>
-                    </button>
-                </div>
-            </div>
             <div class="col-6 col-md-3 mt-3 ms-auto">
                 <form action="" method="GET" class="input-group ">
                     <input type="text" placeholder="Search Student" name="search" class="rounded-start-3 ps-3 col-8">
