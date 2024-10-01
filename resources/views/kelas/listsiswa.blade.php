@@ -14,7 +14,7 @@
         <a href="{{ route('kelas.pilihkelas') }}" class="text-dark">
             <i class="fa-solid fa-arrow-left" style=""></i>
         </a>
-        <label for="" class="justify-self-center ps-md-5 ms-md-5">{{ $nama }}</label>
+        <label for="" class="justify-self-center ps-md-5 ms-md-5">Data Siswa Kelas {{ $nama }}</label>
         <span></span>
     </div>
     <div class="col-12 d-flex justify-content-center">
@@ -48,39 +48,61 @@
                             <td>{{ $item->nis }}</td>
                             <td>{{ $item->name }}</td>
                             <td class=" d-flex justify-content-center">
-                                <form action="{{ route('kelas.editsiswa',$item->nis) }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="id_kelas" value="{{ $id }}">
-                                    <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="fa-solid fa-trash"></i>
-                                        <label for="" class="d-none d-md-block">Delete</label>
-                                    </button>
-                                    <x-modal></x-modal>
-                                </form>
+                                <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal" data-bs-target="#deleteModal" data-nis="{{ $item->nis }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                    <label for="" class="d-none d-md-block">Delete</label>
+                                </button>
+                                <!-- Modal -->
+                            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Peringatan</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="text-center h6">Data yang anda pilih akan dihapus secara permanen</p>
+                                        <p class="text-danger text-center h6">Anda yakin ingin menghapus data ini?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                    <!-- Form delete dengan nis dinamis -->
+                                    <form id="deleteForm" action="" method="post">
+                                        @csrf
+                                        <input type="hidden" name="id" id="idToDelete" value="">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div> 
                             </td>
                         </tr>
                         @empty
                         <tr>
                             <td colspan="8" class="h5">
-                                
                                 <h5>No Data Found</h5>
-                                <a href="{{ route('siswa.kelas.pilih') }}" class="btn btn-secondary">Tambahkan Siswa ke kelas ini</a>
+                                <a href="{{ route('siswa.kelas', $id) }}" class="btn btn-secondary">Tambahkan Siswa ke kelas ini</a>
                             </td>
                         </tr>
                         @endforelse
                     </tbody>
                 </table>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">4</a></li>
-                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                      <li class="page-item"><a class="page-link bg-danger text-light" href="#">Back</a></li>
-                    </ul>
-                </nav>
-            </div>
     </div>
+    <script>
+        const deleteModal = document.getElementById('deleteModal');
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            // Button yang memicu modal
+            const button = event.relatedTarget;
+            // Ambil data dari button (data-nis)
+            const nis = button.getAttribute('data-nis');
+            // Update form action dan value nis di dalam modal
+            const form = document.getElementById('deleteForm');
+            const idInput = document.getElementById('idToDelete').value = nis;
+                console.log(idInput)
+            // Set action URL sesuai id
+            form.action = `/kelas/siswa/update/${nis}`;
+        });
+    </script>
 </x-layout>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -10,6 +11,16 @@ class KelasController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function menuKelas(Kelas $kelas){
+        if(request("search")){
+            $siswa = Siswa::where('kelas_id','=' ,$kelas->id)->where('name','like','%'.request("search").'%')->get();
+        }
+        else{
+            $siswa = Siswa::where('kelas_id','=' ,$kelas->id)->get();
+        }
+        return view('kelas.listsiswa',['id'=>$kelas->id,'nama'=>$kelas->name, 'siswa'=>$siswa]);
+    }
+
     public function index()
     {
         //showing data to table
