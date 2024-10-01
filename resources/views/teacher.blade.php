@@ -246,6 +246,12 @@
                                         });
                                 </script>
                             @empty
+                                <div class="container mt-3 d-flex justify-content-center">
+                                    <form action="{{ route('dashboard.tampil') }}" method="GET" class="d-flex">
+                                        <input type="date" name="tanggal" value="{{ $tanggal }}" class="form-control">
+                                        <button type="submit" class="btn btn-primary ms-2">Filter</button>
+                                    </form>
+                                </div>
                                 <div class="col-12 bg-dark rounded py-5 d-flex align-items-center justify-content-center">
                                     <label for="" class="text-light py-5 my-5">
                                         <h2 class="py-5 my-5">Tidak Ada Chart</h2> 
