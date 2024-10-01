@@ -1,6 +1,6 @@
 <x-layout>
     <div class="w-100 d-flex align-items-center justify-content-center mt-5">
-        <section class="p-3 p-md-4 p-xl-5 col-5 shadow border border-1 rounded border-dark">
+        <section class="p-3 p-md-4 p-xl-5 col-11 col-md-5 shadow border border-1 rounded border-dark">
             <label for="" class="h3">Edit Form</label>
             <div class="container">
             <div class="row">
@@ -10,7 +10,7 @@
                         <div class="row gy-3 gy-md-4 overflow-hidden">
                             <div class="col-12">
                                 <label for="nis" class="form-label">NIS <span class="text-danger">*</span></label>
-                                <input type="nis" class="form-control" readonly name="nis" id="nis" value="{{ $nis }}" required>
+                                <input type="nis" class="form-control" disabled readonly name="nis" id="nis" value="{{ $nis }}" required>
                             </div>
                             <div class="col-12">
                                 <label for="nama" class="form-label">Nama <span class="text-danger">*</span></label>
