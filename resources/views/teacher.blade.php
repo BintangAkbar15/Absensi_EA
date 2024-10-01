@@ -47,7 +47,7 @@
                     <div class="carousel-inner">
                         <div class="container mt-5">
                             <div class="col-12 d-flex overflow-x-scroll gap-5">
-                                @foreach ($dataPerKelas as $kelasId => $data)
+                                @forelse ($dataPerKelas as $kelasId => $data)
                                     <div class="carousel-item @if ($loop->first) active @endif"> <!-- Add 'active' class to the first item -->
                                         <div class="card mb-5 col-12">
                                             <div class="card-header">
@@ -135,7 +135,13 @@
                                             }
                                         });
                                     </script>
-                                @endforeach
+                                @empty
+                                    <div class="col-12 bg-dark rounded py-5 d-flex align-items-center justify-content-center">
+                                        <label for="" class="h5 text-light py-5 my-5">
+                                            <h2 class="py-5 my-5">Tidak Ada Chart</h2> 
+                                        </label>
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -154,7 +160,7 @@
                     <!-- Jika hanya ada satu kelas, tampilkan laporan tanpa slider -->
                     <div class="container mt-5">
                         <div class="col-12">
-                            @foreach ($dataPerKelas as $kelasId => $data)
+                            @forelse ($dataPerKelas as $kelasId => $data)
                                 <div class="card mb-5 col-12">
                                     <div class="card-header">
                                         <h4 class="text-center">Kelas ID: {{ $kelasId }}</h4>
@@ -240,12 +246,17 @@
                                             }
                                         });
                                 </script>
-                            @endforeach
+                            @empty
+                                <div class="col-12 bg-dark rounded py-5 d-flex align-items-center justify-content-center">
+                                    <label for="" class="text-light py-5 my-5">
+                                        <h2 class="py-5 my-5">Tidak Ada Chart</h2> 
+                                    </label>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 @endif
             </div>
-
             <x-footer></x-footer>
         </div>
         
