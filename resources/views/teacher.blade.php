@@ -41,7 +41,8 @@
     
             <div class="container mt-5">
                 <!-- Loop melalui setiap kelas dan tampilkan chart untuk masing-masing -->
-                @foreach ($dataPerKelas as $kelasId => $data)
+
+                @forelse ($dataPerKelas as $kelasId => $data)
                     <div class="card mb-5">
                         <div class="card-header">
                             <h4 class="text-center">Kelas ID: {{ $kelasId }}</h4>
@@ -66,14 +67,28 @@
                         // Line Chart untuk mingguan
                         let ctxLine{{ $kelasId }} = document.querySelector('#lineChart{{ $kelasId }}').getContext('2d');
                         let lineChart{{ $kelasId }} = new Chart(ctxLine{{ $kelasId }}, {
-                            type: 'line',
+                            type: 'bar',
                             data: {
                                 labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
-                                datasets: [{
-                                    data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
-                                    borderColor: 'rgba(75, 192, 192, 1)',
-                                    fill: false,
-                                }]
+                                datasets: 
+                                [
+                                    {
+                                        data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        fill: true,
+                                    },
+                                    {
+                                        data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        fill: false,
+                                    },
+                                    {
+                                        data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        fill: false,
+                                    },
+                                    
+                                ]
                             },
                             options: {
                                 responsive: true,
@@ -108,7 +123,9 @@
                             }
                         });
                     </script>
-                @endforeach
+                @empty
+                
+                @endforelse
             </div>
     
             <x-footer></x-footer>

@@ -41,4 +41,9 @@ class ChartController extends Controller
         // Mengirimkan data per kelas dan tanggal yang dipilih ke view
         return view('teacher', compact('dataPerKelas', 'tanggal'));
     }
+    
+    public function testing(){
+        
+        return view('teacher', compact('dataPerKelas', 'tanggal'));
+    }
 }
