@@ -41,7 +41,8 @@
     
             <div class="container mt-5">
                 <!-- Loop melalui setiap kelas dan tampilkan chart untuk masing-masing -->
-                @foreach ($dataPerKelas as $kelasId => $data)
+
+                @forelse ($dataPerKelas as $kelasId => $data)
                     <div class="card mb-5">
                         <div class="card-header">
                             <h4 class="text-center">Kelas ID: {{ $kelasId }}</h4>
@@ -68,28 +69,26 @@
                         let lineChart{{ $kelasId }} = new Chart(ctxLine{{ $kelasId }}, {
                             type: 'bar',
                             data: {
-                                labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'], // Categories for the bars
-                                datasets: [{
-                                    data: [
-                                        data{{ $kelasId }}['Hadir'], 
-                                        data{{ $kelasId }}['Izin'], 
-                                        data{{ $kelasId }}['Sakit'], 
-                                        data{{ $kelasId }}['Alpha']
-                                    ], // Attendance data
-                                    backgroundColor: [
-                                        'rgba(75, 192, 192, 0.2)', // Background color for "Hadir"
-                                        'rgba(255, 206, 86, 0.2)', // Background color for "Izin"
-                                        'rgba(153, 102, 255, 0.2)', // Background color for "Sakit"
-                                        'rgba(255, 99, 132, 0.2)'   // Background color for "Alpha"
-                                    ],
-                                    borderColor: [
-                                        'rgba(75, 192, 192, 1)', // Border color for "Hadir"
-                                        'rgba(255, 206, 86, 1)', // Border color for "Izin"
-                                        'rgba(153, 102, 255, 1)', // Border color for "Sakit"
-                                        'rgba(255, 99, 132, 1)'   // Border color for "Alpha"
-                                    ],
-                                    borderWidth: 1 // Thickness of the bar borders
-                                }]
+                                labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
+                                datasets: 
+                                [
+                                    {
+                                        data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        fill: true,
+                                    },
+                                    {
+                                        data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        fill: false,
+                                    },
+                                    {
+                                        data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        fill: false,
+                                    },
+                                    
+                                ]
                             },
                             options: {
                                 responsive: true, // Make the chart responsive
@@ -129,7 +128,9 @@
                             }
                         });
                     </script>
-                @endforeach
+                @empty
+                
+                @endforelse
             </div>
     
             <x-footer></x-footer>
