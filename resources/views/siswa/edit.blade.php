@@ -1,4 +1,19 @@
 <x-layout>
+    @if ($errors->any())
+    <div class="alert alert-danger position-fixed">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    <script>
+      const alert = document.querySelector('.alert');
+      setTimeout(() => {
+        alert.style.display = 'none';
+      }, 3000);
+    </script>
+  @endif
     <div class="w-100 d-flex align-items-center justify-content-center mt-5">
         <section class="p-3 p-md-4 p-xl-5 col-11 col-md-5 shadow border border-1 rounded border-dark">
             <label for="" class="h3">Edit Form</label>
