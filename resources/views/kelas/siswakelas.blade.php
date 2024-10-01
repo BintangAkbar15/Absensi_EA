@@ -93,8 +93,10 @@
                     </div>
                 </form>
             @else
+            <div class="bg-dark col-12 mt-5 rounded d-flex flex-column gap-5 p-5 text-light justify-content-center align-items-center">
                 <h2>Semua Bangku Sudah Terisi</h2>
-                <a href='{{ route('siswa.kelas.pilih') }}'>Pilih Kelas lain</a>
+                <a href='{{ route('siswa.kelas.pilih') }}' class="btn btn-primary rounded">Pilih Kelas lain</a>
+            </div>
             @endif
         </div>
     </div>
