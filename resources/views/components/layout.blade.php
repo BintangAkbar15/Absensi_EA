@@ -15,7 +15,7 @@
         display: none;
       }
     </style>
-<body>
+<body style="background: #F4EBD0">
     <x-header></x-header>
     {{ $slot }}
     
