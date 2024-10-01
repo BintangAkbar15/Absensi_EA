@@ -27,17 +27,18 @@
 
         <!-- Report Section -->
         <div style="background: #F4EBD0; min-height: 91.9vh;">
-            <div class="container mt-5 d-flex justify-content-center">
-                <label for="" class="h2 text-center">Report Class for {{ $tanggal }}</label>
-            </div>
-    
-            <!-- Form untuk memilih tanggal -->
-            <div class="container mt-3 d-flex justify-content-center">
-                <form action="{{ route('dashboard.tampil') }}" method="GET">
-                    <input type="date" name="tanggal" value="{{ $tanggal }}" class="form-control">
-                    <button type="submit" class="btn btn-primary ms-2">Filter</button>
-                </form>
-            </div>
+            @if ($dataPerKelas)
+                <div class="container mt-5 d-flex justify-content-center">
+                    <label for="" class="h2 text-center">Report Class for {{ $tanggal }}</label>
+                </div>
+                <!-- Form untuk memilih tanggal -->
+                <div class="container mt-3 d-flex justify-content-center">
+                    <form action="{{ route('dashboard.tampil') }}" method="GET" class="d-flex">
+                        <input type="date" name="tanggal" value="{{ $tanggal }}" class="form-control">
+                        <button type="submit" class="btn btn-primary ms-2">Filter</button>
+                    </form>
+                </div>
+            @endif
     
             <div class="container mt-5">
                 <!-- Loop melalui setiap kelas dan tampilkan chart untuk masing-masing -->
@@ -129,7 +130,11 @@
                         });
                     </script>
                 @empty
-                
+                    <div class="container col-11 bg-dark text-light rounded d-flex justify-content-center align-items-center py-5">
+                        <h3 class="py-5 my-5">
+                            <label for="" class="py-5 my-5">no data chart</label> 
+                        </h3>
+                    </div>
                 @endforelse
             </div>
     
