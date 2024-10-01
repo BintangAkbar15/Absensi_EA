@@ -95,11 +95,19 @@ class SiswaController extends Controller
             'nama.max' => 'nis maximal 50 karakter',
         ]);
 
-        $data = [
-            'nis' => $request->input('nis'),
-            'name' => $request->input('nama'),
-            'kelas_id' => $request->input('kelas_id'),
-        ];
+        if(request('kelas_id') == 'null'){
+            $data = [
+                'nis' => $request->input('nis'),
+                'name' => $request->input('nama'),
+                'kelas_id' => null,
+            ];
+        }else{
+            $data = [
+                'nis' => $request->input('nis'),
+                'name' => $request->input('nama'),
+                'kelas_id' => $request->input('kelas_id'),
+            ];
+        }
 
         Siswa::where('nis', $id)->update($data);
         return redirect()->route('siswa.tampil')->with('success',"Berhasil mengedit data");
