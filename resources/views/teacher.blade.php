@@ -40,7 +40,6 @@
                     </form>
                 </div>
             @endif
-
             <!-- Cek jika jumlah data per kelas lebih dari 1 -->
             <div id="laporanslide" class="@if (count($dataPerKelas) > 1) carousel slide @endif" data-bs-ride="carousel">
                 @if (count($dataPerKelas) > 1)
@@ -78,7 +77,7 @@
                                             data: {
                                                 labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
                                                 datasets: [
-                                                    {
+                                                    { 
                                                         data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
                                                         backgroundColor: [
                                                             'rgba(75, 192, 192, 0.2)',
@@ -94,7 +93,7 @@
                                                         ],
                                                         borderWidth: 1,
                                                         fill: true,
-                                                    }
+                                                    },
                                                 ]
                                             },
                                             options: {
