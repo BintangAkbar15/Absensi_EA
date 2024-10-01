@@ -84,21 +84,26 @@ class SiswaController extends Controller
     {
         //Edit data
         $request->validate([
-            'task' => 'required|min:3|max:50'
+            'nis' => 'required|min:3|max:50',
+            'nama' => 'required|min:3|max:50',
+            'kelas' => 'min:3|max:50',
         ],[
-            'task.required' => 'Task harus diisi',
-            'task.min' => 'Task minimal 3 karakter',
-            'task.max' => 'Task maximal 3 karakter'
+            'nis.required' => 'nis harus diisi',
+            'nis.min' => 'nis minimal 3 karakter',
+            'nis.max' => 'nis maximal 50 karakter',
+            'nama.required' => 'nama harus diisi',
+            'nama.min' => 'nis minimal 3 karakter',
+            'nama.max' => 'nis maximal 50 karakter',
         ]);
 
-
         $data = [
-            'task' => $request->input('task'),
-            'is_done' => $request->input('is_done'),
+            'nis' => $request->input('nis'),
+            'name' => $request->input('nama'),
+            'kelas_id' => $request->input('kelas'),
         ];
 
-        Siswa::where('task', $id)->update($data);
-        return redirect()->route('Siswa')->with('success',"Berhasil mengedit data");
+        Siswa::where('nis', $id)->update($data);
+        return redirect()->route('siswa.tampil')->with('success',"Berhasil mengedit data");
     }
 
     /**
@@ -107,7 +112,7 @@ class SiswaController extends Controller
     public function destroy(string $id)
     {
         //delete data
-        Siswa::where('nis',operator: $id)->delete();
+        Siswa::where('nis', $id)->delete();
         return redirect()->route('siswa.tampil')->with('success',"Berhasil menghapus data");
     }
 }

@@ -7,11 +7,25 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Logkehadiran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class LogController extends Controller
 {
     //
+    public function index(Kelas $kelas){
+        $kecuali = Logkehadiran::where('tanggal',Carbon::today())->pluck('siswa_id')->toArray();
+
+
+        if(request("search")){
+            $siswa = Siswa::where('kelas_id','=',$kelas->id)->where('name','like','%'.request("search").'%')->whereNotIn('nis',$kecuali)->get();
+        }
+        else{
+            $siswa = Siswa::where('kelas_id','=',$kelas->id)->whereNotIn('nis',$kecuali)->get();
+        }
+        
+        return view('Absensi.absensikelas',['kelas'=>$kelas,'siswa'=>$siswa]);
+    }
 
     public function showKelas(){
         $kelas = User::with('pengajars')->where('nip','=',Auth::user()->nip)->get();

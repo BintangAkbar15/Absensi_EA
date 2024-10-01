@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-3 mt-3 ms-auto ms-md-0">
-                    <form action="{{ route('kelas.tampil') }}" method="GET" class="input-group ">
+                    <form action="{{ route('guru.main') }}" method="GET" class="input-group ">
                         @csrf
                         <input type="text" placeholder="Search Class" name="search" class="rounded-start-3 ps-3 col-8">
                         <button class="btn rounded-none d-flex align-items-center gap-2 justify-content-center text-light col-4" style="background: #B68D40">

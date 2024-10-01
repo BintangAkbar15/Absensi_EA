@@ -1,4 +1,15 @@
 <x-layout>
+    @if (Session::has('success'))
+    <div class="alert alert-success position-fixed">
+        <h6>{{ Session::get('success') }}</h6>
+    </div>
+    <script>
+    const alert = document.querySelector('.alert');
+    setTimeout(() => {
+        alert.style.display = 'none';
+    }, 3000);
+    </script>
+@endif
     <div class="col-11 d-flex fw-bold py-5 justify-content-between px-md-5 px-3 align-items-center h3">
         <a href="{{ route('dashboard.tampil') }}" class="text-dark">
             <i class="fa-solid fa-arrow-left" style=""></i>
@@ -57,15 +68,36 @@
                                     <i class="fa-solid fa-pencil"></i>
                                     <label for="" class="d-none d-md-block">Edit</label>
                                 </a>
-                                <form action="{{ route('siswa.delete', $item->nis) }}" method="GET">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="fa-solid fa-trash"></i>
-                                        <label for="" class="d-none d-md-block">Delete</label>
-                                    </button>
-                                    <x-modal></x-modal>
-                                </form>
+                                <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal" data-bs-target="#deleteModal" data-nis="{{ $item->nis }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                    <label for="" class="d-none d-md-block">Delete</label>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Peringatan</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-center h6">Data yang anda pilih akan dihapus secara permanen</p>
+                                            <p class="text-danger text-center h6">Anda yakin ingin menghapus data ini?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                        <!-- Form delete dengan nis dinamis -->
+                                        <form id="deleteForm" action="" method="GET">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="nis" id="nisToDelete" value="">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>  
                             </td>
                         </tr>
                         @empty
@@ -78,4 +110,21 @@
                 {{ $data->links() }}
             </div>
     </div>
+    <script>
+        const deleteModal = document.getElementById('deleteModal');
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            // Button yang memicu modal
+            const button = event.relatedTarget;
+            // Ambil data dari button (data-nis)
+            const nis = button.getAttribute('data-nis');
+            // Update form action dan value nis di dalam modal
+            const form = document.getElementById('deleteForm');
+            const nisInput = document.getElementById('nisToDelete');
+            
+            // Set action URL sesuai nis
+            form.action = `/siswa/delete/${nis}`;
+            // Set nilai nis di input hidden
+            nisInput.value = nis;
+        });
+    </script>
 </x-layout>

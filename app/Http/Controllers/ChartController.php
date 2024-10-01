@@ -1,25 +1,44 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use App\Models\Logkehadiran;
+use App\Models\Pengajar;
 use Illuminate\Http\Request;
-use Illuminate\Container\Attributes\Auth;
-use SebastianBergmann\CodeCoverage\Report\Xml\Totals;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ChartController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Count data where status is 'Hadir'
-        $hadir = Logkehadiran::where('status', 'Hadir')->count();
-        $izin = Logkehadiran::where('status', 'Izin')->count();
-        $sakit = Logkehadiran::where('status', 'Sakit')->count();
-        $Totals = $hadir + $izin + $sakit;
+        // Mendapatkan nip user yang sedang login
+        $nip = Auth::user()->nip;
 
-        // Send to view
-        return view('teacher', ['hadir' => $hadir , 'izin' => $izin , 'sakit' => $sakit, 'totalhadir' => $Totals]);
+        // Mendapatkan tanggal dari request atau menggunakan tanggal hari ini
+        $tanggal = $request->input('tanggal', Carbon::today()->toDateString());
 
+        // Mendapatkan kelas yang diajar oleh pengajar yang sedang login
+        $kelasYangDiajarkan = Pengajar::where('guru_id', $nip)->pluck('kelas_id');
+
+        // Mengambil data log kehadiran untuk kelas yang terkait dengan pengajar dan filter berdasarkan tanggal
+        $logKehadiran = Logkehadiran::with(['siswa', 'kelas'])
+            ->whereDate('tanggal', $tanggal) // Filter berdasarkan tanggal
+            ->whereIn('kelas_id', $kelasYangDiajarkan) // Filter berdasarkan kelas yang diajar pengajar
+            ->get();
+
+        // Mengelompokkan data berdasarkan kelas dan menghitung jumlah status kehadiran
+        $dataPerKelas = [];
+        foreach ($logKehadiran->groupBy('kelas_id') as $kelasId => $logKelas) {
+            $dataPerKelas[$kelasId] = [
+                'Hadir' => $logKelas->where('status', 'Hadir')->count(),
+                'Izin'  => $logKelas->where('status', 'Izin')->count(),
+                'Sakit' => $logKelas->where('status', 'Sakit')->count(),
+                'Alpha' => $logKelas->where('status', 'Alpha')->count(),
+            ];
+        }
+
+        // Mengirimkan data per kelas dan tanggal yang dipilih ke view
+        return view('teacher', compact('dataPerKelas', 'tanggal'));
     }
 }

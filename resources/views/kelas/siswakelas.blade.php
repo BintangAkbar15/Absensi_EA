@@ -10,6 +10,17 @@
               }, 3000);
             </script>
         @endif
+        @if (session('error'))
+            <div class="alert alert-danger position-fixed">
+                <h6>{{ session('error') }}</h6>
+            </div>
+            <script>
+              const alert = document.querySelector('.alert');
+              setTimeout(() => {
+                alert.style.display = 'none';
+              }, 3000);
+            </script>
+        @endif
         <div class="col-11 d-flex fw-bold mb-5 justify-content-between px-md-5 px-3 align-items-center mt-4 h3">
             <a href="{{ route('siswa.kelas.pilih') }}" class="text-dark">
                 <i class="fa-solid fa-arrow-left" style=""></i>
@@ -28,8 +39,8 @@
                 </div>
             </div>
             <div class="col-6 col-md-3 mt-3 ms-auto">
-                <form action="" class="input-group ">
-                    <input type="text" placeholder="Search Student" class="rounded-start-3 ps-3 col-8">
+                <form action="{{ route('siswa.kelas',$id) }}" class="input-group ">
+                    <input type="text" name='search' placeholder="Search Student" class="rounded-start-3 ps-3 col-8">
                     <button class="btn rounded-none d-flex align-items-center gap-2 justify-content-center text-light col-4" style="background: #B68D40">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <label for="" class="d-none d-md-block">Search</label>
@@ -42,6 +53,7 @@
         <div class="col-11">
             <form id="studentForm" action="{{ route('siswa.kelas.add') }}" method="POST">
                 @csrf
+                <input type="hidden" name='bangku_tersisa' id="bangkuTersisa" value="{{ $bangkuTersisa }}">
                 <div class="overflow-y-scroll" style="max-height: 50vh">
                     <table class="table text-center table-striped table-hover border border-1 shadow">
                         <thead class="top-0 position-sticky">
