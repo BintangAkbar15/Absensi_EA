@@ -26,6 +26,7 @@
         </div>
 
         <!-- Report Section -->
+        
         <div style="background: #F4EBD0; min-height: 91.9vh;">
             @if ($dataPerKelas)
                 <div class="container mt-5 d-flex justify-content-center">
@@ -39,105 +40,212 @@
                     </form>
                 </div>
             @endif
-    
-            <div class="container mt-5">
-                <!-- Loop melalui setiap kelas dan tampilkan chart untuk masing-masing -->
 
-                @forelse ($dataPerKelas as $kelasId => $data)
-                    <a href="{{ route('kehadiran.edit',$kelasId) }}" class="text-decoration-none card mb-5">
-                        <div class="card-header">
-                            <h4 class="text-center">Kelas ID: {{ $kelasId }}</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="col-12 d-flex flex-column flex-md-row mt-5">
-                                <div class="col-12 col-md-8">
-                                    <h3 class="text-center">Weekly Attendance Report</h3>
-                                    <canvas id="lineChart{{ $kelasId }}"></canvas>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <h3 class="text-center">Daily Attendance Report</h3>
-                                    <canvas id="pieChart{{ $kelasId }}"></canvas>
-                                </div>
+            <!-- Cek jika jumlah data per kelas lebih dari 1 -->
+            <div id="laporanslide" class="@if (count($dataPerKelas) > 1) carousel slide @endif" data-bs-ride="carousel">
+                @if (count($dataPerKelas) > 1)
+                    <div class="carousel-inner">
+                        <div class="container mt-5">
+                            <div class="col-12 d-flex overflow-x-scroll gap-5">
+                                @foreach ($dataPerKelas as $kelasId => $data)
+                                    <div class="carousel-item @if ($loop->first) active @endif"> <!-- Add 'active' class to the first item -->
+                                        <div class="card mb-5 col-12">
+                                            <div class="card-header">
+                                                <h4 class="text-center">Kelas ID: {{ $kelasId }}</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="col-12 d-flex flex-column flex-md-row mt-5">
+                                                    <div class="col-12 col-md-8">
+                                                        <h6 class="text-center">Weekly Attendance Report</h6>
+                                                        <canvas id="lineChart{{ $kelasId }}"></canvas>
+                                                    </div>
+                                                    <div class="col-12 col-md-4">
+                                                        <h6 class="text-center">Daily Attendance Report</h6>
+                                                        <canvas id="pieChart{{ $kelasId }}"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Script for Line and Pie Chart -->
+                                    <script>
+                                        let data{{ $kelasId }} = @json($data);
+                                        // Line Chart untuk mingguan
+                                        let ctxLine{{ $kelasId }} = document.querySelector('#lineChart{{ $kelasId }}').getContext('2d');
+                                        let lineChart{{ $kelasId }} = new Chart(ctxLine{{ $kelasId }}, {
+                                            type: 'bar',
+                                            data: {
+                                                labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
+                                                datasets: [
+                                                    {
+                                                        data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
+                                                        backgroundColor: [
+                                                            'rgba(75, 192, 192, 0.2)',
+                                                            'rgba(255, 206, 86, 0.2)',
+                                                            'rgba(153, 102, 255, 0.2)',
+                                                            'rgba(255, 99, 132, 0.2)'
+                                                        ],
+                                                        borderColor: [
+                                                            'rgba(75, 192, 192, 1)',
+                                                            'rgba(255, 206, 86, 1)',
+                                                            'rgba(153, 102, 255, 1)',
+                                                            'rgba(255, 99, 132, 1)'
+                                                        ],
+                                                        borderWidth: 1,
+                                                        fill: true,
+                                                    }
+                                                ]
+                                            },
+                                            options: {
+                                                responsive: true,
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true
+                                                    }
+                                                }
+                                            }
+                                        });
+
+                                        // Pie Chart untuk harian
+                                        let ctxPie{{ $kelasId }} = document.querySelector('#pieChart{{ $kelasId }}').getContext('2d');
+                                        let pieChart{{ $kelasId }} = new Chart(ctxPie{{ $kelasId }}, {
+                                            type: 'pie',
+                                            data: {
+                                                labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
+                                                datasets: [{
+                                                    data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
+                                                    backgroundColor: [
+                                                        'rgba(75, 192, 192, 0.2)',
+                                                        'rgba(255, 206, 86, 0.2)',
+                                                        'rgba(153, 102, 255, 0.2)',
+                                                        'rgba(255, 99, 132, 0.2)'
+                                                    ],
+                                                    borderColor: [
+                                                        'rgba(75, 192, 192, 1)',
+                                                        'rgba(255, 206, 86, 1)',
+                                                        'rgba(153, 102, 255, 1)',
+                                                        'rgba(255, 99, 132, 1)'
+                                                    ],
+                                                    borderWidth: 1
+                                                }]
+                                            },
+                                            options: {
+                                                responsive: true,
+                                            }
+                                        });
+                                    </script>
+                                @endforeach
                             </div>
                         </div>
-                    </a>
-    
-                    <!-- Script for Line and Pie Chart -->
-                    <script>
-                        let data{{ $kelasId }} = @json($data);
-                        // Line Chart untuk mingguan
-                        let ctxLine{{ $kelasId }} = document.querySelector('#lineChart{{ $kelasId }}').getContext('2d');
-                        let lineChart{{ $kelasId }} = new Chart(ctxLine{{ $kelasId }}, {
-                            type: 'bar',
-                            data: {
-                                labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
-                                datasets: [
-                                    {
-                                        data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']], // Attendance data
-                                        backgroundColor: [
-                                            'rgba(75, 192, 192, 0.2)', // Background color for "Hadir"
-                                            'rgba(255, 206, 86, 0.2)', // Background color for "Izin"
-                                            'rgba(153, 102, 255, 0.2)', // Background color for "Sakit"
-                                            'rgba(255, 99, 132, 0.2)'   // Background color for "Alpha"
-                                        ],
-                                        borderColor: [
-                                            'rgba(75, 192, 192, 1)', // Border color for "Hadir"
-                                            'rgba(255, 206, 86, 1)', // Border color for "Izin"
-                                            'rgba(153, 102, 255, 1)', // Border color for "Sakit"
-                                            'rgba(255, 99, 132, 1)'   // Border color for "Alpha"
-                                        ],
-                                        borderWidth: 1, // Thickness of the bar borders
-                                        fill: true, // Enable filling the bars with color
-                                    }
-                                ]
-                            },
-                            options: {
-                                responsive: true, // Make the chart responsive
-                                scales: {
-                                    y: {
-                                        beginAtZero: true // Ensure the y-axis starts at 0
-                                    }
-                                }
-                            }
-                        });
-
-                        // Pie Chart untuk harian
-                        let ctxPie{{ $kelasId }} = document.querySelector('#pieChart{{ $kelasId }}').getContext('2d');
-                        let pieChart{{ $kelasId }} = new Chart(ctxPie{{ $kelasId }}, {
-                            type: 'pie',
-                            data: {
-                                labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
-                                datasets: [{
-                                    data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
-                                    backgroundColor: [
-                                        'rgba(75, 192, 192, 0.2)', // Hadir
-                                        'rgba(255, 206, 86, 0.2)', // Izin
-                                        'rgba(153, 102, 255, 0.2)', // Sakit
-                                        'rgba(255, 99, 132, 0.2)'   // Alpha
-                                    ],
-                                    borderColor: [
-                                        'rgba(75, 192, 192, 1)',
-                                        'rgba(255, 206, 86, 1)',
-                                        'rgba(153, 102, 255, 1)',
-                                        'rgba(255, 99, 132, 1)'
-                                    ],
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                            }
-                        });
-                    </script>
-                @empty
-                    <div class="container col-11 bg-dark text-light rounded d-flex justify-content-center align-items-center py-5">
-                        <h3 class="py-5 my-5">
-                            <label for="" class="py-5 my-5">no data chart</label> 
-                        </h3>
                     </div>
-                @endforelse
+
+                    <!-- Navigasi carousel -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#laporanslide" data-bs-slide="prev">
+                        <span class="bg-dark p-4 carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#laporanslide" data-bs-slide="next">
+                        <span class="bg-dark p-4 carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+
+                @else
+                    <!-- Jika hanya ada satu kelas, tampilkan laporan tanpa slider -->
+                    <div class="container mt-5">
+                        <div class="col-12">
+                            @foreach ($dataPerKelas as $kelasId => $data)
+                                <div class="card mb-5 col-12">
+                                    <div class="card-header">
+                                        <h4 class="text-center">Kelas ID: {{ $kelasId }}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col-12 d-flex flex-column flex-md-row mt-5">
+                                            <div class="col-12 col-md-8">
+                                                <h6 class="text-center">Weekly Attendance Report</h6>
+                                                <canvas id="lineChart{{ $kelasId }}"></canvas>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <h6 class="text-center">Daily Attendance Report</h6>
+                                                <canvas id="pieChart{{ $kelasId }}"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Script for Line and Pie Chart -->
+                                <script>
+                                    let data{{ $kelasId }} = @json($data);
+                                    // Line Chart untuk mingguan
+                                    let ctxLine{{ $kelasId }} = document.querySelector('#lineChart{{ $kelasId }}').getContext('2d');
+                                        let lineChart{{ $kelasId }} = new Chart(ctxLine{{ $kelasId }}, {
+                                            type: 'bar',
+                                            data: {
+                                                labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
+                                                datasets: [
+                                                    {
+                                                        data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
+                                                        backgroundColor: [
+                                                            'rgba(75, 192, 192, 0.2)',
+                                                            'rgba(255, 206, 86, 0.2)',
+                                                            'rgba(153, 102, 255, 0.2)',
+                                                            'rgba(255, 99, 132, 0.2)'
+                                                        ],
+                                                        borderColor: [
+                                                            'rgba(75, 192, 192, 1)',
+                                                            'rgba(255, 206, 86, 1)',
+                                                            'rgba(153, 102, 255, 1)',
+                                                            'rgba(255, 99, 132, 1)'
+                                                        ],
+                                                        borderWidth: 1,
+                                                        fill: true,
+                                                    }
+                                                ]
+                                            },
+                                            options: {
+                                                responsive: true,
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true
+                                                    }
+                                                }
+                                            }
+                                        });
+
+                                        // Pie Chart untuk harian
+                                        let ctxPie{{ $kelasId }} = document.querySelector('#pieChart{{ $kelasId }}').getContext('2d');
+                                        let pieChart{{ $kelasId }} = new Chart(ctxPie{{ $kelasId }}, {
+                                            type: 'pie',
+                                            data: {
+                                                labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
+                                                datasets: [{
+                                                    data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
+                                                    backgroundColor: [
+                                                        'rgba(75, 192, 192, 0.2)',
+                                                        'rgba(255, 206, 86, 0.2)',
+                                                        'rgba(153, 102, 255, 0.2)',
+                                                        'rgba(255, 99, 132, 0.2)'
+                                                    ],
+                                                    borderColor: [
+                                                        'rgba(75, 192, 192, 1)',
+                                                        'rgba(255, 206, 86, 1)',
+                                                        'rgba(153, 102, 255, 1)',
+                                                        'rgba(255, 99, 132, 1)'
+                                                    ],
+                                                    borderWidth: 1
+                                                }]
+                                            },
+                                            options: {
+                                                responsive: true,
+                                            }
+                                        });
+                                </script>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
             </div>
-    
+
             <x-footer></x-footer>
         </div>
         
@@ -145,3 +253,4 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     </div>
 </x-layout>
+
