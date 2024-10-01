@@ -15,7 +15,7 @@
     </script>
   @endif
     <div class="w-100 d-flex align-items-center justify-content-center mt-5">
-        <section class="p-3 p-md-4 p-xl-5 col-11 col-md-5 shadow border border-1 rounded border-dark">
+        <section class="p-3 p-md-4 p-xl-5 col-11 bg-lightgit  col-md-5 shadow border border-1 rounded border-dark">
             <label for="" class="h3">Edit Form</label>
             <div class="container">
             <div class="row">
