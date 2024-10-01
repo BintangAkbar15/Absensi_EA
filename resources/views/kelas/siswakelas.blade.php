@@ -43,6 +43,7 @@
     </div>
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
+            <a href="/" class="btn btn-primary mb-2 w-100">Kembali Ke beranda</a>
             @if ( $bangkuTersisa > 0)
                 <form id="studentForm" action="{{ route('siswa.kelas.add') }}" method="POST">
                     @csrf
@@ -71,7 +72,9 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="8" class="h5">No Data Found</td>
+                                    <td colspan="8" class="h5">
+                                        No Data Found
+                                    </td>
                                 </tr>
                                 @endforelse
                             </tbody>

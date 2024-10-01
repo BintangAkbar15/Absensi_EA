@@ -32,6 +32,9 @@
     </div>
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
+            @if (!$bangku == 0)
+                <a href="{{ route('siswa.kelas',$id) }}" class="text-decoration-none btn btn-warning  mb-5">Masukkan Siswa</a>
+            @endif
                 <table class="table text-center table-striped table-hover border border-1 shadow overflow-x-scroll" style="max-height: 73vh">
                     <thead>
                         <tr>

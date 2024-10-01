@@ -40,7 +40,7 @@ class SclassController extends Controller
 
         // Validasi jika kelas_id dikirim atau siswa dipilih
         if (empty($selectedStudents) || empty($kelasId) || $bangku <= 0 || $bangku - count($selectedStudents) < 0) {
-            return redirect()->back()->with('error', 'Siswa atau kelas tidak valid');
+            return redirect()->back()->with('error', 'Siswa yang bisa dimasukkan hanya '. $bangku.' orang');
         }
 
         // Lakukan update kelas_id untuk siswa yang dipilih
