@@ -33,6 +33,10 @@
     </div>
     <div class="mt-4 d-flex justify-content-md-center ms-1">
         <div class="col-11 ">
+            @if (!$kelas->bangku_tersisa == 0)
+                <a href="{{ route('kelas.siswa',$kelas->id) }}" class="text-decoration-none btn btn-warning  mb-5">Masukkan Siswa</a>
+            @endif
+            <a href="{{ route('absensi.kelas.siswa',$kelas->id) }}" class="text-decoration-none btn btn-primary mb-5">Absen Siswa</a>
                 <table class="table text-center me-2 table-striped table-hover border border-1 shadow">
                     <thead>
                         <tr>
@@ -83,7 +87,10 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan='10' class='h5'>Semua siswa sudah absen</td>
+                                <td colspan='10' class='h5'>
+                                    Siswa Belum Absen
+                                </td>
+                                <a class="w-100 mb-3 text-decoration-none btn btn-primary" href="{{ route('absensi.kelas.siswa',$kelas->id) }}">Absen Siswa</a>
                             </tr>
                         @endforelse
                     </tbody>

@@ -1,9 +1,12 @@
 <?php
 
+use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Models\Pengajar;
 use App\Models\Logkehadiran;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\AuthController;
@@ -64,13 +67,16 @@ Route::middleware('auth')->group(function () {
 
     //show list kelas untuk show list siswa
     Route::get('/kelas/mskelas', function(){
-        return view('kelas.pilihkelassiswa',['data'=>Kelas::all()]);
+        $siswaId = Pengajar::with(['kelas','guru'])->where('guru_id',Auth::user()->nip)->pluck('kelas_id')->toArray();
+        $kelas = Kelas::all()->where('bangku_tersisa','>',1)->whereIn('id',$siswaId);
+        return view('kelas.pilihkelassiswa',['data'=>$kelas]);
     })->name('kelas.pilihkelas');
 
     //show list kelas untuk memasukkan kelas ke siswa
     Route::get('/kelas/pilih', function(){
-        $kelas = Kelas::all()->where('bangku_tersisa','>',1);
-        return view('kelas.pilihkelas',['data'=> $kelas]);
+        $siswaId = Pengajar::with(['kelas','guru'])->where('guru_id',Auth::user()->nip)->pluck('kelas_id')->toArray();
+        $kelas = Kelas::all()->where('bangku_tersisa','>',1)->whereIn('id',$siswaId);
+        return view('kelas.pilihkelas',['data'=> $kelas,'siswa'=>$siswaId]);
     })->name('siswa.kelas.pilih');
 
     //delete kelas dari siswa

@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-12">
                     <label for="bangku_tersisa" class="form-label">Jumlah Bangku<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control " name="bangku_tersisa" id="bangku_tersisa" maxlength="2" value="{{ $name->bangku_tersisa }}" required>
+                    <input type="text" class="form-control " name="bangku_tersisa" id="bangku_tersisa" maxlength="2" value="{{ $name->rombel }}" required>
                   </div>
                 <div class="col-12">
                     <div class="d-grid">

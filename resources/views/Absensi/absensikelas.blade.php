@@ -41,7 +41,10 @@
     </div>
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
-            <a href="{{ route('kehadiran.show') }}" class="text-decoration-none btn btn-primary mb-5">Lihat Data Kehadiran</a>
+            @if (!$kelas->bangku_tersisa == 0)
+                <a href="{{ route('kelas.siswa',$kelas->id) }}" class="text-decoration-none btn btn-secondary mb-5">Masukkan Siswa</a>
+            @endif
+            <a href="{{ route('absensi.edit',$kelas->id) }}" class="text-decoration-none btn btn-primary mb-5">Lihat Data Kehadiran</a>
                 <table class="table text-center table-striped table-hover border border-1 shadow">
                     <thead>
                         <tr>
@@ -83,9 +86,9 @@
                                 </td>
                             </tr>
                         @empty
-                            <tr>
-                                <td colspan='10' class='h5'>Semua siswa sudah absen</td>
-                            </tr>
+                        <tr>
+                            <td colspan='10' class='h5'>Semua siswa sudah absen</td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>

@@ -18,7 +18,7 @@ class KelasController extends Controller
         else{
             $siswa = Siswa::where('kelas_id','=' ,$kelas->id)->get();
         }
-        return view('kelas.listsiswa',['id'=>$kelas->id,'nama'=>$kelas->name, 'siswa'=>$siswa]);
+        return view('kelas.listsiswa',['bangku'=>$kelas->bangku_tersisa,'id'=>$kelas->id,'nama'=>$kelas->name, 'siswa'=>$siswa]);
     }
 
     public function index()
