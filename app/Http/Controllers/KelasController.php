@@ -51,7 +51,8 @@ class KelasController extends Controller
 
         $data = [
             'name' => $request->input('name'),
-            'bangku_tersisa' => $request->input('bangku_tersisa')
+            'bangku_tersisa' => $request->input('bangku_tersisa'),
+            'rombel' => $request->input('bangku_tersisa'),
         ];
 
         Kelas::create($data);
@@ -91,7 +92,9 @@ class KelasController extends Controller
 
         $data = [
             'name' => $request->input('name'),
-            'bangku_tersisa' => $request->input('bangku_tersisa')
+            'bangku_tersisa' => $request->input('bangku_tersisa'),
+            'rombel' => $request->input('bangku_tersisa'),
+            
         ];
 
         Kelas::where('id', $id)->update($data);

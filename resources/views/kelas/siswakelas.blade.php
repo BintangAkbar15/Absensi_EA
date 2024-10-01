@@ -51,46 +51,51 @@
     </div>
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
-            <form id="studentForm" action="{{ route('siswa.kelas.add') }}" method="POST">
-                @csrf
-                <input type="hidden" name='bangku_tersisa' id="bangkuTersisa" value="{{ $bangkuTersisa }}">
-                <div class="overflow-y-scroll" style="max-height: 50vh">
-                    <table class="table text-center table-striped table-hover border border-1 shadow">
-                        <thead class="top-0 position-sticky">
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Nis</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($siswa as $item)
-                            <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $item->nis }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>
-                                    <input type="hidden" name="jumlah_siswa" value="1">
-                                    <input type="hidden" name="id_kelas" value="{{ $id }}">
-                                    <input type="checkbox" name="students[]" value="{{ $item->nis }}" class="form-check-input">
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="8" class="h5">No Data Found</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-                <div class="w-100 mt-5 d-md-none d-flex justify-content-center ">
-                    <button class="add_all btn btn-primary" id="submitStudents" style="display: none">Tambah siswa ke kelas</button>
-                </div>
-                <div class="w-100 mt-5 d-sm-flex d-none justify-content-center ">
-                    <button class="add_all btn btn-primary" id="submitStudents" style="display: none">Tambah siswa ke kelas</button>
-                </div>
-            </form>
+            @if ( $bangkuTersisa > 0)
+                <form id="studentForm" action="{{ route('siswa.kelas.add') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name='bangku_tersisa' id="bangkuTersisa" value="{{ $bangkuTersisa }}">
+                    <div class="overflow-y-scroll" style="max-height: 50vh">
+                        <table class="table text-center table-striped table-hover border border-1 shadow">
+                            <thead class="top-0 position-sticky">
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nis</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($siswa as $item)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $item->nis }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>
+                                        <input type="hidden" name="jumlah_siswa" value="1">
+                                        <input type="hidden" name="id_kelas" value="{{ $id }}">
+                                        <input type="checkbox" name="students[]" value="{{ $item->nis }}" class="form-check-input">
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="8" class="h5">No Data Found</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="w-100 mt-5 d-md-none d-flex justify-content-center ">
+                        <button class="add_all btn btn-primary" id="submitStudents" style="display: none">Tambah siswa ke kelas</button>
+                    </div>
+                    <div class="w-100 mt-5 d-sm-flex d-none justify-content-center ">
+                        <button class="add_all btn btn-primary" id="submitStudents" style="display: none">Tambah siswa ke kelas</button>
+                    </div>
+                </form>
+            @else
+                <h2>Semua Bangku Sudah Terisi</h2>
+                <a href='{{ route('siswa.kelas.pilih') }}'>Pilih Kelas lain</a>
+            @endif
         </div>
     </div>
     
