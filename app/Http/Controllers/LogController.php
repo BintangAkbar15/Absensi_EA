@@ -15,7 +15,7 @@ class LogController extends Controller
     //
     public function index(Kelas $kelas){
         $kecuali = Logkehadiran::where('tanggal',Carbon::today())->pluck('siswa_id')->toArray();
-
+        $kelasExcepted = Siswa::where('kelas_id','=',$kelas->id)->count();
 
         if(request("search")){
             $siswa = Siswa::where('kelas_id','=',$kelas->id)->where('name','like','%'.request("search").'%')->whereNotIn('nis',$kecuali)->get();
@@ -24,7 +24,7 @@ class LogController extends Controller
             $siswa = Siswa::where('kelas_id','=',$kelas->id)->whereNotIn('nis',$kecuali)->get();
         }
         
-        return view('Absensi.absensikelas',['kelas'=>$kelas,'siswa'=>$siswa]);
+        return view('Absensi.absensikelas',['kelas'=>$kelas,'siswa'=>$siswa,'exc'=>$kelasExcepted]);
     }
 
     public function showKelas(){

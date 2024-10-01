@@ -33,9 +33,9 @@
     </div>
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
-            @if (!$kelas->bangku_tersisa == 0)
+            @if (!$kelas->bangku_tersisa == 0 || $exc < 1)
                 <a href="{{ route('kelas.siswa',$kelas->id) }}" class="text-decoration-none btn btn-secondary mb-5">Masukkan Siswa</a>
-            @endif
+            @endif  
             <a href="{{ route('kehadiran.edit',$kelas->id) }}" class="text-decoration-none btn btn-primary mb-5">Lihat Data Kehadiran</a>
                 <table class="table text-center table-striped table-hover border border-1 shadow">
                     <thead>
@@ -47,41 +47,48 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($siswa as $item)
-                            <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $item->nis }}</td>
-                                <td>{{ $item->name }}</td>
+                        
+                        @if ($exc >=1)
+                            @forelse ($siswa as $item)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $item->nis }}</td>
+                                    <td>{{ $item->name }}</td>
 
-                                <td class="d-flex justify-content-center gap-2 gap-md-4">
-                                    <form action="{{ route('absensi.add') }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
-                                        <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
-                                        <input type="hidden" name='status' value='Hadir'>
-                                        <button class="btn btn-success">Hadir</button>
-                                    </form>
-                                    <form action="{{ route('absensi.add') }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
-                                        <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
-                                        <input type="hidden" name='status' value='Sakit'>
-                                        <button class="btn btn-warning">Sakit</button>
-                                    </form>
-                                    <form action="{{ route('absensi.add') }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name='siswa_id' value='{{ $item->nis }}'> 
-                                        <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
-                                        <input type="hidden" name='status' value='Izin'>
-                                        <button class="btn btn-primary">Izin</button>
-                                    </form>
-                                </td>
+                                    <td class="d-flex justify-content-center gap-2 gap-md-4">
+                                        <form action="{{ route('absensi.add') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
+                                            <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
+                                            <input type="hidden" name='status' value='Hadir'>
+                                            <button class="btn btn-success">Hadir</button>
+                                        </form>
+                                        <form action="{{ route('absensi.add') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
+                                            <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
+                                            <input type="hidden" name='status' value='Sakit'>
+                                            <button class="btn btn-warning">Sakit</button>
+                                        </form>
+                                        <form action="{{ route('absensi.add') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name='siswa_id' value='{{ $item->nis }}'> 
+                                            <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
+                                            <input type="hidden" name='status' value='Izin'>
+                                            <button class="btn btn-primary">Izin</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
+                            <tr>
+                                <td colspan='10' class='h5'>Semua siswa sudah absen</td>
                             </tr>
-                        @empty
-                        <tr>
-                            <td colspan='10' class='h5'>Semua siswa sudah absen</td>
-                        </tr>
-                        @endforelse
+                            @endforelse
+                        @else
+                            <tr>
+                                <td colspan='10' class='h5'>Belum ada Data Siswa</td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>
