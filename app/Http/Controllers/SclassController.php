@@ -10,13 +10,36 @@ use Illuminate\Support\Facades\DB;
 class SclassController extends Controller
 {
 
+    public function index(string $id)
+    {
+        // Ambil data kelas berdasarkan id untuk mendapatkan bangku_tersisa
+        $kelas = Kelas::find($id);  // Ambil kelas berdasarkan id
+        $bangkuTersisa = $kelas->bangku_tersisa;  // Dapatkan nilai bangku_tersisa
+    
+        // Jika ada pencarian
+        if (request("search")) {
+            $siswa = Siswa::where('name', 'like', '%' . request("search") . '%')
+                          ->whereNull('kelas_id') // Hanya siswa yang belum ada kelas
+                          ->get();
+        } else {
+            // Jika tidak ada pencarian, ambil semua siswa yang belum memiliki kelas
+            $siswa = Siswa::whereNull('kelas_id')->get();
+        }
+    
+        // Mengirimkan id, siswa, dan bangku_tersisa ke view
+        return view('kelas.siswakelas', compact('id', 'siswa', 'bangkuTersisa'));
+    }
+    
+    
+
     public function updateStudents(Request $request)
     {
         $selectedStudents = $request->input('students');  // Array of selected NIS
         $kelasId = $request->input('id_kelas');  // Kelas ID yang ingin diupdate
+        $bangku = $request->input('bangku_tersisa');  // Kelas ID yang ingin diupdate
 
         // Validasi jika kelas_id dikirim atau siswa dipilih
-        if (empty($selectedStudents) || empty($kelasId)) {
+        if (empty($selectedStudents) || empty($kelasId) || $selectedStudents > $bangku) {
             return redirect()->back()->with('error', 'Siswa atau kelas tidak valid');
         }
 

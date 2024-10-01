@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="col-6 col-md-3 mt-3 ms-auto">
-                <form action="" method="GET" class="input-group ">
+                <form action="{{ route('absensi.kelas.siswa',$kelas->id) }}" method="GET" class="input-group ">
                     @csrf
                     <input type="text" placeholder="Search Student" name="search" class="rounded-start-3 ps-3 col-8">
                     <button class="btn rounded-none d-flex align-items-center gap-2 justify-content-center text-light col-4" style="background: #B68D40">

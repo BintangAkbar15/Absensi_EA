@@ -36,12 +36,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/siswa/add/new', [SiswaController::class, 'store'])->name('siswa.add');
     
     //siswa redirect to edit
-    Route::get('/siswa/edit/{siswa:nis}', function(Siswa $siswa){
-        return view('siswa.edit',['nis' => $siswa->nis]);
+    Route::get('/siswa/edit/{siswa:nis}', function(Siswa $siswa,Kelas $kelas){
+        return view('siswa.edit',['nis' => $siswa->nis,'nama'=>$siswa->name,'kelas'=>$kelas->all()]);
     });
     
     //siswa edit
-    Route::get('/siswa/edit/new', [SiswaController::class, 'update'])->name('siswa.update');
+    Route::get('/siswa/edit/new/{nis}', [SiswaController::class, 'update'])->name('siswa.update');
     
     //siswa destroy
     Route::get('/siswa/delete/{nis}', [SiswaController::class, 'destroy'])->name('siswa.delete');
@@ -80,10 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/kelas/siswa/update/{siswa:nis}',[SclassController::class,'deletekelas'])->name('kelas.editsiswa');
 
     //show list siswa yang masih kosong kelasnya untuk di masukkan kelas
-    Route::get('/siswa/addkelas/{kelas:id}', function(Kelas $kelas){
-        $siswa = Siswa::where('kelas_id', NULL)->get();
-        return view('kelas.siswakelas',['id'=>$kelas->id, 'siswa'=>$siswa]);
-    })->name('siswa.kelas');
+    Route::get('/siswa/addkelas/{kelas:id}', [SclassController::class,'index'])->name('siswa.kelas');
 
     //update kelas siswa dan memasukkan jumlah siswa dalam kelas
     Route::post('/siswa/add/kelas', [SclassController::class, 'updateStudents'])->name('siswa.kelas.add');
@@ -124,12 +121,7 @@ Route::middleware('auth')->group(function () {
     })->name('kehadiran.edit');
     
     //absensi
-    Route::get('/absensi/kelas/{kelas:id}', function(Kelas $kelas){
-        $kecuali = Logkehadiran::where('tanggal',Carbon::today())->pluck('siswa_id')->toArray();
-
-        $siswa = Siswa::where('kelas_id','=',$kelas->id)->whereNotIn('nis',$kecuali)->get();
-        return view('Absensi.absensikelas',['kelas'=>$kelas,'siswa'=>$siswa]);
-    })->name('absensi.kelas.siswa');
+    Route::get('/absensi/kelas/{kelas:id}', [LogController::class,'index'])->name('absensi.kelas.siswa');
 
     //add log
     Route::post('/absensi', [LogController::class,'addLog'])->name('absensi.add');

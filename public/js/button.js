@@ -8,13 +8,13 @@ document.getElementById('submitStudents').addEventListener('click', function (e)
     document.querySelectorAll('input[name="students[]"]:checked').forEach((checkbox) => {
         selectedStudents.push(checkbox.value);
     });
+    let bangku = document.getElementById('bangkuTersisa').value
 
-    let much = selectedStudents.length;
 
     // Ambil kelas ID
     let kelasId = document.querySelector('input[name="id_kelas"]').value;
 
-    if (selectedStudents.length > 0 && kelasId) {
+    if (selectedStudents.length > 0 && kelasId && selectedStudents.length <= bangku) {
         // Kirim data menggunakan AJAX
         fetch('{{ route("siswa.kelas.add") }}', {
             method: 'POST',
@@ -34,6 +34,6 @@ document.getElementById('submitStudents').addEventListener('click', function (e)
             alert('Terjadi kesalahan saat menambahkan siswa');
         });
     } else {
-        alert('Silakan pilih setidaknya satu siswa dan kelas.');
+        alert('Siswa yang anda pilih Melebihi batas maksimal.');
     }
 });

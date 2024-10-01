@@ -38,8 +38,17 @@ class PengajarController extends Controller
         // Ambil semua kelas
         $kelas = Kelas::all();
         
-        // Ambil kelas yang belum terhubung dengan pengguna ini
-        $kelasBelumTerhubung = $kelas->whereNotIn('id', $pengajars);
+
+        //showing data to table
+        $max_tampil = 5;
+        
+        if(request("search")) {
+            $kelasBelumTerhubung = Kelas::where('name', 'like', '%' . request("search") . '%')
+                ->whereNotIn('id', $pengajars)
+                ->get();
+        } else {
+            $kelasBelumTerhubung = Kelas::whereNotIn('id', $pengajars)->get();
+        }
         
         // Kirim data ke view
         return view('guru.ngajar', [

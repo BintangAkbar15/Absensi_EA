@@ -5,17 +5,24 @@
             <div class="container">
             <div class="row">
                 <div class="col-12 bsb-tpl-bg-lotion">
-                    <form action="{{ route('siswa.add') }}" method="POST">
+                    <form action="{{ route('siswa.update',$nis) }}" method="GET">
                         @csrf
                         <div class="row gy-3 gy-md-4 overflow-hidden">
                             <div class="col-12">
+                                <label for="nis" class="form-label">NIS <span class="text-danger">*</span></label>
+                                <input type="nis" class="form-control" readonly name="nis" id="nis" value="{{ $nis }}" required>
+                            </div>
+                            <div class="col-12">
                                 <label for="nama" class="form-label">Nama <span class="text-danger">*</span></label>
-                                <input type="nama" class="form-control" name="nama" id="nama" value="{{ $nis }}" required>
+                                <input type="nama" class="form-control"  name="nama" id="nama" value="{{ $nama }}" required>
                             </div>
                             <div class="col-12">
                                 <label for="nama" class="form-label">Kelas <span class="text-danger">*</span></label>
                                 <select name="" id="Kelas" class="form-control">
-                                    <option value="kelas-a">Kelas A</option>
+                                    <option value="null">--Pilih Kelas--</option>
+                                    @foreach ($kelas as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-12">
