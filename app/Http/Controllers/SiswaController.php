@@ -84,28 +84,23 @@ class SiswaController extends Controller
     {
         //Edit data
         $request->validate([
-            'nis' => 'required|min:3|max:50',
             'nama' => 'required|min:3|max:50',
         ],[
-            'nis.required' => 'nis harus diisi',
-            'nis.min' => 'nis minimal 3 karakter',
-            'nis.max' => 'nis maximal 50 karakter',
             'nama.required' => 'nama harus diisi',
-            'nama.min' => 'nis minimal 3 karakter',
-            'nama.max' => 'nis maximal 50 karakter',
+            'nama.min' => 'nama minimal 3 karakter',
+            'nama.max' => 'nama maximal 3 karakter',
+
         ]);
 
         if(request('kelas_id') == 'null'){
             $data = [
-                'nis' => $request->input('nis'),
-                'name' => $request->input('nama'),
-                'kelas_id' => null,
+            'name' => $request->input('nama'),
             ];
-        }else{
+        }
+        else{
             $data = [
-                'nis' => $request->input('nis'),
-                'name' => $request->input('nama'),
-                'kelas_id' => $request->input('kelas_id'),
+            'name' => $request->input('nama'),
+            'kelas_id' => request('kelas_id'),
             ];
         }
 
