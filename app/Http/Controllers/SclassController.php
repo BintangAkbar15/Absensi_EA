@@ -39,7 +39,7 @@ class SclassController extends Controller
         $bangku = $request->input('bangku_tersisa');  // Kelas ID yang ingin diupdate
 
         // Validasi jika kelas_id dikirim atau siswa dipilih
-        if (empty($selectedStudents) || empty($kelasId) || $selectedStudents > $bangku) {
+        if (empty($selectedStudents) || empty($kelasId) || $bangku <= 0) {
             return redirect()->back()->with('error', 'Siswa atau kelas tidak valid');
         }
 
@@ -52,7 +52,10 @@ class SclassController extends Controller
         //     ->update(['jumlah_siswa' => $j_kelas]);
 
         $data = Siswa::where('kelas_id','like','%'.$kelasId.'%')->count();
-        Kelas::where('id', $kelasId)->update(['jumlah_siswa' => $data]);
+        Kelas::where('id', $kelasId)->update([
+            'jumlah_siswa' => $data,
+            'bangku_tersisa'=>$bangku - count($selectedStudents)
+        ]);
         
         return redirect()->back()->with('success', "Berhasil Menambahkan siswa ke dalam kelas");
     }

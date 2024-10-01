@@ -86,7 +86,6 @@ class SiswaController extends Controller
         $request->validate([
             'nis' => 'required|min:3|max:50',
             'nama' => 'required|min:3|max:50',
-            'kelas' => 'min:3|max:50',
         ],[
             'nis.required' => 'nis harus diisi',
             'nis.min' => 'nis minimal 3 karakter',
@@ -99,7 +98,7 @@ class SiswaController extends Controller
         $data = [
             'nis' => $request->input('nis'),
             'name' => $request->input('nama'),
-            'kelas_id' => $request->input('kelas'),
+            'kelas_id' => $request->input('kelas_id'),
         ];
 
         Siswa::where('nis', $id)->update($data);
