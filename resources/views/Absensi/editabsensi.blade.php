@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="col-6 col-md-3 mt-3 ms-auto">
-                <form action="" method="GET" class="input-group ">
+                <form action="{{ route('kehadiran.edit',$kelas->id) }}" method="GET" class="input-group ">
                     @csrf
                     <input type="text" placeholder="Search Student" name="search" class="rounded-start-3 ps-3 col-8">
                     <button class="btn rounded-none d-flex align-items-center gap-2 justify-content-center text-light col-4" style="background: #B68D40">
@@ -47,6 +47,7 @@
                             <th scope="col">No</th>
                             <th scope="col">Nis</th>
                             <th scope="col">Nama</th>
+                            <th scope="col">Tanggal</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -57,6 +58,7 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $item->siswa->nis }}</td>
                                 <td>{{ $item->siswa->name }}</td>
+                                <td>{{ $item->tanggal }}</td>
                                 <td>{{ $item->status }}</td>
 
                                 <td class="justify-content-center gap-2 gap-md-4" style="display: none;" id="btn_change_{{ $loop->index }}">
