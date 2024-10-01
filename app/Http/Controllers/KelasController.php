@@ -92,6 +92,11 @@ class KelasController extends Controller
     public function update(Request $request, string $id)
     {
         //Edit data
+        $jumlah_siswa = Kelas::where('id', $id)->pluck('jumlah_siswa')->first();
+        if($request->input('bangku_tersisa')){
+         $ndata = $jumlah_siswa == 0 ? $request->input('bangku_tersisa') : $request->input('bangku_tersisa')-$jumlah_siswa;   
+        }
+
         $request->validate([
             'name' => 'required',
             'bangku_tersisa' => 'required|digits_between:1,2|numeric'
@@ -103,13 +108,13 @@ class KelasController extends Controller
 
         $data = [
             'name' => $request->input('name'),
-            'bangku_tersisa' => $request->input('bangku_tersisa'),
+            'bangku_tersisa' => $ndata,
             'rombel' => $request->input('bangku_tersisa'),
             
         ];
 
         Kelas::where('id', $id)->update($data);
-        return redirect()->route('kelas.tampil')->with('success',"Berhasil mengedit data");
+        return redirect()->route('kelas.tampil')->with('success','Berhasil Mengedit data');
     }
 
     /**
