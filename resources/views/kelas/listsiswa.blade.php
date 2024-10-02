@@ -73,7 +73,7 @@
                                     <!-- Form delete dengan nis dinamis -->
                                     <form id="deleteForm" action="" method="post">
                                         @csrf
-                                        <input type="text" name="id_kelas" id="kelas_id" value="">
+                                        <input type="hidden" name="id_kelas" id="kelas_id" value="">
                                         <input type="hidden" name="id" id="idToDelete" value="">
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
