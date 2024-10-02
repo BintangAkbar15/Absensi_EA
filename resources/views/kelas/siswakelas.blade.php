@@ -111,60 +111,68 @@
     "></script>
     <script>
 // Ambil semua row yang ada di dalam tabel
-        document.querySelectorAll('tr').forEach(function(row) {
-            // Tambahkan event listener untuk setiap row
-            row.addEventListener('click', function() {
-                // Cari checkbox yang ada di dalam row tersebut
-                const checkbox = row.querySelector('input[type="checkbox"]');
-                const bsisa = document.getElementById('bangkusisa'); // Ambil elemen bangkusisa
-                
-                // Jika checkbox ditemukan, ubah status checked
-                if (checkbox && !checkbox.disabled) { // Hanya jika checkbox tidak disabled
-                    checkbox.checked = !checkbox.checked; 
-                    
-                    let checkboxes = document.querySelectorAll('input[type=checkbox]');
-                    let addallButtons = document.querySelectorAll('.add_all'); 
-                    let isAnyChecked = Array.from(checkboxes).some(cb => cb.checked);
+document.querySelectorAll('tr').forEach(function(row) {
+    // Tambahkan event listener untuk setiap row
+    row.addEventListener('click', function() {
+        // Cari checkbox yang ada di dalam row tersebut
+        const checkbox = row.querySelector('input[type="checkbox"]');
+        const bsisa = document.getElementById('bangkusisa'); // Ambil elemen bangkusisa
+        
+        // Jika checkbox ditemukan, ubah status checked
+        if (checkbox && !checkbox.disabled) { // Hanya jika checkbox tidak disabled
+            // Simpan nilai bangku sisa sebelum mengubah status checkbox
+            let bangkuSisaValue = parseInt(bsisa.textContent); 
 
-                    // Tampilkan tombol "Tambah siswa ke kelas" jika ada checkbox yang dicentang
-                    addallButtons.forEach(function(button) {
-                        button.style.display = isAnyChecked ? 'block' : 'none';
-                    });
-
-                    // Ubah nilai bangkusisa berdasarkan status checkbox
-                    let bangkuSisaValue = parseInt(bsisa.textContent); // Ambil nilai bangku tersisa
-                    
-                    if (checkbox.checked) {
-                        if (bangkuSisaValue > 0) { // Cek jika bangku tersisa masih lebih dari 0
-                            bsisa.textContent = bangkuSisaValue - 1; // Kurangi 1 dari bangku tersisa
-                        }
-                    } else {
-                        bsisa.textContent = bangkuSisaValue + 1; // Tambahkan 1 ke bangku tersisa
-                    }
-
-                    // Nonaktifkan checkbox yang belum dicentang jika bangku tersisa 0
-                    if (bangkuSisaValue - 1 === 0) {
-                        checkboxes.forEach(function(cb) {
-                            if (!cb.checked) {
-                                cb.disabled = true; // Nonaktifkan checkbox yang belum dicentang
-                            }
-                        });
-                        
-                        Swal.fire({
-                        title: "Peringatan!",
-                        text: "Jumlah Siswa yang anda pilih sudah Mencapai batas",
-                        icon: "warning"
-                        });
-                    } else {
-                        // Aktifkan kembali checkbox jika ada bangku tersisa
-                        checkboxes.forEach(function(cb) {
-                            if (!cb.checked) {
-                                cb.disabled = false; // Aktifkan checkbox jika bangku tersisa ada
-                            }
-                        });
-                    }
+            // Ubah status checkbox
+            const isChecked = !checkbox.checked; // Status baru checkbox
+            
+            // Ubah nilai bangkusisa berdasarkan status checkbox
+            if (isChecked) { // Jika checkbox akan dicentang
+                if (bangkuSisaValue > 0) { // Cek jika bangku tersisa masih lebih dari 0
+                    bsisa.textContent = bangkuSisaValue - 1; // Kurangi 1 dari bangku tersisa
                 }
+            } else { // Jika checkbox akan dihapus centangnya
+                bsisa.textContent = bangkuSisaValue + 1; // Tambahkan 1 ke bangku tersisa
+            }
+
+            // Set status checked checkbox
+            checkbox.checked = isChecked;
+
+            let checkboxes = document.querySelectorAll('input[type=checkbox]');
+            let addallButtons = document.querySelectorAll('.add_all'); 
+            let isAnyChecked = Array.from(checkboxes).some(cb => cb.checked);
+
+            // Tampilkan tombol "Tambah siswa ke kelas" jika ada checkbox yang dicentang
+            addallButtons.forEach(function(button) {
+                button.style.display = isAnyChecked ? 'block' : 'none';
             });
-        });
+
+            console.log(bsisa.textContent);
+            // Nonaktifkan checkbox yang belum dicentang jika bangku tersisa 0
+            if (parseInt(bsisa.textContent) === 0) {
+                checkboxes.forEach(function(cb) {
+                    if (!cb.checked) {
+                        cb.disabled = true; // Nonaktifkan checkbox yang belum dicentang
+                    }
+                });
+                Swal.fire({
+                    title: "Peringatan!",
+                    text: "Jumlah Siswa yang anda pilih sudah Mencapai batas",
+                    icon: "warning"
+                });
+                
+            } else {
+                // Aktifkan kembali checkbox jika ada bangku tersisa
+                checkboxes.forEach(function(cb) {
+                    if (!cb.checked) {
+                        cb.disabled = false; // Aktifkan checkbox jika bangku tersisa ada
+                    }
+                });
+            }
+        }
+    });
+});
+
+
     </script>
 </x-layout>
