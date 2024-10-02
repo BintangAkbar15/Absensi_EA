@@ -27,7 +27,15 @@ class ChartController extends Controller
             ->whereIn('kelas_id', $kelasYangDiajarkan) // Filter berdasarkan kelas yang diajar pengajar
             ->get();
 
+        $from = Carbon::now()->startOfWeek();
+        $to = Carbon::now()->endOfWeek();
+        $logKehadiranPerminggu = Logkehadiran::with(['siswa', 'kelas'])
+            ->whereBetween('tanggal', [$from,$to]) // Filter berdasarkan tanggal
+            ->whereIn('kelas_id', $kelasYangDiajarkan) // Filter berdasarkan kelas yang diajar pengajar
+            ->get();
+
         // Mengelompokkan data berdasarkan kelas dan menghitung jumlah status kehadiran
+        $datamingguan = [];
         $dataPerKelas = [];
         foreach ($logKehadiran->groupBy('kelas_id') as $kelasId => $logKelas) {
             $dataPerKelas[$kelasId] = [
@@ -37,9 +45,17 @@ class ChartController extends Controller
                 'Alpha' => $logKelas->where('status', 'Alpha')->count(),
             ];
         }
+        foreach ($logKehadiranPerminggu->groupBy('kelas_id') as $kelasId => $logKelas) {
+            $datamingguan[$kelasId] = [
+                'Hadir' => $logKelas->where('status', 'Hadir')->count(),
+                'Izin'  => $logKelas->where('status', 'Izin')->count(),
+                'Sakit' => $logKelas->where('status', 'Sakit')->count(),
+                'Alpha' => $logKelas->where('status', 'Alpha')->count(),
+            ];
+        }
 
         // Mengirimkan data per kelas dan tanggal yang dipilih ke view
-        return view('teacher', compact('dataPerKelas', 'tanggal'));
+        return view('teacher', compact('dataPerKelas', 'tanggal','datamingguan'));
     }
     
     public function testing(){

@@ -32,8 +32,8 @@
     </div>
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
-            @if (!$bangku == 0)
-                <a href="{{ route('siswa.kelas',$id) }}" class="text-decoration-none btn btn-warning  mb-5">Masukkan Siswa</a>
+            @if (!$bangku == 0 || $jsiswa == 0)
+                <a href="{{ route('siswa.kelas',$id) }}" class="text-decoration-none btn btn-warning  mb-2">Masukkan Siswa</a>
             @endif
                 <table class="table text-center table-striped table-hover border border-1 shadow overflow-x-scroll" style="max-height: 73vh">
                     <thead>
@@ -88,7 +88,6 @@
                             <td colspan="8" class="h5">
                                 <h5>No Data Found</h5>
                             </td>
-                            <a href="{{ route('siswa.kelas', $id) }}" class="btn btn-secondary mb-2">Tambahkan Siswa ke kelas ini</a>
                         </tr>
                         @endforelse
                     </tbody>

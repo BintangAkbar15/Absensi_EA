@@ -118,17 +118,40 @@ Route::middleware('auth')->group(function () {
 
     //edit kehadiran
     Route::get('/kehadiran/{kelas:id}', function(Kelas $kelas){
-        if(request('search')){
-            $datsiswa = Siswa::where('name','like','%'.request("search").'%')->pluck('nis')->toArray();
-            $siswa = Logkehadiran::with(['siswa','kelas'])
-            ->where('kelas_id','=',$kelas->id)
-            ->whereIn('siswa_id',$datsiswa)
-            ->get();
-        }
-        else{
-            $siswa = Logkehadiran::with(['siswa','kelas'])->where('kelas_id','=',$kelas->id)->get();
-        }
-        return view('Absensi.editabsensi',['kelas'=>$kelas,'siswa'=>$siswa]);
+        $hariIni = Logkehadiran::where('kelas_id','=',$kelas->id)->where('tanggal','=',now()->format('Y-m-d'))->pluck('tanggal');
+        $siswa = Logkehadiran::with(['siswa', 'kelas'])
+        ->where('kelas_id', '=', $kelas->id)
+        ->when(request('search'), function ($query) {
+            $datsiswa = Siswa::where('name', 'like', '%' . request("search") . '%')
+                ->pluck('nis')->toArray();
+            return $query->whereIn('siswa_id', $datsiswa);
+        })
+        ->when(request('date'), function ($query) {
+            return $query->where('tanggal', 'like', '%' . request('date') . '%');
+        }, function ($query) use ($hariIni) {
+            // Jika tidak ada tanggal, ambil semua kehadiran yang sesuai dengan pencarian
+            return $query->whereIn('tanggal', $hariIni);
+        })
+        ->get();
+        // if(request('date')){
+        //     $hariIni = Logkehadiran::where('kelas_id','=',$kelas->id)->where('tanggal','=',request('date'))->pluck('tanggal');
+        //     $siswa = Logkehadiran::with(['siswa','kelas'])->where('kelas_id','=',$kelas->id)
+        //     ->whereIn('tanggal',$hariIni)->get();
+        // }
+        // if(request('search')){
+        //     $datsiswa = Siswa::where('name','like','%'.request("search").'%')->pluck('nis')->toArray();
+
+        //     $siswa = Logkehadiran::with(['siswa','kelas'])
+        //     ->where('kelas_id','=',$kelas->id)
+        //     ->whereIn('siswa_id',$datsiswa)
+        //     ->whereIn('tanggal',$hariIni)
+        //     ->get();
+        // }
+        // else{
+        //     $siswa = Logkehadiran::with(['siswa','kelas'])->where('kelas_id','=',$kelas->id)
+        //     ->whereIn('tanggal',$hariIni)->get();
+        // }
+        return view('Absensi.editabsensi',['kelas'=>$kelas,'siswa'=>$siswa,'hrini'=>$hariIni]);
     })->name('kehadiran.edit');
     
     //absensi

@@ -10,6 +10,7 @@
             }, 3000);
             </script>
     @endif
+    {{-- {{ dd($siswa) }}    --}}
     <div class="col-11 d-flex fw-bold py-5 justify-content-between px-md-5 px-3 align-items-center h3">
         <a href="{{ route('absensi.kelas') }}" class="text-dark">
             <i class="fa-solid fa-arrow-left" style=""></i>
@@ -21,7 +22,6 @@
         <div class="col-11">
             <div class="col-6 col-md-3 mt-3 ms-auto">
                 <form action="{{ route('kehadiran.edit',$kelas->id) }}" method="GET" class="input-group ">
-                    @csrf
                     <input type="text" placeholder="Search Student" name="search" class="rounded-start-3 ps-3 col-8">
                     <button class="btn rounded-none d-flex align-items-center gap-2 justify-content-center text-light col-4" style="background: #B68D40">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -39,8 +39,8 @@
             <div class="col-12 d-flex justify-content-between">
                 <a href="{{ route('absensi.kelas.siswa',$kelas->id) }}" class="text-decoration-none btn btn-primary mb-5">Absen Siswa</a>
                 <div class="col-6 col-md-3">
-                    <form action="" class="d-flex input-group">
-                        <input type="date" class="form-control w-75">
+                    <form action="{{ route('kehadiran.edit',$kelas->id) }}" class="d-flex input-group">
+                        <input type="date" name='date' class="form-control w-75" value="{{ now()->format('dd/MM/YYY') }}">
                         <button class="w-25 btn btn-primary form-control">
                             <i class="fa-solid fa-magnifying-glass d-lg-none"></i>
                             <label for="" class="d-none d-lg-block">Search</label>
