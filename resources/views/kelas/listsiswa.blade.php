@@ -51,7 +51,7 @@
                             <td>{{ $item->nis }}</td>
                             <td>{{ $item->name }}</td>
                             <td class=" d-flex justify-content-center">
-                                <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal" data-bs-target="#deleteModal" data-nis="{{ $item->nis }}">
+                                <button type="button" class="btn text-light ms-md-3 bg-danger d-md-flex align-items-center justify-content-center gap-3" data-bs-toggle="modal" data-bs-target="#deleteModal" data-nis="{{ $item->nis }}" data-id = '{{ $id }}'>
                                     <i class="fa-solid fa-trash"></i>
                                     <label for="" class="d-none d-md-block">Delete</label>
                                 </button>
@@ -73,6 +73,7 @@
                                     <!-- Form delete dengan nis dinamis -->
                                     <form id="deleteForm" action="" method="post">
                                         @csrf
+                                        <input type="text" name="id_kelas" id="kelas_id" value="">
                                         <input type="hidden" name="id" id="idToDelete" value="">
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
@@ -87,6 +88,7 @@
                             <td colspan="8" class="h5">
                                 <h5>No Data Found</h5>
                             </td>
+                            <a href="{{ route('siswa.kelas', $id) }}" class="btn btn-secondary mb-2">Tambahkan Siswa ke kelas ini</a>
                         </tr>
                         @endforelse
                     </tbody>
@@ -99,10 +101,12 @@
             const button = event.relatedTarget;
             // Ambil data dari button (data-nis)
             const nis = button.getAttribute('data-nis');
+            const id = button.getAttribute('data-id');
             // Update form action dan value nis di dalam modal
             const form = document.getElementById('deleteForm');
             const idInput = document.getElementById('idToDelete').value = nis;
-                console.log(idInput)
+            const kelas = document.getElementById('kelas_id').value = id;
+                // console.log(idInput)
             // Set action URL sesuai id
             form.action = `/kelas/siswa/update/${nis}`;
         });

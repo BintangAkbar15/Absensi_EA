@@ -90,7 +90,6 @@
                                 <td colspan='10' class='h5'>
                                     Siswa Belum Absen
                                 </td>
-                                <a class="w-100 mb-3 text-decoration-none btn btn-primary" href="{{ route('absensi.kelas.siswa',$kelas->id) }}">Absen Siswa</a>
                             </tr>
                         @endforelse
                     </tbody>

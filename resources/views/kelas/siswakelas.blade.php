@@ -41,9 +41,13 @@
             </div>
         </div>
     </div>
+    @if ($bangkuTersisa > 0)
+       <label for="" class="h6">
+           Jumlah Bangku Tersisa untuk kelas {{ $kelas->name }} : {{ $bangkuTersisa }} / {{ $kelas->rombel }}
+        </label> 
+    @endif
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
-            <a href="/" class="btn btn-primary mb-2 w-100">Kembali Ke beranda</a>
             @if ( $bangkuTersisa > 0)
                 <form id="studentForm" action="{{ route('siswa.kelas.add') }}" method="POST">
                     @csrf
@@ -75,6 +79,7 @@
                                     <td colspan="8" class="h5">
                                         No Data Found
                                     </td>
+                                    <a href="/" class="btn btn-primary mb-2 w-100">Kembali Ke beranda</a>
                                 </tr>
                                 @endforelse
                             </tbody>
@@ -90,7 +95,11 @@
             @else
             <div class="bg-dark col-12 mt-5 rounded d-flex flex-column gap-5 p-5 text-light justify-content-center align-items-center">
                 <h2>Semua Bangku Sudah Terisi</h2>
-                <a href='{{ route('siswa.kelas.pilih') }}' class="btn btn-primary rounded">Pilih Kelas lain</a>
+                <div class="d-flex gap-2">
+                    <a href='{{ route('siswa.kelas.pilih') }}' class="btn btn-primary rounded">Pilih Kelas lain</a>
+                    <a href='{{ route('absensi.kelas.siswa',$id) }}' class="btn btn-warning rounded">Absen Siswa</a>
+                    <a href='{{ route('kelas.siswa',$id) }}' class="btn btn-secondary rounded">Lihat data siswa kelas {{ $kelas->name }}</a>
+                </div>
             </div>
             @endif
         </div>
@@ -113,8 +122,7 @@
 
                     checkboxes.forEach(function(checkbox) {
                         let isAnyChecked = Array.from(checkboxes).some(cb => cb.checked);
-
-                            
+ 
                         addallButtons.forEach(function(button) {
                             if (isAnyChecked) {
                                 button.style.display = 'block'; 

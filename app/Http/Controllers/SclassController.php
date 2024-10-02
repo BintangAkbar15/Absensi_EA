@@ -27,7 +27,7 @@ class SclassController extends Controller
         }
     
         // Mengirimkan id, siswa, dan bangku_tersisa ke view
-        return view('kelas.siswakelas', compact('id', 'siswa', 'bangkuTersisa'));
+        return view('kelas.siswakelas', compact('id', 'siswa', 'bangkuTersisa','kelas'));
     }
     
     
@@ -60,14 +60,17 @@ class SclassController extends Controller
         return redirect()->back()->with('success', "Berhasil Menambahkan siswa ke dalam kelas");
     }
 
-
     public function deletekelas(string $id, Request $request){
+        $siswa = Siswa::where('nis', $id)->pluck('kelas_id');
+        $rombel = Kelas::whereIn('id',$siswa)->pluck('rombel')->first();
         Siswa::where('nis', $id)->update(['kelas_id' => null]);
         $data = Siswa::where('kelas_id','like','%'.request('id_kelas').'%')->count();
         
-        Kelas::where('id', request('id_kelas'))->update(['jumlah_siswa' => $data]);
-        return redirect()->back()->with('success', 'Berhasil Menghapus siswa dari data');
+        Kelas::where('id', request('id_kelas'))->update([
+            'jumlah_siswa' => $data,
+            'bangku_tersisa'=> $rombel - $data
+        ]);
+        return redirect()->back()->with('success', "berhasil menghapus data");
         // return redirect()->back()->with('success', request('id_kelas'));
     }
-
 }
