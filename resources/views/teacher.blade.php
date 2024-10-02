@@ -70,41 +70,6 @@
                                     <!-- Script for Line and Pie Chart -->
                                     <script>
                                         let data{{ $kelasId }} = @json($data);
-                                        // Line Chart untuk mingguan
-                                        let ctxLine{{ $kelasId }} = document.querySelector('#lineChart{{ $kelasId }}').getContext('2d');
-                                        let lineChart{{ $kelasId }} = new Chart(ctxLine{{ $kelasId }}, {
-                                            type: 'bar',
-                                            data: {
-                                                labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
-                                                datasets: [
-                                                    { 
-                                                        data: [data{{ $kelasId }}['Hadir'], data{{ $kelasId }}['Izin'], data{{ $kelasId }}['Sakit'], data{{ $kelasId }}['Alpha']],
-                                                        backgroundColor: [
-                                                            'rgba(75, 192, 192, 0.2)',
-                                                            'rgba(255, 206, 86, 0.2)',
-                                                            'rgba(153, 102, 255, 0.2)',
-                                                            'rgba(255, 99, 132, 0.2)'
-                                                        ],
-                                                        borderColor: [
-                                                            'rgba(75, 192, 192, 1)',
-                                                            'rgba(255, 206, 86, 1)',
-                                                            'rgba(153, 102, 255, 1)',
-                                                            'rgba(255, 99, 132, 1)'
-                                                        ],
-                                                        borderWidth: 1,
-                                                        fill: true,
-                                                    },
-                                                ]
-                                            },
-                                            options: {
-                                                responsive: true,
-                                                scales: {
-                                                    y: {
-                                                        beginAtZero: true
-                                                    }
-                                                }
-                                            }
-                                        });
 
                                         // Pie Chart untuk harian
                                         let ctxPie{{ $kelasId }} = document.querySelector('#pieChart{{ $kelasId }}').getContext('2d');
@@ -141,6 +106,46 @@
                                         </label>
                                     </div>
                                 @endforelse
+                                @foreach ($datamingguan as $kelasId=>$item)
+                                <script>
+                                    let datw{{ $kelasId }} = @json($item);
+                                    // Line Chart untuk mingguan
+                                    let ctxLine{{ $kelasId }} = document.querySelector('#lineChart{{ $kelasId }}').getContext('2d');
+                                        let lineChart{{ $kelasId }} = new Chart(ctxLine{{ $kelasId }}, {
+                                            type: 'bar',
+                                            data: {
+                                                labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
+                                                datasets: [
+                                                    {
+                                                        data: [datw{{ $kelasId }}['Hadir'], datw{{ $kelasId }}['Izin'], datw{{ $kelasId }}['Sakit'], datw{{ $kelasId }}['Alpha']],
+                                                        backgroundColor: [
+                                                            'rgba(75, 192, 192, 0.2)',
+                                                            'rgba(255, 206, 86, 0.2)',
+                                                            'rgba(153, 102, 255, 0.2)',
+                                                            'rgba(255, 99, 132, 0.2)'
+                                                        ],
+                                                        borderColor: [
+                                                            'rgba(75, 192, 192, 1)',
+                                                            'rgba(255, 206, 86, 1)',
+                                                            'rgba(153, 102, 255, 1)',
+                                                            'rgba(255, 99, 132, 1)'
+                                                        ],
+                                                        borderWidth: 1,
+                                                        fill: true,
+                                                    }
+                                                ]
+                                            },
+                                            options: {
+                                                responsive: true,
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true
+                                                    }
+                                                }
+                                            }
+                                        });
+                                </script>
+                            @endforeach
                             </div>
                         </div>
                     </div>
