@@ -39,6 +39,7 @@
             <div class="col-12 d-flex justify-content-between">
                 <a href="{{ route('absensi.kelas.siswa',$kelas->id) }}" class="text-decoration-none btn btn-primary mb-5">Absen Siswa</a>
                 <div class="col-6 col-md-3">
+                    {{-- search by date --}}
                     <form action="" class="d-flex input-group">
                         <input type="date" class="form-control w-75">
                         <button class="w-25 btn btn-primary form-control">
@@ -46,6 +47,7 @@
                             <label for="" class="d-none d-lg-block">Search</label>
                         </button>
                     </form>
+
                 </div>
             </div>
                 <table class="table text-center me-2 table-striped table-hover border border-1 shadow">
