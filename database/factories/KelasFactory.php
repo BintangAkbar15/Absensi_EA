@@ -17,9 +17,11 @@ class KelasFactory extends Factory
      */
     public function definition(): array
     {
+        $bangku = rand(00,40);
         return [
             'name'=>rand(00,12).Str::random(1),
-            'bangku_tersisa'=>rand(00,40),
+            'bangku_tersisa'=>$bangku,
+            'rombel'=>$bangku,
         ];
     }
 }
