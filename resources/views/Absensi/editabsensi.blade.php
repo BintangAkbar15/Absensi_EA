@@ -31,12 +31,23 @@
             </div>
         </div>
     </div>
-    <div class="mt-4 d-flex justify-content-md-center ms-1">
+    <div class="mt-4 d-flex justify-content-center ms-1">
         <div class="col-11 ">
             @if (!$kelas->bangku_tersisa == 0)
                 <a href="{{ route('kelas.siswa',$kelas->id) }}" class="text-decoration-none btn btn-warning  mb-5">Masukkan Siswa</a>
             @endif
-            <a href="{{ route('absensi.kelas.siswa',$kelas->id) }}" class="text-decoration-none btn btn-primary mb-5">Absen Siswa</a>
+            <div class="col-12 d-flex justify-content-between">
+                <a href="{{ route('absensi.kelas.siswa',$kelas->id) }}" class="text-decoration-none btn btn-primary mb-5">Absen Siswa</a>
+                <div class="col-6 col-md-3">
+                    <form action="" class="d-flex input-group">
+                        <input type="date" class="form-control w-75">
+                        <button class="w-25 btn btn-primary form-control">
+                            <i class="fa-solid fa-magnifying-glass d-lg-none"></i>
+                            <label for="" class="d-none d-lg-block">Search</label>
+                        </button>
+                    </form>
+                </div>
+            </div>
                 <table class="table text-center me-2 table-striped table-hover border border-1 shadow">
                     <thead>
                         <tr>
