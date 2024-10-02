@@ -46,6 +46,7 @@
                             <label for="" class="d-none d-lg-block">Search</label>
                         </button>
                     </form>
+
                 </div>
             </div>
                 <table class="table text-center me-2 table-striped table-hover border border-1 shadow">
