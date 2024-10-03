@@ -9,6 +9,7 @@ class Logkehadiran extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'guru_id',
         'siswa_id',
         'kelas_id',
         'tanggal',
@@ -20,6 +21,10 @@ class Logkehadiran extends Model
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'siswa_id');
+    }
+    public function guru()
+    {
+        return $this->belongsTo(User::class, 'guru_id');
     }
     public function kelas()
     {

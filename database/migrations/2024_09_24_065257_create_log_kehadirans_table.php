@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('logkehadirans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('guru_id')->constrained(
+                table: 'users',
+                indexName: 'log_user_id',
+            )->onDelete('cascade');
             $table->unsignedBigInteger( 'siswa_id'); // Ubah menjadi integer agar sesuai dengan nip di tabel siswas
             $table->foreign('siswa_id', 'log_siswa_id')->references('id')->on('siswas')->onDelete('cascade');
             $table->foreignId('kelas_id')->constrained(

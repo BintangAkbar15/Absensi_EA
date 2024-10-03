@@ -14,7 +14,7 @@ class LogController extends Controller
 {
     //
     public function index(Kelas $kelas){
-        $kecuali = Logkehadiran::where('tanggal',Carbon::today())->pluck('siswa_id')->toArray();
+        $kecuali = Logkehadiran::where('tanggal',Carbon::today())->where('guru_id',Auth::user()->id)->pluck('siswa_id')->toArray();
         $kelasExcepted = Siswa::where('kelas_id','=',$kelas->id)->count();
         if(request("search")){
             $siswa = Siswa::where('kelas_id','=',$kelas->id)->where('name','like','%'.request("search").'%')->whereNotIn('id',$kecuali)->get();
@@ -37,6 +37,7 @@ class LogController extends Controller
     }
     public function addLog(Request $request){
         $data = [
+            'guru_id' => Auth::user()->id,
             'siswa_id' => $request->input('siswa_id'),
             'kelas_id' => $request->input('kelas'),
             'status' => $request->input('status'),

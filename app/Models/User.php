@@ -52,4 +52,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Kelas::class, 'pengajars', 'guru_id', 'kelas_id');
     }
+    
+    public function logkehadiran(){
+        return $this->hasMany(Logkehadiran::class,'guru_id');
+    }
 }

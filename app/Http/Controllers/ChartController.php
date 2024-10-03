@@ -23,9 +23,10 @@ class ChartController extends Controller
         $kelasYangDiajarkan = Pengajar::where('guru_id', $nip)->pluck('kelas_id');
 
         // Mengambil data log kehadiran untuk kelas yang terkait dengan pengajar dan filter berdasarkan tanggal
-        $logKehadiran = Logkehadiran::with(['siswa', 'kelas'])
+        $logKehadiran = Logkehadiran::with(['guru', 'siswa', 'kelas'])
             ->whereDate('tanggal', $tanggal) // Filter berdasarkan tanggal
             ->whereIn('kelas_id', $kelasYangDiajarkan) // Filter berdasarkan kelas yang diajar pengajar
+            ->where('guru_id',Auth::user()->id)
             ->get();
         $kelas = Kelas::whereIn('id',$kelasYangDiajarkan)->pluck('name');
         $from = Carbon::now()->startOfWeek();
