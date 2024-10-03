@@ -26,7 +26,7 @@ class KelasController extends Controller
     public function index()
     {
         //showing data to table
-        $max_tampil = 5;
+        $max_tampil = 20;
         
         if(request("search")){
             $data = Kelas::where('name','like','%'.request("search").'%')->paginate($max_tampil)->withQueryString();
