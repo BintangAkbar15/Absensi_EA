@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nis',15);
             $table->foreignId('kelas_id')
+            ->nullable()
+            ->default(null)
             ->constrained(
                 table: 'kelas',
                 indexName: 'siswas_kelas_id',

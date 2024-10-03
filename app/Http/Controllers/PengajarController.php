@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Auth;
 class PengajarController extends Controller
 {
     public function addGuru(){
+        $guru_id = User::where('nip', request()->input('nip'))->pluck('id')->first();
         foreach (request()->input('kelas') as $item){
 
             $data = [
-                'guru_id'=>request()->input('nip'),
+                'guru_id'=>$guru_id,
                 'kelas_id'=> $item
             ];
             Pengajar::create($data);
@@ -29,9 +30,9 @@ class PengajarController extends Controller
         $user = Auth::user();
         
         // Ambil semua pengajars yang terkait dengan pengguna ini
-        $pengajars = Pengajar::where('guru_id', $user->nip)->pluck('kelas_id')->toArray();
+        $pengajars = Pengajar::where('guru_id', $user->id)->pluck('kelas_id')->toArray();
 
-        $data = User::with('pengajars')->where('nip', Auth::user()->nip)->get();
+        $data = User::with('pengajars')->where('id', Auth::user()->id)->get();
 
         $pengajar = Pengajar::all();
 

@@ -23,7 +23,7 @@
         </div>
             <div class="position-fixed text-light col-3 bg-dark px-5 pb-3 z-3 d-none d-xl-block overflow-x-scroll" style="min-height: 20vh; max-height: 30vh; top: 0; right: 0; margin-top:60px;">
                 <label for="" class="h3 mb-2 mb-md-3 position-sticky py-3 top-0 bg-dark col-12">List Kelas Yang Di Ajar</label>
-                <lu>
+                <ul>
                     @foreach ($data as $item)
                         @foreach ($item->pengajars as $newdata)
                         <li class="d-flex mb-2 align-items-center w-100 justify-content-between">

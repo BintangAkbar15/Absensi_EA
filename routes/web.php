@@ -67,14 +67,14 @@ Route::middleware('auth')->group(function () {
 
     //show list kelas untuk show list siswa
     Route::get('/kelas/mskelas', function(){
-        $siswaId = Pengajar::with(['kelas','guru'])->where('guru_id',Auth::user()->nip)->pluck('kelas_id')->toArray();
+        $siswaId = Pengajar::with(['kelas','guru'])->where('guru_id',Auth::user()->id)->pluck('kelas_id')->toArray();
         $kelas = Kelas::all()->whereIn('id',$siswaId);
         return view('kelas.pilihkelassiswa',['data'=>$kelas]);
     })->name('kelas.pilihkelas');
 
     //show list kelas untuk memasukkan kelas ke siswa
     Route::get('/kelas/pilih', function(){
-        $siswaId = Pengajar::with(['kelas','guru'])->where('guru_id',Auth::user()->nip)->pluck('kelas_id')->toArray();
+        $siswaId = Pengajar::with(['kelas','guru'])->where('guru_id',Auth::user()->id)->pluck('kelas_id')->toArray();
         $kelas = Kelas::all()->where('bangku_tersisa','>=',1)->whereIn('id',$siswaId);
         return view('kelas.pilihkelas',['data'=> $kelas,'siswa'=>$siswaId]);
     })->name('siswa.kelas.pilih');
