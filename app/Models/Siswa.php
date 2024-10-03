@@ -21,7 +21,6 @@ class Siswa extends Model
         'kelas'
     ];
     
-    protected $primaryKey = 'nis';
 
     public function kelas(){
         return $this->hasOne(Kelas::class,'id','kelas_id');

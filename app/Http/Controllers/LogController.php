@@ -17,22 +17,22 @@ class LogController extends Controller
         $kecuali = Logkehadiran::where('tanggal',Carbon::today())->pluck('siswa_id')->toArray();
         $kelasExcepted = Siswa::where('kelas_id','=',$kelas->id)->count();
         if(request("search")){
-            $siswa = Siswa::where('kelas_id','=',$kelas->id)->where('name','like','%'.request("search").'%')->whereNotIn('nis',$kecuali)->get();
+            $siswa = Siswa::where('kelas_id','=',$kelas->id)->where('name','like','%'.request("search").'%')->whereNotIn('id',$kecuali)->get();
         }
         else{
-            $siswa = Siswa::where('kelas_id','=',$kelas->id)->whereNotIn('nis',$kecuali)->get();
+            $siswa = Siswa::where('kelas_id','=',$kelas->id)->whereNotIn('id',$kecuali)->get();
         }
         
         return view('Absensi.absensikelas',['kelas'=>$kelas,'siswa'=>$siswa,'exc'=>$kelasExcepted]);
     }
 
     public function showKelas(){
-        $kelas = User::with('pengajars')->where('nip','=',Auth::user()->nip)->get();
+        $kelas = User::with('pengajars')->where('id','=',Auth::user()->id)->get();
         return view('Absensi.masterabsensi',['data'=>$kelas]);
     }
 
     public function showKelasMenu(){
-        $kelas = User::with('pengajars')->where('nip','=',Auth::user()->nip)->get();
+        $kelas = User::with('pengajars')->where('id','=',Auth::user()->id)->get();
         return view('Absensi.menudatahadir',['data'=>$kelas]);
     }
     public function addLog(Request $request){
@@ -43,7 +43,7 @@ class LogController extends Controller
             'tanggal' => now(),
         ];
         Logkehadiran::create($data);
-        $siswa = Siswa::where('nis','like','%'.$request->input('siswa_id').'%')->get();
+        $siswa = Siswa::where('id','like','%'.$request->input('siswa_id').'%')->get();
         return redirect()->back()->with('success', 'Siswa '.$siswa[0]->name.' telah melakukan presensi');
     }
     public function editLog(Request $request, string $id){
