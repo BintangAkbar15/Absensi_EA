@@ -39,13 +39,15 @@
                     </button>
                 </form>
             </div>
+            @if ($bangkuTersisa > 0)
+                <div class="col-11">
+                    <label for="" class="h6 p-3 bg-primary text-light rounded">
+                        Jumlah Bangku Tersisa untuk kelas {{ $kelas->name }} : <span id="bangkusisa">{{ $bangkuTersisa }}</span> / {{ $kelas->rombel }}
+                     </label> 
+                </div>
+            @endif
         </div>
     </div>
-    @if ($bangkuTersisa > 0)
-       <label for="" class="h6">
-           Jumlah Bangku Tersisa untuk kelas {{ $kelas->name }} : <span id="bangkusisa">{{ $bangkuTersisa }}</span> / {{ $kelas->rombel }}
-        </label> 
-    @endif
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
             @if ( $bangkuTersisa > 0)

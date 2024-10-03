@@ -30,7 +30,7 @@
         <div style="background: #F4EBD0; min-height: 91.9vh;">
             @if ($dataPerKelas)
                 <div class="container mt-5 d-flex justify-content-center">
-                    <label for="" class="h2 text-center">Report Class for {{ $tanggal }}</label>
+                    <label for="" class="h2 text-center">Report Class for {{ date(" d F Y", strtotime($tanggal)) }}</label>
                 </div>
                 <!-- Form untuk memilih tanggal -->
                 <div class="container mt-3 d-flex justify-content-center">
@@ -49,8 +49,9 @@
                                 @forelse ($dataPerKelas as $kelasId => $data)
                                     <div class="carousel-item @if ($loop->first) active @endif"> <!-- Add 'active' class to the first item -->
                                         <div class="card mb-5 col-12">
-                                            <div class="card-header">
-                                                <h4 class="text-center">Kelas ID: {{ $kelasId }}</h4>
+                                            <div class="card-header d-flex justify-content-around">
+                                                <h4 class="text-center">Kelas : {{ $kelas[$loop->iteration -1] }}</h4>
+                                                <h4 class="text-center">tanggal : {{ date('d F Y' , strtotime($tanggal)) }}</h4>
                                             </div>
                                             <div class="card-body">
                                                 <div class="col-12 d-flex flex-column flex-md-row mt-5">
@@ -166,8 +167,9 @@
                         <div class="col-12">
                             @forelse ($dataPerKelas as $kelasId => $data)
                                 <div class="card mb-5 col-12">
-                                    <div class="card-header">
-                                        <h4 class="text-center">Kelas ID: {{ $kelasId }}</h4>
+                                    <div class="card-header d-flex justify-content-around">
+                                        <h4 class="text-center">Kelas : {{ $kelas[$loop->iteration -1] }}</h4>
+                                        <h4 class="text-center">tanggal : {{ date('d F Y' , strtotime($tanggal)) }}</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="col-12 d-flex flex-column flex-md-row mt-5">

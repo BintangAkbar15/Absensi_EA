@@ -1,9 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Siswa;
-use App\Models\Logkehadiran;
 use App\Models\Pengajar;
+use App\Models\Logkehadiran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,7 @@ class ChartController extends Controller
             ->whereDate('tanggal', $tanggal) // Filter berdasarkan tanggal
             ->whereIn('kelas_id', $kelasYangDiajarkan) // Filter berdasarkan kelas yang diajar pengajar
             ->get();
-
+        $kelas = Kelas::whereIn('id',$kelasYangDiajarkan)->pluck('name');
         $from = Carbon::now()->startOfWeek();
         $to = Carbon::now()->endOfWeek();
         $logKehadiranPerminggu = Logkehadiran::with(['siswa', 'kelas'])
@@ -55,7 +56,7 @@ class ChartController extends Controller
         }
 
         // Mengirimkan data per kelas dan tanggal yang dipilih ke view
-        return view('teacher', compact('dataPerKelas', 'tanggal','datamingguan'));
+        return view('teacher', compact('dataPerKelas', 'tanggal','datamingguan','kelas'));
     }
     
     public function testing(){

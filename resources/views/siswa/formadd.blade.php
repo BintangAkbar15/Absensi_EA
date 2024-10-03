@@ -12,57 +12,61 @@
       setTimeout(() => {
         alert.style.display = 'none';
       }, 3000);
-    </script>
+    </script> 
   @endif
-  <div class="w-100 d-flex align-items-center justify-content-center mt-5">
-      <section class="p-3 p-md-4 p-xl-5 col-9 shadow border border-1 rounded border-dark">
-          <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-6 bsb-tpl-bg-platinum">
-            <div class="d-flex flex-column justify-content-start h-100 p-3 p-xl-5">
-              <img class="img-fluid d-md-block d-none rounded mx-auto my-auto" loading="lazy" src="{{ url('img/logo.png') }}" width="400" alt="BootstrapBrain Logo">
-              <img class="img-fluid d-md-none rounded mx-auto my-auto" style="filter: invert(1)" loading="lazy" src="{{ url('img/title.png') }}" width="400" alt="BootstrapBrain Logo">
-            </div>
-          </div>
-          <div class="col-12 col-md-6 bsb-tpl-bg-lotion">
-            <div class="p-3 p-md-4 p-xl-5">
-              <div class="row">
-                <div class="col-12">
-                  <div class="mb-5">
-                    <h3>Add Form</h3>
-                  </div>
-                </div>
-              </div>
-              <form action="{{ route('siswa.add') }}" method="POST">
-                @csrf
-                <div class="row gy-3 gy-md-4 overflow-hidden">
-                  <div class="col-12">
-                    <label for="nis" class="form-label">NIS <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="nis" id="nis" maxlength="10" required>
-                  </div>
-                  <div class="col-12">
-                    <label for="nama" class="form-label">Nama <span class="text-danger">*</span></label>
-                    <input type="nama" class="form-control" name="nama" id="nama" value="" required>
-                  </div>
-                  <div class="col-12">
-                    <div class="d-grid">
-                      <button class="btn bsb-btn-xl fw-bold text-light" style="background: #532200;" type="submit">Add</button>
-                    </div>
-                    
-                  @if (session('error'))
-                    <p class="text-danger">{{ session('error') }}</p>
-                  @endif
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+  <div class="container col-12 d-flex justify-content-center align-items-center pt-5">
+    <div class="col-11 col-lg-5 d-flex flex-column shadow align-items-center p-5 mt-5 bg-light border border-2 border-dark rounded">
+        <div class="d-flex align-items-center col-12 ">
+          <img src="{{ url('img/logo.png') }}" width="30px" alt="">
+          <h4 class="text-start ms-3">Add Student</h4>
         </div>
+        <form action="{{ route('siswa.add') }}" class="mt-5" method="POST">
+          @csrf
+          <div class="row gy-3 gy-md-4 overflow-hidden">
+            <div class="col-12">
+              <label for="nis" class="form-label">NIS <span class="text-danger">*</span></label>
+              <input type="text" class="form-control mb-1" name="nis" id="nis" maxlength="10" required 
+                   placeholder="example: 123XXXXXXX" autocomplete="off">
+              <p class="text-secondary" id="criteria" style="font-size: 12px; display: block;" >Input harus berupa angka</p>
+              <p class="text-danger" id="notif-false" style="font-size: 12px; display: none;" >Input tidak valid</p>
+            </div>
+            <div class="col-12">
+              <label for="nama" class="form-label">Nama <span class="text-danger">*</span></label>
+              <input type="nama" class="form-control" name="nama" id="nama" value="" required>
+            </div>
+            <div class="col-12">
+              <div class="d-grid">
+                <button class="btn bsb-btn-xl fw-bold text-light" id='btn-submit' style="background: #532200;" type="submit">Add</button>
+              </div>
+              
+            @if (session('error'))
+              <p class="text-danger">{{ session('error') }}</p>
+            @endif
+            </div>
+          </div>
+        </form>
       </div>
-    </section>
-  </div>
+    </div>
     @if ($errors->any())
 
 
     @endif
+    <script>
+      document.getElementById('nis').addEventListener('input', function () {
+        var input = this.value;
+        var sub1 = document.getElementById('criteria');
+        var sub2 = document.getElementById('notif-false');
+        var btn = document.getElementById('btn-submit');
+
+        if (isNaN(input)) {
+          sub2.style.display = 'block'; 
+          sub1.style.display = 'none';   
+          btn.setAttribute('disabled','')
+        } else {
+          sub2.style.display = 'none';   
+          sub1.style.display = 'block';
+          btn.removeAttribute('disabled')
+        }
+      });
+    </script>
 </x-layout>
