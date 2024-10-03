@@ -18,7 +18,7 @@
       <div class="col-11 col-lg-5 d-flex flex-column shadow align-items-center p-5 mt-5 bg-light border border-2 border-dark rounded">
           <div class="d-flex align-items-center col-12 ">
             <img src="{{ url('img/logo.png') }}" width="30px" alt="">
-            <h4 class="text-start ms-3">Add Student</h4>
+            <h4 class="text-start ms-3">Add Class</h4>
           </div>
           <form action="{{ route('kelas.add') }}" method="POST">
             @csrf
