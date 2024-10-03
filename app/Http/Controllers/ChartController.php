@@ -34,6 +34,7 @@ class ChartController extends Controller
         $logKehadiranPerminggu = Logkehadiran::with(['siswa', 'kelas'])
             ->whereBetween('tanggal', [$from,$to]) // Filter berdasarkan tanggal
             ->whereIn('kelas_id', $kelasYangDiajarkan) // Filter berdasarkan kelas yang diajar pengajar
+            ->where('guru_id',Auth::user()->id)
             ->get();
 
         // Mengelompokkan data berdasarkan kelas dan menghitung jumlah status kehadiran
