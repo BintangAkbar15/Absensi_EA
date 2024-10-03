@@ -75,7 +75,7 @@
                                         @csrf
                                         <input type="hidden" name="id_kelas" id="kelas_id" value="">
                                         <input type="hidden" name="id" id="idToDelete" value="">
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">Hapus Dari Kelas</button>
                                     </form>
                                     </div>
                                 </div>

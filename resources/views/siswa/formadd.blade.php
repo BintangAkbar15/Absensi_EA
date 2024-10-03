@@ -25,7 +25,7 @@
           <div class="row gy-3 gy-md-4 overflow-hidden">
             <div class="col-12">
               <label for="nis" class="form-label">NIS <span class="text-danger">*</span></label>
-              <input type="text" class="form-control mb-1" name="nis" id="nis" maxlength="10" required 
+              <input type="text" class="form-control" name="nis" id="nis" maxlength="10" required 
                    placeholder="example: 123XXXXXXX" autocomplete="off">
               <p class="text-secondary" id="criteria" style="font-size: 12px; display: block;" >Input harus berupa angka</p>
               <p class="text-danger" id="notif-false" style="font-size: 12px; display: none;" >Input tidak valid</p>
