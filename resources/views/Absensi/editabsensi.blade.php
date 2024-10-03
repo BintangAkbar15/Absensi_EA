@@ -72,21 +72,21 @@
                                 <td class="justify-content-center flex-column flex-md-row gap-2 gap-md-4 px-0 py-2 " style="display: none;" id="btn_change_{{ $loop->index }}">
                                     <form action="{{ route('absensi.edit',$item->id) }}" method="post">
                                         @csrf
-                                        <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
+                                        <input type="hidden" name='siswa_id' value='{{ $item->id }}'>
                                         <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
                                         <input type="hidden" name='status' value='Hadir'>
                                         <button class="btn btn-success">Hadir</button>
                                     </form>
                                     <form action="{{ route('absensi.edit',$item->id) }}" method="post">
                                         @csrf
-                                        <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
+                                        <input type="hidden" name='siswa_id' value='{{ $item->id }}'>
                                         <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
                                         <input type="hidden" name='status' value='Sakit'>
                                         <button class="btn btn-warning">Sakit</button>
                                     </form>
                                     <form action="{{ route('absensi.edit',$item->id) }}" method="post">
                                         @csrf
-                                        <input type="hidden" name='siswa_id' value='{{ $item->nis }}'> 
+                                        <input type="hidden" name='siswa_id' value='{{ $item->id }}'> 
                                         <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
                                         <input type="hidden" name='status' value='Izin'>
                                         <button class="btn btn-primary">Izin</button>

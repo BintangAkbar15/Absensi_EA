@@ -22,7 +22,6 @@ class SiswaFactory extends Factory
         return [
             'nis' => mt_rand(0000000, 9999999), // 10 angka acak
             'name' => fake()->name(), // Nama acak,
-            'kelas_id'=> Kelas::factory()
         ];
     }
 }

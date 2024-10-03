@@ -58,21 +58,21 @@
                                     <td class="d-flex justify-content-center gap-2 gap-md-4">
                                         <form action="{{ route('absensi.add') }}" method="post">
                                             @csrf
-                                            <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
+                                            <input type="hidden" name='siswa_id' value='{{ $item->id }}'>
                                             <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
                                             <input type="hidden" name='status' value='Hadir'>
                                             <button class="btn btn-success">Hadir</button>
                                         </form>
                                         <form action="{{ route('absensi.add') }}" method="post">
                                             @csrf
-                                            <input type="hidden" name='siswa_id' value='{{ $item->nis }}'>
+                                            <input type="hidden" name='siswa_id' value='{{ $item->id }}'>
                                             <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
                                             <input type="hidden" name='status' value='Sakit'>
                                             <button class="btn btn-warning">Sakit</button>
                                         </form>
                                         <form action="{{ route('absensi.add') }}" method="post">
                                             @csrf
-                                            <input type="hidden" name='siswa_id' value='{{ $item->nis }}'> 
+                                            <input type="hidden" name='siswa_id' value='{{ $item->id }}'> 
                                             <input type="hidden" name='kelas' value='{{ $kelas->id }}'>
                                             <input type="hidden" name='status' value='Izin'>
                                             <button class="btn btn-primary">Izin</button>

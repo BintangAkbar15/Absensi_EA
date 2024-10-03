@@ -13,10 +13,12 @@ class KelasController extends Controller
      */
     public function menuKelas(Kelas $kelas){
         if(request("search")){
+            $siswa = Kelas::all()->where('id',$kelas->id);
             $siswa = Siswa::where('kelas_id','=' ,$kelas->id)->where('name','like','%'.request("search").'%')->get();
         }
         else{
-            $siswa = Siswa::where('kelas_id','=' ,$kelas->id)->get();
+            $kela = Kelas::all()->where('id',$kelas->id)->pluck('id')->first();
+            $siswa = Siswa::where("kelas_id",$kela)->get();
         }
         return view('kelas.listsiswa',['jsiswa'=>$kelas->jumlah_siswa,'bangku'=>$kelas->bangku_tersisa,'id'=>$kelas->id,'nama'=>$kelas->name, 'siswa'=>$siswa]);
     }
