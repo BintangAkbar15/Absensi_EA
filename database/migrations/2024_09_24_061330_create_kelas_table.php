@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name',100);
             $table->integer('jumlah_siswa')->default(0);
             $table->integer('bangku_tersisa')->default(0);
             $table->integer('rombel')->default(0);

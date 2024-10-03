@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('logkehadirans', function (Blueprint $table) {
             $table->id();
-            $table->integer( 'siswa_id'); // Ubah menjadi integer agar sesuai dengan nip di tabel siswas
-            $table->foreign('siswa_id', 'log_siswa_id')->references('nis')->on('siswas')->onDelete('cascade');
+            $table->unsignedBigInteger( 'siswa_id'); // Ubah menjadi integer agar sesuai dengan nip di tabel siswas
+            $table->foreign('siswa_id', 'log_siswa_id')->references('id')->on('siswas')->onDelete('cascade');
             $table->foreignId('kelas_id')->constrained(
                 table: 'kelas',
                 indexName: 'log_kelas_id',
             )->onDelete('cascade');
             $table->date('tanggal')->default(now());
-            $table->string('status')->default('alpa');
+            $table->string('keterangan')->default('belum diabsen');
+            $table->string('status')->default('belum diabsen');
             $table->timestamps();
         });
     }

@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Siswa::factory(100)->recycle(Kelas::factory(50)->create())->create();
+        User::factory(100)->create();
     }
 }
 

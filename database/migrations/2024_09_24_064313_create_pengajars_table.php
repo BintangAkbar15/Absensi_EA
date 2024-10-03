@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('pengajars', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('guru_id'); // Ubah menjadi integer agar sesuai dengan nip di tabel gurus
-            $table->foreign('guru_id', 'pengajars_guru_id')->references('nip')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('guru_id'); // Ubah menjadi integer agar sesuai dengan nip di tabel gurus
+            $table->foreign('guru_id', 'pengajars_guru_id')->references('id')->on('users')->onDelete('cascade');
             
             $table->foreignId('kelas_id')->constrained('kelas')->onDelete('cascade'); // Tidak ada masalah di sini
             $table->timestamps();

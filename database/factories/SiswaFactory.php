@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,7 +21,8 @@ class SiswaFactory extends Factory
     {
         return [
             'nis' => mt_rand(0000000, 9999999), // 10 angka acak
-            'name' => fake()->name() // Nama acak
+            'name' => fake()->name(), // Nama acak,
+            'kelas_id'=> Kelas::factory()
         ];
     }
 }

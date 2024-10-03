@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('siswas', function (Blueprint $table) {
-            $table->integer('nis')->primary(true);
+            $table->id();
+            $table->string('nis',15);
             $table->foreignId('kelas_id')
             ->constrained(
                 table: 'kelas',
                 indexName: 'siswas_kelas_id',
             )->onDelete('cascade');
-            $table->string('name');
+            $table->string('name',100);
             $table->timestamps();
         });
     }
