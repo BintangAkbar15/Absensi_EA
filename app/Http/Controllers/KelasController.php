@@ -61,15 +61,16 @@ class KelasController extends Controller
             'bangku_tersisa.numeric'=>'Jumlah siswa harus berupa angka',
         ]);
 
-
+        $bangku = $request->input('bangku_tersisa');
         $data = [
             'name' => $request->input('name'),
-            'bangku_tersisa' => $request->input('bangku_tersisa'),
-            'rombel' => $request->input('bangku_tersisa'),
+            'bangku_tersisa' => $bangku,
+            'rombel' => $bangku,
         ];
+        $datax = [$data];
 
         Kelas::create($data);
-        return redirect()->route('kelas.tampil')->with('success',"Berhasil memasukkan data");
+        return redirect()->route('kelas.tampil')->with('success',$datax);
     }
 
     /**

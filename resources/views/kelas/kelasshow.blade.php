@@ -41,7 +41,6 @@
     </div>
     <div class="mt-4 d-flex justify-content-center">
         <div class="col-11">
-
                 <table class="table text-center table-striped table-hover border border-1 shadow">
                     <thead>
                         <tr>

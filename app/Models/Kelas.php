@@ -13,6 +13,7 @@ class Kelas extends Model
         'name',
         'jumlah_siswa',
         'bangku_tersisa',
+        'rombel'
     ];
 
     public function siswa(){
