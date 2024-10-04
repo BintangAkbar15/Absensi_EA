@@ -1,95 +1,78 @@
-<x-layout>  
-    <div>
-        <div class="col-11 d-flex fw-bold py-5 justify-content-between px-md-5 px-3 align-items-center h3">
-            <a href="{{ route('dashboard.tampil') }}" class="text-dark">
-                <i class="fa-solid fa-arrow-left" style=""></i>
-            </a>
-            <label for="" class="justify-self-center ps-md-5 ms-md-5">Teacher</label>
-            <span></span>
-        </div>
-        <div class="col-12 d-flex justify-content-center">
-            <div class="col-11">
-                <div class="col-6 col-md-3 mt-3 ms-auto ms-md-0">
-                    <form action="{{ route('guru.main') }}" method="GET" class="input-group ">
-                        @csrf
-                        <input type="text" placeholder="Search Class" name="search" class="rounded-start-3 ps-3 col-8">
-                        <button class="btn rounded-none d-flex align-items-center gap-2 justify-content-center text-light col-4" style="background: #B68D40">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <label for="" class="d-none d-md-block">Search</label>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-            <div class="position-fixed text-light col-3 bg-dark px-5 pb-3 z-3 d-none d-xl-block overflow-x-scroll" style="min-height: 20vh; max-height: 30vh; top: 0; right: 0; margin-top:60px;">
-                <label for="" class="h3 mb-2 mb-md-3 position-sticky py-3 top-0 bg-dark col-12">List Kelas Yang Di Ajar</label>
-                <ul>
-                    @foreach ($data as $item)
-                        @foreach ($item->pengajars as $newdata)
-                        <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
-                            <label for="">{{ $newdata->name }}</label>
-                            <form action="{{ route('pengajar.delete',$id[$loop->iteration-1]->id) }}" method="post">
-                                @csrf
-                                <button class="btn-danger btn" type="submit">Hapus</button>
-                            </form>
-                        </li>
-                    @endforeach
-                @endforeach
-            </ul>
-        </div>
-            <button class="position-fixed text-light bg-dark p-3 z-3 d-xl-none d-flex me-3 rounded-circle" style="bottom: 0; right: 0; margin-bottom:30px;" data-bs-toggle="offcanvas" data-bs-target="#cek_list" aria-controls="offcanvasExample">
-                <i class="fa-regular fa-clipboard"></i>
-            </button>
-    
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="cek_list" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <label for="" class="h3 mb-2 mb-md-3 position-sticky top-0">List Kelas Yang Di Ajar</label>
-                <lu>
-                    @foreach ($data as $item)
-                        @foreach ($item->pengajars as $newdata)
-                        <li class="d-flex mb-2 align-items-center w-100 justify-content-between">
-                            <label for="">{{ $newdata->name }}</label>
-                            <form action="{{ route('pengajar.delete',$id[$loop->iteration-1]->id) }}" method="post">
-                                @csrf
-                                <button class="btn-danger btn" type="submit">Hapus</button>
-                            </form>
-                        </li>
-                            
-                        @endforeach
-                    @endforeach
-                </lu>
-            </div>  
-        </div>
-    </div>
-        <form action="{{ route('pengajar.add') }}" method="post">
-            @csrf
-            <input type="hidden" name="nip" value="{{ Auth::user()->nip }}">
-            <div class="w-100 mt-5 d-md-none d-flex justify-content-start pb-3 ps-3">
-                <button class="add_all btn btn-primary" id="submitClass" style="display: none;">Tambah kelas</button>
-            </div>
-            <div class="w-100 mt-5 d-sm-flex d-none justify-content-start pb-3 ps-3">
-                <button class="add_all btn btn-primary" id="submitClass  " style="display: none;">Tambah kelas</button>
-            </div>
-            <div class="col-12 d-flex flex-wrap z-1 justify-content-center gap-md-5 p-md-5 overflow-y-scroll" id="boxcheck" style="min-height: 60vh; max-height: 60vh; ">
-                @forelse ($kelas as $item)
-                <!-- Div 1 -->
-                <div class="boxcheck col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative" style="height: fit-content">
-                    <input type="checkbox" class="check" name="kelas[]" value="{{ $item->id }}" style="position: absolute; top: 10px; left: 10px;">
-                    <i class="fa-solid col-2 col-xl-12 fa-user mb-xl-3 py-3" style="font-size: 2em"></i>
-                    <div class="col-10 d-flex justify-content-end justify-content-xl-center text-center flex-md-column">
-                        <label class="h5 text-end pe-4 pe-xl-0 text-xl-center col-xl-12">{{ $item->name }}</label>
+<x-layout>
+    <div class="container-fluid col-12">
+        <h4 class="justify-content-center mt-5 d-flex">
+            <label for="" class="d-flex gap-3 align-items-center"><i class="fa-solid fa-chalkboard-user" style="font-size: 40px"></i>
+            Assign Class</label>
+        </h4>
+        <div class="col-12 position-relative d-flex bg-light p-5 rounded mt-5 border border-1 border-dark shadow" >
+            <div class="col-6 justify-content-start pe-5">
+                <div class="d-flex justify-content-between col-12 mb-3">
+                    <h5 class="text-start">List Class</h5>
+                    <div class="d-flex gap-2 align-items-center">
+                        <h5 class="text-start">Check All</h5>
+                        <input type="checkbox" name="" id="">
                     </div>
                 </div>
-                @empty
-                <div class="col-11 justify-content-start justify-content-xl-center ps-5 ps-xl-0 h1 align-items-center col-xl-2 shadow text-xl-center text-right py-xl-5 rounded bg-warning d-flex flex-xl-column align-items-center position-relative">
-                    <h5>No Data Found</h5>
+                <div class="col-12 overflow-y-scroll" style="max-height: 50vh">
+                    <div class="col-12 p-3 bg-warning d-flex align-items-center mb-3 rounded border border-1 border-dark">
+                        <i class="fa-solid fa-chalkboard-user" style="font-size: 40px"></i>
+                        <ul>
+                            <li for="" class="ms-4">Kelas A</li>
+                            <li for="" class="ms-4">Kelas A</li>
+                            <li for="" class="ms-4">Kelas A</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 p-3 bg-warning d-flex align-items-center mb-3 rounded border border-1 border-dark">
+                        <i class="fa-solid fa-chalkboard-user" style="font-size: 40px"></i>
+                        <ul>
+                            <li for="" class="ms-4">Kelas A</li>
+                            <li for="" class="ms-4">Kelas A</li>
+                            <li for="" class="ms-4">Kelas A</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 p-3 bg-warning d-flex align-items-center mb-3 rounded border border-1 border-dark">
+                        <i class="fa-solid fa-chalkboard-user" style="font-size: 40px"></i>
+                        <ul>
+                            <li for="" class="ms-4">Kelas A</li>
+                            <li for="" class="ms-4">Kelas A</li>
+                            <li for="" class="ms-4">Kelas A</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 p-3 bg-warning d-flex align-items-center mb-3 rounded border border-1 border-dark">
+                        <i class="fa-solid fa-chalkboard-user" style="font-size: 40px"></i>
+                        <ul>
+                            <li for="" class="ms-4">Kelas A</li>
+                            <li for="" class="ms-4">Kelas A</li>
+                            <li for="" class="ms-4">Kelas A</li>
+                        </ul>
+                    </div>
                 </div>
-                @endforelse
             </div>
-        </form>
-    
-    <script src="{{ url('js/selectclass.js') }}"></script>
+            <span class="border border-1 border-dark flex-column d-flex align-items-center justify-content-center">
+                <button class="btn btn-primary position-fixed" style="transform: translateY(-17vh);">Add</button>
+                <i class="fa-solid fa-arrow-right-arrow-left position-fixed" style="font-size: 40px;"></i>
+                <button class="btn btn-primary position-fixed" style="transform: translateY(17vh);">Remove</button>
+            </span>            
+            <div class="col-6 justify-content-start ps-5">
+                <div class="d-flex justify-content-between col-12 mb-3">
+                    <h5 class="text-start">Assigned Class</h5>
+                    <div class="d-flex gap-2 align-items-center">
+                        <h5 class="text-start">Check All</h5>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                </div>
+                <div class="col-12 overflow-y-scroll" style="max-height: 50vh">
+                    <div class="col-12 p-3 bg-warning d-flex align-items-center mb-3 rounded border border-1 border-dark">
+                        <i class="fa-solid fa-chalkboard-user" style="font-size: 40px"></i>
+                        <ul>
+                            <li for="" class="ms-4">Kelas A</li>
+                            <li for="" class="ms-4">Kelas A</li>
+                            <li for="" class="ms-4">Kelas A</li>
+                        </ul>
+                        <input type="checkbox" name="" style="width:40px;height:40px;" id="">
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
 </x-layout>
